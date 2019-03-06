@@ -18,13 +18,15 @@ public partial class DashBoard : System.Web.UI.Page
         //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setLoading", "setLoading()", true);
         //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts1", "setECharts1('"+this.Application["filePath"].ToString()+"')", true);
         GetInfoFromXLSX(this.Application["filePath"].ToString());
-        this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" + excelResult + "')", true);
+        this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" + excelResult_POnum + "','" + excelResult_Finishnum + "','" + excelResult_NetValue + "')", true);
         //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2()", true);
     }
 
     private XSSFSheet sht;
     protected String excelContent;
-    protected String excelResult;
+    protected String excelResult_POnum;
+    protected String excelResult_Finishnum;
+    protected String excelResult_NetValue;
     int num_noDIV = 0;
     int num_ok = 0;
     int num_nok = 0;
@@ -32,6 +34,8 @@ public partial class DashBoard : System.Web.UI.Page
     int num_Error_noDIV = 0;
     int num_Warning_noDIV = 0;
     int[] POnum_PerMonth = new int[12];
+    int[] Finishnum_PerMonth = new int[12];
+    double[] NetValue_PerMonth = new double[12];
 
     private void GetInfoFromXLSX(string filename)
     {
@@ -50,6 +54,7 @@ public partial class DashBoard : System.Web.UI.Page
         {
             XSSFRow nRow = (XSSFRow)sht.GetRow(rowIndex);
             XSSFCell nCell_Status = (XSSFCell)nRow.GetCell(7);
+            XSSFCell nCell_NetValue = (XSSFCell)nRow.GetCell(22);
             XSSFCell nCell_Create = (XSSFCell)nRow.GetCell(25);
             XSSFCell nCell_Finish = (XSSFCell)nRow.GetCell(28);
             XSSFCell nCell_LT = (XSSFCell)nRow.GetCell(30);
@@ -58,7 +63,16 @@ public partial class DashBoard : System.Web.UI.Page
             dtFormat.ShortDatePattern = "yyyy/MM/dd";
             if (nCell_Create.CellType==NPOI.SS.UserModel.CellType.String)
             {
-                continue;
+                continue;//跳过表头那一行
+            }
+            if (nCell_Finish.CellType == NPOI.SS.UserModel.CellType.Numeric)
+            {
+                DateTime dt_Finish;
+                dt_Finish = Convert.ToDateTime(nCell_Finish.DateCellValue);
+                if (dt_Finish.Year == 2018)
+                {
+                    Finishnum_PerMonth[dt_Finish.Month - 1]++;
+                }
             }
             switch (nCell_Status.CellType)
             {
@@ -84,7 +98,7 @@ public partial class DashBoard : System.Web.UI.Page
             if (dt_SOCreated.Year==2018)
             {
                 POnum_PerMonth[dt_SOCreated.Month - 1]++;
-
+                NetValue_PerMonth[dt_SOCreated.Month - 1] = NetValue_PerMonth[dt_SOCreated.Month - 1] + Convert.ToDouble(nCell_NetValue.NumericCellValue);
             }
           
             if (nCell_Status.StringCellValue != "DLV")
@@ -139,16 +153,22 @@ public partial class DashBoard : System.Web.UI.Page
         }
         table.Append("</table>");
         String mResult = num_ok.ToString() + "," + num_nok.ToString() + "," + num_noDIV.ToString() + "," + num_ok_noDIV.ToString() + "," + num_Warning_noDIV.ToString() + "," + num_Error_noDIV.ToString();
-        excelResult = "";
+        excelResult_POnum = "";
+        excelResult_Finishnum = "";
+        excelResult_NetValue = "";
         for (int i = 0; i < POnum_PerMonth.Length; i++)
         {
             if (i < POnum_PerMonth.Length-1)
             {
-                excelResult = excelResult + POnum_PerMonth[i].ToString() + ",";
+                excelResult_POnum = excelResult_POnum + POnum_PerMonth[i].ToString() + ",";
+                excelResult_Finishnum = excelResult_Finishnum + Finishnum_PerMonth[i].ToString() + ",";
+                excelResult_NetValue = excelResult_NetValue + NetValue_PerMonth[i].ToString("F2") + ",";
             }
             else
             {
-                excelResult = excelResult + POnum_PerMonth[i].ToString();
+                excelResult_POnum = excelResult_POnum + POnum_PerMonth[i].ToString();
+                excelResult_Finishnum = excelResult_Finishnum + Finishnum_PerMonth[i].ToString();
+                excelResult_NetValue = excelResult_NetValue + NetValue_PerMonth[i].ToString("F2");
             }
         }
         this.excelContent = table.ToString();

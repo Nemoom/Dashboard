@@ -271,7 +271,7 @@
         }
     </script>
     <script type="text/javascript">
-        function setECharts2(values) {    
+        function setECharts2(values_POnum,values_Finishnum,values_NetValue) {    
         // 基于准备好的dom，初始化echarts图表
         var myChart = echarts.init(document.getElementById('divECharts1'),'FestoColor');
         // 过渡---------------------
@@ -424,11 +424,10 @@
             text: '正在努力的读取数据中...',    //loading话术
         });
 
-        var dates_perMonth=values.split(',');
-        var values_perMonth = [];   
-        for (var i = 0; i < dates_perMonth.length; i++) {
-                        values_perMonth.push({ "value": dates_perMonth[i].value});
-                    }
+        var POnum_perMonth=values_POnum.split(',');
+        var Finishnum_perMonth = values_Finishnum.split(',');   
+        var NetValue_perMonth = values_NetValue.split(',');   
+       
         var option2 = {
             tooltip: {
                 trigger: 'axis',
@@ -448,7 +447,7 @@
                 }
             },
             legend: {
-                data:['蒸发量','降水量','平均温度']
+                data:['订单量','完成量','订单金额']
             },
             xAxis: [
                 {
@@ -472,31 +471,32 @@
                 },
                 {
                     type: 'value',
-                    name: '温度',
-                    min: 0,
-                    max: 25,
-                    interval: 5,
+                    name: '金额',
+//                    min: 0,
+//                    max: 50000000,
+//                    interval: 5000,
                     axisLabel: {
-                        formatter: '{value} °C'
+                        formatter: '{value} 元'
                     }
                 }
             ],
             series: [
                 {
-                    name:'蒸发量',
+                    name:'订单量',
                     type:'bar',
-                    data:dates_perMonth
+                    data:POnum_perMonth
                 },
                 {
-                    name:'降水量',
+                    name:'完成量',
                     type:'bar',
-                    data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+                    data:Finishnum_perMonth       
                 },
                 {
-                    name:'平均温度',
+                    name:'订单金额',
                     type:'line',
                     yAxisIndex: 1,
-                    data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+                    data:NetValue_perMonth
+        
                 }
             ]
         }
