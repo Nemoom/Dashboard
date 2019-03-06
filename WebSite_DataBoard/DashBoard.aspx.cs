@@ -17,7 +17,8 @@ public partial class DashBoard : System.Web.UI.Page
     {
         //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setLoading", "setLoading()", true);
         //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts1", "setECharts1('"+this.Application["filePath"].ToString()+"')", true);
-        this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" + this.Application["filePath"].ToString() + "')", true);
+        GetInfoFromXLSX(this.Application["filePath"].ToString());
+        this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" + excelResult + "')", true);
         //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2()", true);
     }
 
@@ -55,7 +56,10 @@ public partial class DashBoard : System.Web.UI.Page
             XSSFCell nCell_Confirmed = (XSSFCell)nRow.GetCell(31);
             DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
             dtFormat.ShortDatePattern = "yyyy/MM/dd";
-
+            if (nCell_Create.CellType==NPOI.SS.UserModel.CellType.String)
+            {
+                continue;
+            }
             switch (nCell_Status.CellType)
             {
                 case NPOI.SS.UserModel.CellType.Unknown:
@@ -135,7 +139,18 @@ public partial class DashBoard : System.Web.UI.Page
         }
         table.Append("</table>");
         String mResult = num_ok.ToString() + "," + num_nok.ToString() + "," + num_noDIV.ToString() + "," + num_ok_noDIV.ToString() + "," + num_Warning_noDIV.ToString() + "," + num_Error_noDIV.ToString();
-
+        excelResult = "";
+        for (int i = 0; i < POnum_PerMonth.Length; i++)
+        {
+            if (i < POnum_PerMonth.Length-1)
+            {
+                excelResult = excelResult + POnum_PerMonth[i].ToString() + ",";
+            }
+            else
+            {
+                excelResult = excelResult + POnum_PerMonth[i].ToString();
+            }
+        }
         this.excelContent = table.ToString();
     }
 

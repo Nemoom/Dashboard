@@ -94,6 +94,32 @@
     <script src="Scripts/FestoColorsN.js" type="text/javascript"></script>
     <script src="Scripts/FestoColor.js" type="text/javascript"></script>
     <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts图表
+        var myChart1 = echarts.init(document.getElementById('divECharts1'),'FestoColor');
+        // 过渡---------------------
+        myChart1.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+        // 基于准备好的dom，初始化echarts图表
+        var myChart2 = echarts.init(document.getElementById('divECharts2'),'FestoColor');
+        // 过渡---------------------
+        myChart2.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+        // 基于准备好的dom，初始化echarts图表
+        var myChart3 = echarts.init(document.getElementById('divECharts3'),'FestoColor');
+        // 过渡---------------------
+        myChart3.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+        // 基于准备好的dom，初始化echarts图表
+        var myChart4 = echarts.init(document.getElementById('divECharts4'),'FestoColor');
+        // 过渡---------------------
+        myChart4.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+    </script>
+    <script type="text/javascript">
         function setECharts1(filepath) {
             // 基于准备好的dom，初始化echarts图表
             var myChart = echarts.init(document.getElementById('divECharts1'),'FestoColor');
@@ -294,7 +320,7 @@
                     center: ['50%', '60%'],
                     label: {
                         normal: {
-                            formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                            formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c|{c}}  {per|{d}%}  ',
                             backgroundColor: '#eee',
                             borderColor: '#aaa',
                             borderWidth: 1,
@@ -312,6 +338,12 @@
                                     height: 0
                                 },
                                 b: {
+                                    color: '#999',
+                                    fontSize: 16,
+                                    lineHeight: 33
+                                },
+                                c: {
+                                    color: '#999',
                                     fontSize: 16,
                                     lineHeight: 33
                                 },
@@ -391,6 +423,12 @@
         myChart2.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
         });
+
+        var dates_perMonth=values.split(',');
+        var values_perMonth = [];   
+        for (var i = 0; i < dates_perMonth.length; i++) {
+                        values_perMonth.push({ "value": dates_perMonth[i].value});
+                    }
         var option2 = {
             tooltip: {
                 trigger: 'axis',
@@ -424,12 +462,12 @@
             yAxis: [
                 {
                     type: 'value',
-                    name: '水量',
+                    name: '订单量',
                     min: 0,
-                    max: 250,
+                    max: 1000,
                     interval: 50,
                     axisLabel: {
-                        formatter: '{value} ml'
+                        formatter: '{value}'
                     }
                 },
                 {
@@ -447,7 +485,7 @@
                 {
                     name:'蒸发量',
                     type:'bar',
-                    data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+                    data:dates_perMonth
                 },
                 {
                     name:'降水量',
