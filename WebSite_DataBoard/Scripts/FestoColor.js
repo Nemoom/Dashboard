@@ -19,14 +19,16 @@
         log('ECharts is not Loaded');
         return;
     }
-    echarts.registerTheme('FestoBlue', {
-        "color": [
-            "#3fb1e3",
-            "#a9b0ae",
-            "#0c3cf7",
-            "#5a69f5",
-            "#737872",
-            "#444747"
+    echarts.registerTheme('FestoColor', {
+        "color": [            
+            "#0091dc",
+            "#39aae6",
+            "#72c4ef",
+            "#c8e6fa",
+            "#717e86",
+            "#939fa6",
+            "#b6c0c6",
+            "#e5e8eb"
         ],
         "backgroundColor": "rgba(252,252,252,0)",
         "textStyle": {},
@@ -192,12 +194,14 @@
             "symbol": "emptyCircle",
             "smooth": false,
             "color": [
-                "#3fb1e3",
-                "#a9b0ae",
-                "#0c3cf7",
-                "#5a69f5",
-                "#737872",
-                "#444747"
+                "#0091dc",
+                "#39aae6",
+                "#72c4ef",
+                "#c8e6fa",
+                "#717e86",
+                "#939fa6",
+                "#b6c0c6",
+                "#e5e8eb"
             ],
             "label": {
                 "normal": {

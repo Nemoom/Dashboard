@@ -8,7 +8,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="img/ExhibitionInfoShell_Festo_32x32.png" />
     <script src="Scripts/macarons.js" type="text/javascript"></script>
     <script src="Scripts/vintage.js" type="text/javascript"></script>
-    <script src="Scripts/FestoBlue.js" type="text/javascript"></script>
+    <script src="Scripts/FestoColorsN.js" type="text/javascript"></script>
+    <script src="Scripts/FestoColor.js" type="text/javascript"></script>
     <script src="Scripts/echarts.min.js" type="text/javascript"></script>
     <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
 </head>
@@ -90,11 +91,12 @@
     <script src="./Scripts/echarts.min.js" type="text/javascript"></script>
     <script src="Scripts/macarons.js" type="text/javascript"></script>
     <script src="Scripts/vintage.js" type="text/javascript"></script>
-    <script src="Scripts/FestoBlue.js" type="text/javascript"></script>
+    <script src="Scripts/FestoColorsN.js" type="text/javascript"></script>
+    <script src="Scripts/FestoColor.js" type="text/javascript"></script>
     <script type="text/javascript">
         function setECharts1(filepath) {
             // 基于准备好的dom，初始化echarts图表
-            var myChart = echarts.init(document.getElementById('divECharts1'),'FestoBlue');
+            var myChart = echarts.init(document.getElementById('divECharts1'),'FestoColor');
             // 过渡---------------------
             myChart.showLoading({
                 text: '正在努力的读取数据中...',    //loading
@@ -245,7 +247,7 @@
     <script type="text/javascript">
         function setECharts2(values) {    
         // 基于准备好的dom，初始化echarts图表
-        var myChart = echarts.init(document.getElementById('divECharts1'),'macarons');
+        var myChart = echarts.init(document.getElementById('divECharts1'),'FestoColor');
         // 过渡---------------------
         myChart.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
@@ -384,7 +386,7 @@
             }
         });
         // 基于准备好的dom，初始化echarts图表
-        var myChart2 = echarts.init(document.getElementById('divECharts2'),'macarons');
+        var myChart2 = echarts.init(document.getElementById('divECharts2'),'FestoColor');
         // 过渡---------------------
         myChart2.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
@@ -476,7 +478,7 @@
     <script type="text/javascript">
         function setECharts() {    
        // 基于准备好的dom，初始化echarts图表
-        var myChart = echarts.init(document.getElementById('divECharts3'),'macarons');
+        var myChart = echarts.init(document.getElementById('divECharts3'),'FestoColor');
         // 过渡---------------------
         myChart.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
@@ -643,25 +645,25 @@
     <script type="text/javascript">
         function setLoading() {    
         // 基于准备好的dom，初始化echarts图表
-        var myChart1 = echarts.init(document.getElementById('divECharts1'),'macarons');
+        var myChart1 = echarts.init(document.getElementById('divECharts1'),'FestoColorsN');
         // 过渡---------------------
         myChart1.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
         });
         // 基于准备好的dom，初始化echarts图表
-        var myChart2 = echarts.init(document.getElementById('divECharts2'),'macarons');
+        var myChart2 = echarts.init(document.getElementById('divECharts2'),'FestoColorsN');
         // 过渡---------------------
         myChart2.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
         });
         // 基于准备好的dom，初始化echarts图表
-        var myChart3 = echarts.init(document.getElementById('divECharts3'),'macarons');
+        var myChart3 = echarts.init(document.getElementById('divECharts3'),'FestoColorsN');
         // 过渡---------------------
         myChart3.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
         });
         // 基于准备好的dom，初始化echarts图表
-        var myChart4 = echarts.init(document.getElementById('divECharts4'),'macarons');
+        var myChart4 = echarts.init(document.getElementById('divECharts4'),'FestoColorsN');
         // 过渡---------------------
         myChart4.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
