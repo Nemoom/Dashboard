@@ -68,8 +68,17 @@ public partial class DashBoard : System.Web.UI.Page
             if (nCell_Finish.CellType == NPOI.SS.UserModel.CellType.Numeric)
             {
                 DateTime dt_Finish;
-                dt_Finish = Convert.ToDateTime(nCell_Finish.DateCellValue);
-                if (dt_Finish.Year == 2018)
+                dt_Finish = DateTime.FromOADate(nCell_Finish.NumericCellValue);
+                //try
+                //{
+                //    dt_Finish = Convert.ToDateTime(nCell_Finish.DateCellValue);
+                //}
+                //catch (Exception)
+                //{
+                //    dt_Finish = DateTime.FromOADate(nCell_Finish.NumericCellValue);                    
+                //}
+                
+                if (dt_Finish.Year == 2019)
                 {
                     Finishnum_PerMonth[dt_Finish.Month - 1]++;
                 }
@@ -94,8 +103,16 @@ public partial class DashBoard : System.Web.UI.Page
                     break;
             }
             DateTime dt_SOCreated;
-            dt_SOCreated = Convert.ToDateTime(nCell_Create.DateCellValue);
-            if (dt_SOCreated.Year==2018)
+            dt_SOCreated = DateTime.FromOADate(nCell_Create.NumericCellValue);
+            //try
+            //{
+            //    dt_SOCreated = Convert.ToDateTime(nCell_Create.DateCellValue);
+            //}
+            //catch (Exception)
+            //{
+            //    dt_SOCreated = DateTime.FromOADate(nCell_Create.NumericCellValue);
+            //}
+            if (dt_SOCreated.Year==2019)
             {
                 POnum_PerMonth[dt_SOCreated.Month - 1]++;
                 NetValue_PerMonth[dt_SOCreated.Month - 1] = NetValue_PerMonth[dt_SOCreated.Month - 1] + Convert.ToDouble(nCell_NetValue.NumericCellValue);
@@ -107,7 +124,16 @@ public partial class DashBoard : System.Web.UI.Page
                 try
                 {
                     DateTime dt;
-                    dt = Convert.ToDateTime(nCell_Confirmed.DateCellValue);
+                    dt = DateTime.FromOADate(nCell_Confirmed.NumericCellValue);
+                    //try
+                    //{
+                    //    dt = Convert.ToDateTime(nCell_Confirmed.DateCellValue);
+                    //}
+                    //catch (Exception)
+                    //{
+                    //    dt = DateTime.FromOADate(nCell_Confirmed.NumericCellValue);
+                    //}
+
                     if ((DateTime.Today - dt).Days > 7)
                     {
                         num_ok_noDIV++;//正常
@@ -134,8 +160,24 @@ public partial class DashBoard : System.Web.UI.Page
                 DateTime dt_Plan;
                 try
                 {
-                    dt_Act = Convert.ToDateTime(nCell_Finish.DateCellValue);
-                    dt_Plan = Convert.ToDateTime(nCell_Confirmed.DateCellValue);
+                    dt_Act = DateTime.FromOADate(nCell_Finish.NumericCellValue);
+                    //try
+                    //{
+                    //    dt_Act = Convert.ToDateTime(nCell_Finish.DateCellValue);
+                    //}
+                    //catch (Exception)
+                    //{
+                    //    dt_Act = DateTime.FromOADate(nCell_Finish.NumericCellValue);
+                    //}
+                    dt_Plan = DateTime.FromOADate(nCell_Confirmed.NumericCellValue);
+                    //try
+                    //{
+                    //    dt_Plan = Convert.ToDateTime(nCell_Confirmed.DateCellValue);
+                    //}
+                    //catch (Exception)
+                    //{
+                    //    dt_Plan = DateTime.FromOADate(nCell_Confirmed.NumericCellValue);
+                    //}
                     if (dt_Act > dt_Plan)
                     {
                         num_nok++;

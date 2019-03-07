@@ -21,8 +21,8 @@
     }
     echarts.registerTheme('FestoColor', {
         "color": [            
+            "#0073c3",
             "#0091dc",
-            "#39aae6",
             "#72c4ef",
             "#c8e6fa",
             "#717e86",
@@ -194,8 +194,8 @@
             "symbol": "emptyCircle",
             "smooth": false,
             "color": [
+                "#0073c3",
                 "#0091dc",
-                "#39aae6",
                 "#72c4ef",
                 "#c8e6fa",
                 "#717e86",

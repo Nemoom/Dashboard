@@ -53,8 +53,6 @@
         <div class="main">
             <input id="Text1" name="text" type="text" runat="server" style="display:none;"
             value="demo.XLSX"/>
-            <asp:Button ID="Button1" runat="server" Text="解析" 
-            onclientclick="return setECharts();" />
             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
             <table style="width: 100%;">
                 <tr style="height: 50%;">
