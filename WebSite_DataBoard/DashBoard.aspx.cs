@@ -18,7 +18,7 @@ public partial class DashBoard : System.Web.UI.Page
         //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setLoading", "setLoading()", true);
         //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts1", "setECharts1('"+this.Application["filePath"].ToString()+"')", true);
         GetInfoFromXLSX(this.Application["filePath"].ToString());
-        this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" + excelResult_POnum + "','" + excelResult_Finishnum + "','" + excelResult_NetValue + "')", true);
+        this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" + this.Application["filePath"].ToString() + "','" + excelResult_POnum + "','" + excelResult_Finishnum + "','" + excelResult_NetValue + "')", true);
         //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2()", true);
     }
 
@@ -77,8 +77,8 @@ public partial class DashBoard : System.Web.UI.Page
                 //{
                 //    dt_Finish = DateTime.FromOADate(nCell_Finish.NumericCellValue);                    
                 //}
-                
-                if (dt_Finish.Year == 2019)
+
+                if (dt_Finish.Year == 2019 || dt_Finish.Year == 2018)
                 {
                     Finishnum_PerMonth[dt_Finish.Month - 1]++;
                 }
@@ -112,7 +112,7 @@ public partial class DashBoard : System.Web.UI.Page
             //{
             //    dt_SOCreated = DateTime.FromOADate(nCell_Create.NumericCellValue);
             //}
-            if (dt_SOCreated.Year==2019)
+            if (dt_SOCreated.Year == 2019 || dt_SOCreated.Year == 2018)
             {
                 POnum_PerMonth[dt_SOCreated.Month - 1]++;
                 NetValue_PerMonth[dt_SOCreated.Month - 1] = NetValue_PerMonth[dt_SOCreated.Month - 1] + Convert.ToDouble(nCell_NetValue.NumericCellValue);

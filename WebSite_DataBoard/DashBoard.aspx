@@ -269,7 +269,7 @@
         }
     </script>
     <script type="text/javascript">
-        function setECharts2(values_POnum,values_Finishnum,values_NetValue) {    
+        function setECharts2(filepath,values_POnum,values_Finishnum,values_NetValue) {    
         // 基于准备好的dom，初始化echarts图表
         var myChart = echarts.init(document.getElementById('divECharts1'),'FestoColor');
         // 过渡---------------------
@@ -371,7 +371,8 @@
         var names = [];    //类别数组（实际用来盛放X轴坐标值）
         var values1 = [];    //inside
         var values2 = [];    //outside
-        var filename = document.getElementById("Text1").value;
+        
+        var filename =  filepath;
 
         $.ajax({
             type: "post",

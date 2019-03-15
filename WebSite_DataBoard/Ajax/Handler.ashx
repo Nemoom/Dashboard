@@ -114,7 +114,10 @@ public class Handler : IHttpHandler {
             XSSFCell nCell_Confirmed = (XSSFCell)nRow.GetCell(31);
             DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
             dtFormat.ShortDatePattern = "yyyy/MM/dd";
-
+            if (nCell_Create.CellType == NPOI.SS.UserModel.CellType.String)
+            {
+                continue;//跳过表头那一行
+            }
             switch (nCell_Status.CellType)
             {
                 case NPOI.SS.UserModel.CellType.Unknown:
@@ -193,8 +196,10 @@ public class Handler : IHttpHandler {
                 DateTime dt_Plan;
                 try
                 {
-                    dt_Act = Convert.ToDateTime(nCell_Finish.DateCellValue);
-                    dt_Plan = Convert.ToDateTime(nCell_Confirmed.DateCellValue);
+                    //dt_Act = Convert.ToDateTime(nCell_Finish.DateCellValue);
+                    dt_Act = DateTime.FromOADate(nCell_Finish.NumericCellValue);
+                    //dt_Plan = Convert.ToDateTime(nCell_Confirmed.DateCellValue);
+                    dt_Plan = DateTime.FromOADate(nCell_Confirmed.NumericCellValue);
                     if (dt_Act > dt_Plan)
                     {
                         num_nok++;
