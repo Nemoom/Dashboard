@@ -14,13 +14,39 @@ public class ProcessMonitor
 		//TODO: 在此处添加构造函数逻辑
 		//
 	}
-
+    //订单完成状态
+    public static PO_Status mPO_Status;
+    //依据报价承诺给客户多少个工作日交付计算出的具体交付日期
     public static DateTime Date_QuotationLT { get { return HolidayHelper.GetInstance().GetReckonDate(mActualTime.Date_SO_CreatedOn, mEstimatedTime.QuotationLT, false); } }
+    //SO创建到PO创建的时间间隔
     public static int Gap_SO2PO { get { return (mActualTime.Date_PO_CreatedOn - mActualTime.Date_SO_CreatedOn).Days; } }
+    //PO创建到PO释放的时间间隔
     public static int Gap_PO2Release { get { return (mActualTime.Date_ActualReleaseDate - mActualTime.Date_PO_CreatedOn).Days; } }
+    //完成生产入库到起运发货的时间间隔
     public static int Gap_Finish2Shipment{ get { return (mActualTime.Date_ShipmentStartOn - mActualTime.Date_ActualFinishDate).Days; } }
+    //Lead Time(CDS)
+    public static int LT
+    {
+        get
+        {
+            if (mPO_Status == PO_Status.DIV)
+            {
+                return (mActualTime.Date_ActualFinishDate - mActualTime.Date_SO_CreatedOn).Days;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+    //Excel中的实际时间节点
     public static ActualTime mActualTime;
+    //Excel中的预计时间节点
     public static EstimatedTime mEstimatedTime;
+    public static string mPO;
+    public static string mSO;
+    //该订单的净值
+    public static double mNetValue;
 
     public struct ActualTime 
     {
@@ -39,5 +65,28 @@ public class ProcessMonitor
         public DateTime Date_BasicEndDate;
         public DateTime Date_2ndConfirmedDt;
     }
+    public static void CleanDate()
+    {
+        mActualTime.Date_SO_CreatedOn = new DateTime();
+        mActualTime.Date_PO_CreatedOn = new DateTime();
+        mActualTime.Date_ActualReleaseDate = new DateTime();
+        mActualTime.Date_ActualFinishDate = new DateTime();
+        mActualTime.Date_1stGRforPO = new DateTime();
+        mActualTime.Date_ShipmentStartOn = new DateTime();
 
+        mEstimatedTime.Date_1stConfirmedDt = new DateTime();
+        mEstimatedTime.Date_RequestDate = new DateTime();
+        mEstimatedTime.Date_BasicEndDate = new DateTime();
+        mEstimatedTime.Date_2ndConfirmedDt = new DateTime();
+        mEstimatedTime.QuotationLT = 0;
+    }
+}
+
+public enum PO_Status 
+{
+    SO_Created,
+    PO_Created,
+    PO_Released,
+    PO_Finished,
+    DIV
 }

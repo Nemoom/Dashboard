@@ -61,7 +61,7 @@ public class HolidayHelper
     /// <returns>经过反序列化之后的对象集合</returns>
     private List<DateModel> GetConfigList()
     {
-        string path = string.Format("{0}/../../Config/holidayConfig.json", System.AppDomain.CurrentDomain.BaseDirectory);
+        string path = string.Format("{0}Config\\holidayConfig.json", System.AppDomain.CurrentDomain.BaseDirectory);
         string fileContent = GetFileContent(path);
         if (!string.IsNullOrWhiteSpace(fileContent))
         {
@@ -132,7 +132,7 @@ public class HolidayHelper
     /// <param name="day">天数</param>
     /// <param name="isContainToday">当天是否算工作日（默认：true）</param>
     /// <returns></returns>
-    public DateTime GetReckonDate(int day, bool isContainToday = true)
+    public DateTime GetReckonDate2Today(int day, bool isContainToday = true)
     {
         DateTime currDate = DateTime.Now;
         int addDay = day >= 0 ? 1 : -1;
@@ -188,7 +188,7 @@ public class HolidayHelper
     /// <param name="date">带计算的时间</param>
     /// <param name="isContainToday">当天是否算工作日（默认：true）</param>
     /// <returns></returns>
-    public int GetWorkDayNum(DateTime date, bool isContainToday = true)
+    public int GetWorkDayNum2Today(DateTime date, bool isContainToday = true)
     {
         var currDate = DateTime.Now;
 
@@ -210,6 +210,38 @@ public class HolidayHelper
                 if (IsWorkDay(currDate, thisYearData))
                     workDayNum += addDay;
                 isEnd = addDay > 0 ? (date.Date > currDate.Date) : (date.Date < currDate.Date);
+            } while (isEnd);
+        }
+        return workDayNum;
+    }
+    /// <summary>
+    /// 根据传入的两个日期，计算两天间隔的工作日天数
+    /// </summary>
+    /// <param name="date">带计算的时间</param>
+    /// <param name="isContainToday">当天是否算工作日（默认：true）</param>
+    /// <returns></returns>
+    public int GetWorkDayNum(DateTime date1,DateTime date2, bool isContainToday = true)
+    {
+        var currDate = date1;
+
+        int workDayNum = 0;
+        int addDay = date2.Date > currDate.Date ? 1 : -1;
+
+        if (isContainToday)
+        {
+            currDate = currDate.AddDays(-addDay);
+        }
+
+        DateModel thisYearData = GetConfigDataByYear(currDate.Year);
+        if (thisYearData.Year > 0)
+        {
+            bool isEnd = false;
+            do
+            {
+                currDate = currDate.AddDays(addDay);
+                if (IsWorkDay(currDate, thisYearData))
+                    workDayNum += addDay;
+                isEnd = addDay > 0 ? (date2.Date > currDate.Date) : (date2.Date < currDate.Date);
             } while (isEnd);
         }
         return workDayNum;

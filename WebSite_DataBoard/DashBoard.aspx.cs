@@ -15,11 +15,36 @@ public partial class DashBoard : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setLoading", "setLoading()", true);
-        //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts1", "setECharts1('"+this.Application["filePath"].ToString()+"')", true);
-        GetInfoFromXLSX(this.Application["filePath"].ToString());
-        this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" + this.Application["filePath"].ToString() + "','" + excelResult_POnum + "','" + excelResult_Finishnum + "','" + excelResult_NetValue + "')", true);
-        //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2()", true);
+        //////this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setLoading", "setLoading()", true);
+        //////this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts1", "setECharts1('"+this.Application["filePath"].ToString()+"')", true);
+        ////GetInfoFromXLSX(this.Application["filePath"].ToString());
+        ////this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" + this.Application["filePath"].ToString() + "','" + excelResult_POnum + "','" + excelResult_Finishnum + "','" + excelResult_NetValue + "')", true);
+        //////this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2()", true);
+        ExcelOperation mExcelOperation = new ExcelOperation();
+        bool bool_ExcelImpoert = mExcelOperation.ExcelImportWithLayoutCheck(this.Application["filePath"].ToString(), "Souce data");
+        if (bool_ExcelImpoert)
+        {
+            mExcelOperation.TraceFromExcel();
+        }
+        this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" + 
+            Data2Trace.values_ECharts1 + "','" 
+            + Data2Trace.values_ECharts2 + "','" 
+            + Data2Trace.values_ECharts3 + "','"
+            + Data2Trace.values_ECharts4 + "','"
+            + Data2Trace.values_ECharts5 + "','"
+            + Data2Trace.values_ECharts6 + "','"
+            + Data2Trace.values_ECharts7 + "','"
+            + Data2Trace.values_ECharts8 + "')", true);
+
+        //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts8", "setECharts8('" +
+        //    Data2Trace.values_ECharts1 + "','"
+        //    + Data2Trace.values_ECharts2 + "','"
+        //    + Data2Trace.values_ECharts1 + "','"
+        //    + Data2Trace.values_ECharts2 + "','"
+        //    + Data2Trace.values_ECharts1 + "','"
+        //    + Data2Trace.values_ECharts2 + "','"
+        //    + Data2Trace.values_ECharts1 + "','"
+        //    + Data2Trace.values_ECharts2 + "')", true);
     }
 
     private XSSFSheet sht;
@@ -43,7 +68,7 @@ public partial class DashBoard : System.Web.UI.Page
         {
             ExcelOperation mExcelOperation=new ExcelOperation();
 
-            mExcelOperation.ExcelImportWithLayoutCheck(filename, "Sheet1");
+            bool bool_excelload = mExcelOperation.ExcelImportWithLayoutCheck(filename, "Sheet1");
             XSSFWorkbook wb = new XSSFWorkbook(File.OpenRead(@"C:\Users\Public\Music\" + filename));
             sht = (XSSFSheet)wb.GetSheet("Sheet1");
             //取行Excel的最大行数
