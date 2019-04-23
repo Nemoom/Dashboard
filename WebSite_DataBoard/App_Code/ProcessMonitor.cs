@@ -16,20 +16,22 @@ public class ProcessMonitor
 	}
     //订单完成状态
     public static PO_Status mPO_Status;
+    //订单交付工厂代号
+    public static DLV_Plant mDLV_Plant;
     //依据报价承诺给客户多少个工作日交付计算出的具体交付日期
     public static DateTime Date_QuotationLT { get { return HolidayHelper.GetInstance().GetReckonDate(mActualTime.Date_SO_CreatedOn, mEstimatedTime.QuotationLT, false); } }
-    //SO创建到PO创建的时间间隔
-    public static int Gap_SO2PO { get { return (mActualTime.Date_PO_CreatedOn - mActualTime.Date_SO_CreatedOn).Days; } }
-    //PO创建到PO释放的时间间隔
-    public static int Gap_PO2Release { get { return (mActualTime.Date_ActualReleaseDate - mActualTime.Date_PO_CreatedOn).Days; } }
-    //完成生产入库到起运发货的时间间隔
-    public static int Gap_Finish2Shipment{ get { return (mActualTime.Date_ShipmentStartOn - mActualTime.Date_ActualFinishDate).Days; } }
+    //SO创建到PO创建的时间间隔(WD)
+    public static int Gap_SO2PO { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_PO_CreatedOn, mActualTime.Date_SO_CreatedOn, false)); } }
+    //PO创建到PO释放的时间间隔(WD)
+    public static int Gap_PO2Release { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualReleaseDate, mActualTime.Date_PO_CreatedOn, false)); } }
+    //完成生产入库到起运发货的时间间隔(WD)
+    public static int Gap_Finish2Shipment { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ShipmentStartOn, mActualTime.Date_ActualFinishDate, false)); } }
     //Lead Time(CDS)
     public static int LT
     {
         get
         {
-            if (mPO_Status == PO_Status.DIV)
+            if (mPO_Status == PO_Status.DLV || mPO_Status == PO_Status.PO_Finished)
             {
                 return (mActualTime.Date_ActualFinishDate - mActualTime.Date_SO_CreatedOn).Days;
             }
@@ -88,5 +90,10 @@ public enum PO_Status
     PO_Created,
     PO_Released,
     PO_Finished,
-    DIV
+    DLV
+}
+public enum DLV_Plant
+{
+    P_0400,
+    P_0481    
 }
