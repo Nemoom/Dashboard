@@ -246,6 +246,7 @@ public class ExcelOperation
 
         }
     }
+
     List<string>[] mylist_SO_perMonth = new List<string>[12];
     List<string> mylist_SO_YTD = new List<string>();
     List<int>[] mylist_0400_LT_perMonth = new List<int>[12];
@@ -257,6 +258,7 @@ public class ExcelOperation
     List<int>[] mylist_LT_perMonth = new List<int>[12];
     List<int>[] mylist_LT_perWeek = new List<int>[4];
     List<int> mylist_LT_YTD = new List<int>();
+
     public bool RowRecordProcess(int rowIndex)
     {
         try
@@ -696,8 +698,34 @@ public class ExcelOperation
 	            #endregion
                 //For ECharts7:Reminders for 3Weeks&2Weeks
                 #region For ECharts7:Reminders for 3Weeks&2Weeks
-                //public static int count_Reminder3Weeks;
-                //public static int count_Reminder2Weeks; 
+                //public static int count_Reminder3Weeks_LT;
+                //public static int count_Reminder2Weeks_LT;
+                //public static int count_Reminder3Weeks_ConfirmedDt;
+                //public static int count_Reminder2Weeks_ConfirmedDt;
+                //0400未完成的订单
+                if ((ProcessMonitor.mPO_Status != PO_Status.DLV && ProcessMonitor.mPO_Status != PO_Status.PO_Finished) && ProcessMonitor.mDLV_Plant == DLV_Plant.P_0400)
+                {
+                    if (ProcessMonitor.Date_QuotationLT >DateTime.Today.AddDays(7)
+                        &&ProcessMonitor.Date_QuotationLT <=DateTime.Today.AddDays(14))
+                    {
+                        Data2Trace.count_Reminder2Weeks_LT++;
+                    }
+                    else if (ProcessMonitor.Date_QuotationLT >DateTime.Today.AddDays(14)
+                        &&ProcessMonitor.Date_QuotationLT <=DateTime.Today.AddDays(21))
+                    {
+                        Data2Trace.count_Reminder3Weeks_LT++;
+                    }
+                    if (ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt > DateTime.Today.AddDays(7) 
+                        && ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt <= DateTime.Today.AddDays(14))
+                    {
+                        Data2Trace.count_Reminder2Weeks_ConfirmedDt++;
+                    }
+                    else if (ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt > DateTime.Today.AddDays(14) 
+                        && ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt <= DateTime.Today.AddDays(21))
+                    {
+                        Data2Trace.count_Reminder3Weeks_ConfirmedDt++;
+                    }
+                }
                 #endregion
                 //For ECharts8:Repertory Monitor
                 #region For ECharts8:Repertory Monitor

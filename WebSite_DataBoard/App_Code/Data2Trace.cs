@@ -340,7 +340,9 @@ public class Data2Trace
     {
         get
         {
-            return count_Reminder3Weeks + "!" + count_Reminder2Weeks;
+            return count_Reminder3Weeks_LT + "!" + count_Reminder2Weeks_LT ;
+            //return count_Reminder3Weeks_LT + "!" + count_Reminder2Weeks_LT + ";"
+            //   + count_Reminder3Weeks_ConfirmedDt + "!" + count_Reminder2Weeks_ConfirmedDt;
         }
     }
     //ECharts8:Repertory Monitor
@@ -412,8 +414,10 @@ public class Data2Trace
     public static double[] LT_0481_perWeek = new double[4];
     public static double LT_0481_YTD;
     //ECharts7:Reminders for 3Weeks&2Weeks
-    public static int count_Reminder3Weeks;
-    public static int count_Reminder2Weeks;
+    public static int count_Reminder3Weeks_LT;
+    public static int count_Reminder2Weeks_LT;
+    public static int count_Reminder3Weeks_ConfirmedDt;
+    public static int count_Reminder2Weeks_ConfirmedDt;
     //ECharts8:Repertory Monitor
     public static int count_Stored_5;
     public static int count_Stored_5_10;
@@ -476,8 +480,10 @@ public class Data2Trace
         LT_perWeek = new double[4];
         LT_YTD = 0;
         //ECharts7:Reminders for 3Weeks&2Weeks
-        count_Reminder3Weeks = 0;
-        count_Reminder2Weeks = 0;
+        count_Reminder3Weeks_ConfirmedDt = 0;
+        count_Reminder2Weeks_ConfirmedDt = 0;
+        count_Reminder3Weeks_LT = 0;
+        count_Reminder2Weeks_LT = 0;
         //ECharts8:Repertory Monitor
         count_Stored_5 = 0;
         count_Stored_5_10 = 0;
