@@ -10,6 +10,7 @@
     <script src="Scripts/vintage.js" type="text/javascript"></script>
     <script src="Scripts/FestoColorsN.js" type="text/javascript"></script>
     <script src="Scripts/FestoColor.js" type="text/javascript"></script>
+    <script src="Scripts/FestoColor_6.js" type="text/javascript"></script>
     <script src="Scripts/echarts.min.js" type="text/javascript"></script>
     <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
 </head>
@@ -19,7 +20,7 @@
         <div class="header">
             <div class="title">
                 <h1>
-                    E2E Dashboard
+                    Transparent kit
                 </h1>
             </div>
             <div class="loginDisplay">
@@ -75,7 +76,7 @@
                     </td>
                     <td style="width: 50%;">
                         <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                        <div id="divECharts4" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                        <div id="divECharts6" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                         </div>
                     </td>
                 </tr>
@@ -87,7 +88,7 @@
                     </td>
                     <td style="width: 50%;">
                         <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                        <div id="divECharts6" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                        <div id="divECharts4" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                         </div>
                     </td>
                 </tr>
@@ -115,16 +116,17 @@
     <script src="Scripts/vintage.js" type="text/javascript"></script>
     <script src="Scripts/FestoColorsN.js" type="text/javascript"></script>
     <script src="Scripts/FestoColor.js" type="text/javascript"></script>
+    <script src="Scripts/FestoColor_6.js" type="text/javascript"></script>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts图表
-        var myChart1 = echarts.init(document.getElementById('divECharts1'),'FestoColor');
-        var myChart2 = echarts.init(document.getElementById('divECharts2'),'FestoColor');
-        var myChart3 = echarts.init(document.getElementById('divECharts3'),'FestoColor');
-        var myChart4 = echarts.init(document.getElementById('divECharts4'),'FestoColor');
-        var myChart5 = echarts.init(document.getElementById('divECharts5'),'FestoColor');
-        var myChart6 = echarts.init(document.getElementById('divECharts6'),'FestoColor');
-        var myChart7 = echarts.init(document.getElementById('divECharts7'),'FestoColor');
-        var myChart8 = echarts.init(document.getElementById('divECharts8'),'FestoColor');
+        var myChart1 = echarts.init(document.getElementById('divECharts1'),'FestoColor_6');
+        var myChart2 = echarts.init(document.getElementById('divECharts2'),'FestoColor_6');
+        var myChart3 = echarts.init(document.getElementById('divECharts3'),'FestoColor_6');
+        var myChart4 = echarts.init(document.getElementById('divECharts4'),'FestoColor_6');
+        var myChart5 = echarts.init(document.getElementById('divECharts5'),'FestoColor_6');
+        var myChart6 = echarts.init(document.getElementById('divECharts6'),'FestoColor_6');
+        var myChart7 = echarts.init(document.getElementById('divECharts7'),'FestoColor_6');
+        var myChart8 = echarts.init(document.getElementById('divECharts8'),'FestoColor_6');
         // 过渡---------------------
         myChart1.showLoading({
             text: '正在努力的读取数据中...',   
@@ -309,7 +311,7 @@
         //**                                                      myChart1                                                           **
         //*****************************************************************************************************************************
         // 基于准备好的dom，初始化echarts图表
-        var myChart1 = echarts.init(document.getElementById('divECharts1'),'FestoColor');
+        var myChart1 = echarts.init(document.getElementById('divECharts1'),'FestoColor_6');
         // 过渡---------------------
         myChart1.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
@@ -321,7 +323,7 @@
         var count_CreatedDelay_perMonth = var_Echarts1[1].split('!'); 
         var PO_CreationMonitor_YTD = var_Echarts1[2].split('!');   
         var values_PO_CreationMonitor_YTD = [];    
-        values_PO_CreationMonitor_YTD.push({ "value": PO_CreationMonitor_YTD[0], "name": '创建PO数(YTD)' });
+        values_PO_CreationMonitor_YTD.push({ "value": PO_CreationMonitor_YTD[0], "name": '正常创建PO数(YTD)' });
         values_PO_CreationMonitor_YTD.push({ "value": PO_CreationMonitor_YTD[1], "name": '延期创建PO数(YTD)' });        
 
         // 图表使用-------------------
@@ -349,7 +351,7 @@
                         legend: {
                             bottom: 10,
                             left: 'center',
-                            data:['创建PO数','延期创建PO数','创建PO数(YTD)','延期创建PO数(YTD)']
+                            data:['创建PO数','延期创建PO数','正常创建PO数(YTD)','延期创建PO数(YTD)']
                             
                         },
                         xAxis : [
@@ -404,7 +406,7 @@
         //**                                                      myChart2                                                           **
         //*****************************************************************************************************************************
         // 基于准备好的dom，初始化echarts图表
-        var myChart2 = echarts.init(document.getElementById('divECharts2'),'FestoColor');
+        var myChart2 = echarts.init(document.getElementById('divECharts2'),'FestoColor_6');
         // 过渡---------------------
         myChart2.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
@@ -416,7 +418,7 @@
         var count_ReleaseDelay_perMonth = var_Echarts2[1].split('!'); 
         var PO_Release_YTD = var_Echarts2[2].split('!');   
         var values_PO_Release_YTD = [];    
-        values_PO_Release_YTD.push({ "value": PO_Release_YTD[0], "name": '创建PO数(YTD)' });
+        values_PO_Release_YTD.push({ "value": PO_Release_YTD[0], "name": '按时释放PO数(YTD)' });
         values_PO_Release_YTD.push({ "value": PO_Release_YTD[1], "name": '延期释放PO数(YTD)' });        
 
         // 图表使用-------------------
@@ -444,7 +446,7 @@
                         legend: {
                             bottom: 10,
                             left: 'center',
-                            data:['创建PO数','延期释放PO数','创建PO数(YTD)','延期释放PO数(YTD)']
+                            data:['创建PO数','延期释放PO数','按时释放PO数(YTD)','延期释放PO数(YTD)']
                         },
                         xAxis : [
                             {
@@ -499,7 +501,7 @@
         //**                                                      myChart3                                                           **
         //*****************************************************************************************************************************
         // 基于准备好的dom，初始化echarts图表
-        var myChart3 = echarts.init(document.getElementById('divECharts3'),'FestoColor');
+        var myChart3 = echarts.init(document.getElementById('divECharts3'),'FestoColor_6');
         // 过渡---------------------
         myChart3.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
@@ -615,7 +617,7 @@
         //**                                                      myChart4                                                           **
         //*****************************************************************************************************************************
          // 基于准备好的dom，初始化echarts图表
-        var myChart4 = echarts.init(document.getElementById('divECharts4'),'FestoColor');
+        var myChart4 = echarts.init(document.getElementById('divECharts4'),'FestoColor_6');
         // 过渡---------------------
         myChart4.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
@@ -626,6 +628,10 @@
         var count_PO_Finished_perMonth=var_Echarts4[0].split('!');
         var count_PO_ForecastFinished_perMonth = var_Echarts4[1].split('!');   
         var NetValue_PO_Finished_perMonth = var_Echarts4[2].split('!');   
+
+        var count_PO_Finished_perMonth1=count_PO_Finished_perMonth.splice(0,count_PO_Finished_perMonth.length-1);
+        var count_PO_ForecastFinished_perMonth1=count_PO_ForecastFinished_perMonth.splice(0,count_PO_ForecastFinished_perMonth.length-1);
+        var NetValue_PO_Finished_perMonth1 = NetValue_PO_Finished_perMonth.splice(0,NetValue_PO_Finished_perMonth.length-1);
        
         var option4 = {
             title: {
@@ -657,7 +663,7 @@
             xAxis: [
                 {
                     type: 'category',
-                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月','YTD'],
+                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
                     axisPointer: {
                         type: 'shadow'
                     }
@@ -689,18 +695,18 @@
                 {
                     name:'订单完成量',
                     type:'bar',
-                    data:count_PO_Finished_perMonth
+                    data:count_PO_Finished_perMonth1
                 },
                 {
                     name:'预计完成量',
                     type:'bar',
-                    data:count_PO_ForecastFinished_perMonth       
+                    data:count_PO_ForecastFinished_perMonth1       
                 },
                 {
                     name:'订单金额',
                     type:'line',
                     yAxisIndex: 1,
-                    data:NetValue_PO_Finished_perMonth
+                    data:NetValue_PO_Finished_perMonth1
         
                 }
             ]
@@ -711,7 +717,7 @@
         //**                                                      myChart5                                                           **
         //*****************************************************************************************************************************
          // 基于准备好的dom，初始化echarts图表
-        var myChart5 = echarts.init(document.getElementById('divECharts5'),'FestoColor');
+        var myChart5 = echarts.init(document.getElementById('divECharts5'),'FestoColor_6');
         // 过渡---------------------
         myChart5.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
@@ -720,7 +726,9 @@
         var var_Echarts5=values_ECharts5.split(';');
 
         var count_SO_soCreated_perMonth=var_Echarts5[0].split('!');
-        var NetValue_SO_soCreated_perMonth = var_Echarts5[1].split('!');   
+        var NetValue_SO_soCreated_perMonth = var_Echarts5[1].split('!'); 
+        var count_SO_soCreated_perMonth1=count_SO_soCreated_perMonth.splice(0,count_SO_soCreated_perMonth.length-1);
+        var NetValue_SO_soCreated_perMonth1 = NetValue_SO_soCreated_perMonth.splice(0,NetValue_SO_soCreated_perMonth.length-1);  
        
         var option5 = {
             title: {
@@ -752,7 +760,7 @@
             xAxis: [
                 {
                     type: 'category',
-                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月','YTD'],
+                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
                     axisPointer: {
                         type: 'shadow'
                     }
@@ -784,13 +792,13 @@
                 {
                     name:'新进订单量',
                     type:'bar',
-                    data:count_SO_soCreated_perMonth
+                    data:count_SO_soCreated_perMonth1
                 },                
                 {
                     name:'订单金额',
                     type:'line',
                     yAxisIndex: 1,
-                    data:NetValue_SO_soCreated_perMonth
+                    data:NetValue_SO_soCreated_perMonth1
         
                 }
             ]
@@ -801,7 +809,7 @@
         //**                                                      myChart6                                                           **
         //*****************************************************************************************************************************
          // 基于准备好的dom，初始化echarts图表
-        var myChart6 = echarts.init(document.getElementById('divECharts6'),'FestoColor');
+        var myChart6 = echarts.init(document.getElementById('divECharts6'),'FestoColor_6');
         // 过渡---------------------
         myChart6.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
@@ -876,25 +884,41 @@
         //**                                                      myChart7                                                           **
         //*****************************************************************************************************************************
         // 基于准备好的dom，初始化echarts图表
-        var myChart7 = echarts.init(document.getElementById('divECharts7'),'FestoColor');
+        var myChart7 = echarts.init(document.getElementById('divECharts7'),'FestoColor_6');
         // 过渡---------------------
         myChart7.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
         });
 
-        var var_Echarts7=values_ECharts7.split('!');
+        var var_Echarts7=values_ECharts7.split(';');
+
+        var var_Reminder_Monitor_LT = var_Echarts7[0].split('!');  
+        var var_Reminder_Monitor_ConfirmedDt = var_Echarts7[1].split('!'); 
           
-        var values_Reminder_Monitor = []; 
+        var values_Reminder_Monitor_LT = []; 
+        var values_Reminder_Monitor_ConfirmedDt = []; 
         
-        values_Reminder_Monitor.push({ "value": var_Echarts7[0], "name": '物料计划提醒' });
-        values_Reminder_Monitor.push({ "value": var_Echarts7[1], "name": '生产计划提醒' }); 
+        values_Reminder_Monitor_LT.push({ "value": var_Reminder_Monitor_LT[0], "name": '物料计划提醒' });
+        values_Reminder_Monitor_LT.push({ "value": var_Reminder_Monitor_LT[1], "name": '生产计划提醒' }); 
+        values_Reminder_Monitor_ConfirmedDt.push({ "value": var_Reminder_Monitor_ConfirmedDt[0], "name": '物料计划提醒' });
+        values_Reminder_Monitor_ConfirmedDt.push({ "value": var_Reminder_Monitor_ConfirmedDt[1], "name": '生产计划提醒' }); 
 
         // 图表使用-------------------
         var option7 = {
-                        title: {
+                        title: [{
                             text: 'Reminder Monitor',
                             x: 'center'
-                        },
+                        },{
+                            subtext: 'According to Quotation LT',       
+                            x: '25%',
+                            y: '90%',
+                            textAlign: 'center'
+                        }, {        
+                            subtext: 'According to 1st ConfirmedDt',
+                            x: '75%',
+                            y: '90%',
+                            textAlign: 'center'
+                        }],
                         tooltip: {
                             trigger: 'item',
                             formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -910,7 +934,7 @@
                                 clockWise:false,
                                 type: 'pie',
                                 radius: '65%',
-                                center: ['50%', '60%'],
+                                center: ['25%', '55%'],
                                 label: {
                                     normal: {
                                         position: 'inner'
@@ -921,8 +945,25 @@
                                         show: false
                                     }
                                 },                
-                                data: values_Reminder_Monitor
-                            },                          
+                                data: values_Reminder_Monitor_LT
+                            },  {                                
+                                name: '数量',
+                                clockWise:false,
+                                type: 'pie',
+                                radius: '65%',
+                                center: ['75%', '55%'],
+                                label: {
+                                    normal: {
+                                        position: 'inner'
+                                    }
+                                },
+                                labelLine: {
+                                    normal: {
+                                        show: false
+                                    }
+                                },                
+                                data: values_Reminder_Monitor_ConfirmedDt
+                            },                        
                             ]
                     };         
        
@@ -932,7 +973,7 @@
         //**                                                      myChart8                                                           **
         //*****************************************************************************************************************************
         // 基于准备好的dom，初始化echarts图表
-        var myChart8 = echarts.init(document.getElementById('divECharts8'),'FestoColor');
+        var myChart8 = echarts.init(document.getElementById('divECharts8'),'FestoColor_6');
         // 过渡---------------------
         myChart8.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
@@ -972,14 +1013,41 @@
                                 center: ['50%', '60%'],
                                 label: {
                                     normal: {
-                                        position: 'inner'
+                                        formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                                        backgroundColor: '#eee',
+                                        borderColor: '#aaa',
+                                        borderWidth: 1,
+                                        borderRadius: 4,
+                                        rich: {
+                                            a: {
+                                                color: '#999',
+                                                lineHeight: 22,
+                                                align: 'center'
+                                            },
+                                            hr: {
+                                                borderColor: '#aaa',
+                                                width: '100%',
+                                                borderWidth: 0.5,
+                                                height: 0
+                                            },
+                                            b: {
+                                                fontSize: 16,
+                                                lineHeight: 33
+                                            },
+                                            per: {
+                                                color: '#eee',
+                                                backgroundColor: '#334455',
+                                                padding: [2, 4],
+                                                borderRadius: 2
+                                            }
+                                        }
                                     }
                                 },
                                 labelLine: {
                                     normal: {
-                                        show: false
+                                        length1: 30
                                     }
-                                },                
+                                },                    
                                 data: values_Overstocked_Monitor
                             },                          
                             ]

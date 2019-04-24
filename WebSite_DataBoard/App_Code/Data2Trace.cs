@@ -340,9 +340,9 @@ public class Data2Trace
     {
         get
         {
-            return count_Reminder3Weeks_LT + "!" + count_Reminder2Weeks_LT ;
-            //return count_Reminder3Weeks_LT + "!" + count_Reminder2Weeks_LT + ";"
-            //   + count_Reminder3Weeks_ConfirmedDt + "!" + count_Reminder2Weeks_ConfirmedDt;
+            //return count_Reminder3Weeks_LT + "!" + count_Reminder2Weeks_LT ;
+            return count_Reminder3Weeks_LT + "!" + count_Reminder2Weeks_LT + ";"
+               + count_Reminder3Weeks_ConfirmedDt + "!" + count_Reminder2Weeks_ConfirmedDt;
         }
     }
     //ECharts8:Repertory Monitor
