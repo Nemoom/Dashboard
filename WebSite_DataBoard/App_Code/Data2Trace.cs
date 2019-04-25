@@ -95,7 +95,8 @@ public class Data2Trace
                 }
                 else
                 {
-                    mstr_DCR_0400 = mstr_DCR_0400 + ((Convert.ToDouble(count_0400_PO_OnTime_perMonth[i]) / Convert.ToDouble(count_0400_PO_Finished_perMonth[i]))*100).ToString("0.00") + "!";
+                    mstr_DCR_0400 = mstr_DCR_0400 + Convert.ToInt16(((Convert.ToDouble(count_0400_PO_OnTime_perMonth[i]) / 
+                        Convert.ToDouble(count_0400_PO_Finished_perMonth[i]))*100)).ToString("") + "!";
                 }                
             }
             return mstr_DCR_0400.Substring(0, mstr_DCR_0400.Length - 1);
@@ -115,7 +116,8 @@ public class Data2Trace
                 }
                 else
                 {
-                    mstr_DCR_0481 = mstr_DCR_0481 + ((Convert.ToDouble(count_0481_PO_OnTime_perMonth[i]) / Convert.ToDouble(count_0481_PO_Finished_perMonth[i])) * 100).ToString("0.00") + "!";
+                    mstr_DCR_0481 = mstr_DCR_0481 + Convert.ToInt16(((Convert.ToDouble(count_0481_PO_OnTime_perMonth[i]) /
+                        Convert.ToDouble(count_0481_PO_Finished_perMonth[i])) * 100)).ToString() + "!";
                 }
             }
             return mstr_DCR_0481.Substring(0, mstr_DCR_0481.Length - 1);
@@ -135,7 +137,8 @@ public class Data2Trace
                 }
                 else
                 {
-                    mstr_DCR = mstr_DCR + ((Convert.ToDouble(count_0400_PO_OnTime_perMonth[i] + count_0481_PO_OnTime_perMonth[i]) / Convert.ToDouble(count_PO_Finished_perMonth[i])) * 100).ToString("0.00") + "!";
+                    mstr_DCR = mstr_DCR + Convert.ToInt16(((Convert.ToDouble(count_0400_PO_OnTime_perMonth[i] +
+                        count_0481_PO_OnTime_perMonth[i]) / Convert.ToDouble(count_PO_Finished_perMonth[i])) * 100)).ToString() + "!";
                 }
             }
             return mstr_DCR.Substring(0, mstr_DCR.Length - 1);
@@ -208,7 +211,7 @@ public class Data2Trace
             string mstr_LT_perMonth = "";
             for (int i = 0; i < LT_perMonth.Length; i++)
             {
-                mstr_LT_perMonth = mstr_LT_perMonth + LT_perMonth[i].ToString("F2") + "!";
+                mstr_LT_perMonth = mstr_LT_perMonth + Convert.ToInt16(LT_perMonth[i]).ToString() + "!";
             }
             return mstr_LT_perMonth.Substring(0, mstr_LT_perMonth.Length - 1);
         }
@@ -220,7 +223,7 @@ public class Data2Trace
             string mstr_LT_perWeek = "";
             for (int i = 0; i < LT_perWeek.Length; i++)
             {
-                mstr_LT_perWeek = mstr_LT_perWeek + LT_perWeek[i].ToString("F2") + "!";
+                mstr_LT_perWeek = mstr_LT_perWeek + Convert.ToInt16(LT_perWeek[i]).ToString() + "!";
             }
             return mstr_LT_perWeek.Substring(0, mstr_LT_perWeek.Length - 1);
         }
@@ -232,7 +235,7 @@ public class Data2Trace
             string mstr_LT_0400_perMonth = "";
             for (int i = 0; i < LT_0400_perMonth.Length; i++)
             {
-                mstr_LT_0400_perMonth = mstr_LT_0400_perMonth + LT_0400_perMonth[i].ToString("F2") + "!";
+                mstr_LT_0400_perMonth = mstr_LT_0400_perMonth + Convert.ToInt16(LT_0400_perMonth[i]).ToString() + "!";
             }
             return mstr_LT_0400_perMonth.Substring(0, mstr_LT_0400_perMonth.Length - 1);
         }
@@ -244,7 +247,7 @@ public class Data2Trace
             string mstr_LT_0400_perWeek = "";
             for (int i = 0; i < LT_0400_perWeek.Length; i++)
             {
-                mstr_LT_0400_perWeek = mstr_LT_0400_perWeek + LT_0400_perWeek[i].ToString("F2") + "!";
+                mstr_LT_0400_perWeek = mstr_LT_0400_perWeek + Convert.ToInt16(LT_0400_perWeek[i]).ToString() + "!";
             }
             return mstr_LT_0400_perWeek.Substring(0, mstr_LT_0400_perWeek.Length - 1);
         }
@@ -256,7 +259,7 @@ public class Data2Trace
             string mstr_LT_0481_perMonth = "";
             for (int i = 0; i < LT_0481_perMonth.Length; i++)
             {
-                mstr_LT_0481_perMonth = mstr_LT_0481_perMonth + LT_0481_perMonth[i].ToString("F2") + "!";
+                mstr_LT_0481_perMonth = mstr_LT_0481_perMonth + Convert.ToInt16(LT_0481_perMonth[i]).ToString() + "!";
             }
             return mstr_LT_0481_perMonth.Substring(0, mstr_LT_0481_perMonth.Length - 1);
         }
@@ -268,7 +271,7 @@ public class Data2Trace
             string mstr_LT_0481_perWeek = "";
             for (int i = 0; i < LT_0481_perWeek.Length; i++)
             {
-                mstr_LT_0481_perWeek = mstr_LT_0481_perWeek + LT_0481_perWeek[i].ToString("F2") + "!";
+                mstr_LT_0481_perWeek = mstr_LT_0481_perWeek + Convert.ToInt16(LT_0481_perWeek[i]).ToString() + "!";
             }
             return mstr_LT_0481_perWeek.Substring(0, mstr_LT_0481_perWeek.Length - 1);
         }
@@ -298,9 +301,9 @@ public class Data2Trace
         get
         {
             //return str_DCR_inside + ";" + str_DCR_outside;
-            return str_DCR + "!" + ((Convert.ToDouble(count_0481_PO_OnTime_YTD + count_0400_PO_OnTime_YTD) / Convert.ToDouble(count_PO_Finished_YTD)) * 100).ToString("0.00") + ";"
-                + str_DCR_0400 + "!" + ((Convert.ToDouble(count_0400_PO_OnTime_YTD) / Convert.ToDouble(count_0400_PO_Finished_YTD)) * 100).ToString("0.00") + ";"
-                + str_DCR_0481 + "!" + ((Convert.ToDouble(count_0481_PO_OnTime_YTD) / Convert.ToDouble(count_0481_PO_Finished_YTD)) * 100).ToString("0.00");
+            return str_DCR + "!" + Convert.ToInt16(((Convert.ToDouble(count_0481_PO_OnTime_YTD + count_0400_PO_OnTime_YTD) / Convert.ToDouble(count_PO_Finished_YTD)) * 100)).ToString() + ";"
+                + str_DCR_0400 + "!" + Convert.ToInt16(((Convert.ToDouble(count_0400_PO_OnTime_YTD) / Convert.ToDouble(count_0400_PO_Finished_YTD)) * 100)).ToString() + ";"
+                + str_DCR_0481 + "!" + Convert.ToInt16(((Convert.ToDouble(count_0481_PO_OnTime_YTD) / Convert.ToDouble(count_0481_PO_Finished_YTD)) * 100)).ToString();
         }
     }
     //ECharts4:Finish POs
@@ -327,9 +330,9 @@ public class Data2Trace
     {
         get
         {
-            return str_LT_perMonth + "!" + LT_YTD.ToString("F2")
-                + ";" + str_LT_0400_perMonth + "!" + LT_0400_YTD.ToString("F2")
-                + ";" + str_LT_0481_perMonth + "!" + LT_0481_YTD.ToString("F2");
+            return str_LT_perMonth + "!" + Convert.ToInt16(LT_YTD).ToString()
+                + ";" + str_LT_0400_perMonth + "!" + Convert.ToInt16(LT_0400_YTD).ToString()
+                + ";" + str_LT_0481_perMonth + "!" + Convert.ToInt16(LT_0481_YTD).ToString();
             //return str_LT_perMonth + "!" + str_LT_perWeek + "!" + LT_YTD.ToString("F2")
             //    + ";" + str_LT_0400_perMonth + "!" + str_LT_0400_perWeek + "!" + LT_0400_YTD.ToString("F2")
             //    + ";" + str_LT_0481_perMonth + "!" + str_LT_0481_perWeek + "!" + LT_0481_YTD.ToString("F2");
@@ -413,11 +416,13 @@ public class Data2Trace
     public static double[] LT_0481_perMonth = new double[12];
     public static double[] LT_0481_perWeek = new double[4];
     public static double LT_0481_YTD;
-    //ECharts7:Reminders for 3Weeks&2Weeks
+    //ECharts7:Reminders for 3Weeks&2Weeks & Last Failed Order
     public static int count_Reminder3Weeks_LT;
     public static int count_Reminder2Weeks_LT;
     public static int count_Reminder3Weeks_ConfirmedDt;
     public static int count_Reminder2Weeks_ConfirmedDt;
+    public static int count_FailedMonitor_DC;//昨天为止失败的订单
+    public static int count_FailedMonitor_Req;
     //ECharts8:Repertory Monitor
     public static int count_Stored_5;
     public static int count_Stored_5_10;
@@ -484,6 +489,8 @@ public class Data2Trace
         count_Reminder2Weeks_ConfirmedDt = 0;
         count_Reminder3Weeks_LT = 0;
         count_Reminder2Weeks_LT = 0;
+        count_FailedMonitor_DC = 0;
+        count_FailedMonitor_Req = 0;
         //ECharts8:Repertory Monitor
         count_Stored_5 = 0;
         count_Stored_5_10 = 0;

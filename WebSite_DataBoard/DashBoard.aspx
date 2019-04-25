@@ -565,8 +565,8 @@
                 {
                     type: 'value',
                     name: '完成率',
-//                    min: 0,
-//                    max: 1000,
+                    min: 0,
+                    max: 100,
 //                    interval: 50,
                     axisLabel: {
                         formatter: '{value}'
@@ -577,33 +577,75 @@
                 {
                     name:'0400+0481 DCR',
                     type:'bar',
-                    label: {
-                        normal: {
-                            show: true,
-                            position: 'top'
-                        }
+//                    label: {
+//                        normal: {
+//                            show: true,
+//                            position: 'top'
+//                        }
+//                    },
+                    markPoint : {
+                         data : [
+                            {
+                                name: '最优值',
+                                type: 'max'
+                            }
+                        ],
+                        animationThreshold :78
+                    },
+                    markLine : {
+                        data : [
+                            {name: 'Target',yAxis: 78}
+                        ]
                     },
                     data:var_DCR
                 },
                 {
                     name:'0400 DCR',
                     type:'bar',
-                    label: {
-                        normal: {
-                            show: true,
-                            position: 'top'
-                        }
+//                    label: {
+//                        normal: {
+//                            show: true,
+//                            position: 'top'
+//                        }
+//                    },
+                    markPoint : {
+                         data : [
+                            {
+                                name: '最优值',
+                                type: 'max'
+                            }
+                        ],
+                        animationThreshold :78
+                    },
+                    markLine : {
+                        data : [
+                            {name: 'Target',yAxis: 78}
+                        ]
                     },
                     data:var_DCR_0400       
                 },
                 {
                     name:'0481 DCR',
                     type:'bar',
-                    label: {
-                        normal: {
-                            show: true,
-                            position: 'top'
-                        }
+//                    label: {
+//                        normal: {
+//                            show: true,
+//                            position: 'top'
+//                        }
+//                    },
+                    markPoint : {
+                         data : [
+                            {
+                                name: '最优值',
+                                type: 'max'
+                            }
+                        ],
+                        animationThreshold :78
+                    },
+                    markLine : {
+                        data : [
+                            {name: 'Target',yAxis: 78}
+                        ]
                     },
                     data:var_DCR_0481
         
@@ -864,16 +906,58 @@
                 {
                     name:'0400+0481 LT',
                     type:'bar',
+                    markPoint : {
+                         data : [
+                            {
+                                name: 'max',
+                                type: 'max'
+                            }
+                        ],
+                        animationThreshold :50
+                    },
+                    markLine : {
+                        data : [
+                            {name: 'Target',yAxis: 50}
+                        ]
+                    },
                     data:var_LT
                 },   
                 {
                     name:'0400 LT',
                     type:'bar',
+                    markPoint : {
+                         data : [
+                            {
+                                name: 'max',
+                                type: 'max'
+                            }
+                        ],
+                        animationThreshold :50
+                    },
+                    markLine : {
+                        data : [
+                            {name: 'Target',yAxis: 50}
+                        ]
+                    },
                     data:var_LT_0400
                 },   
                 {
                     name:'0481 LT',
                     type:'bar',
+                    markPoint : {
+                         data : [
+                            {
+                                name: 'max',
+                                type: 'max'
+                            }
+                        ],
+                        animationThreshold :50
+                    },
+                    markLine : {
+                        data : [
+                            {name: 'Target',yAxis: 50}
+                        ]
+                    },
                     data:var_LT_0481
                 }               
             ]
@@ -893,30 +977,29 @@
         var var_Echarts7=values_ECharts7.split(';');
 
         var var_Reminder_Monitor_LT = var_Echarts7[0].split('!');  
-        var var_Reminder_Monitor_ConfirmedDt = var_Echarts7[1].split('!'); 
+        var var_Failed_Monitor = var_Echarts7[1].split('!'); 
           
         var values_Reminder_Monitor_LT = []; 
-        var values_Reminder_Monitor_ConfirmedDt = []; 
+        var values_Failed_Monitor = []; 
         
         values_Reminder_Monitor_LT.push({ "value": var_Reminder_Monitor_LT[0], "name": '物料计划提醒' });
         values_Reminder_Monitor_LT.push({ "value": var_Reminder_Monitor_LT[1], "name": '生产计划提醒' }); 
-        values_Reminder_Monitor_ConfirmedDt.push({ "value": var_Reminder_Monitor_ConfirmedDt[0], "name": '物料计划提醒' });
-        values_Reminder_Monitor_ConfirmedDt.push({ "value": var_Reminder_Monitor_ConfirmedDt[1], "name": '生产计划提醒' }); 
+        values_Failed_Monitor.push({ "value": var_Failed_Monitor[0], "name": 'DC Failed' });
+        values_Failed_Monitor.push({ "value": var_Failed_Monitor[1], "name": 'Request Failed' }); 
 
         // 图表使用-------------------
         var option7 = {
                         title: [{
                             text: 'Reminder Monitor',
-                            x: 'center'
-                        },{
                             subtext: 'According to Quotation LT',       
                             x: '25%',
-                            y: '90%',
+                            y: '10',
                             textAlign: 'center'
-                        }, {        
-                            subtext: 'According to 1st ConfirmedDt',
+                        }, { 
+                            text: 'Failed Monitor',       
+                            subtext: 'Failed Order',
                             x: '75%',
-                            y: '90%',
+                            y: '10',
                             textAlign: 'center'
                         }],
                         tooltip: {
@@ -924,9 +1007,9 @@
                             formatter: "{a} <br/>{b} : {c} ({d}%)"
                         },
                         legend: {
-                            orient: 'vertical',
-                            x: 'left',
-                            data:  ['物料计划提醒','生产计划提醒']
+                            bottom: 10,
+                            left: 'center',
+                            data:  ['物料计划提醒','生产计划提醒','DC Failed','Request Failed']
                         },
                         series: [
                             {                                
@@ -934,7 +1017,7 @@
                                 clockWise:false,
                                 type: 'pie',
                                 radius: '65%',
-                                center: ['25%', '55%'],
+                                center: ['25%', '50%'],
                                 label: {
                                     normal: {
                                         position: 'inner'
@@ -951,7 +1034,7 @@
                                 clockWise:false,
                                 type: 'pie',
                                 radius: '65%',
-                                center: ['75%', '55%'],
+                                center: ['75%', '50%'],
                                 label: {
                                     normal: {
                                         position: 'inner'
@@ -962,7 +1045,7 @@
                                         show: false
                                     }
                                 },                
-                                data: values_Reminder_Monitor_ConfirmedDt
+                                data: values_Failed_Monitor
                             },                        
                             ]
                     };         

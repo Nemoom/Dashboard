@@ -14,9 +14,10 @@ using NPOI.XSSF.UserModel;
 
 public partial class Data : System.Web.UI.Page
 {
+    static OleDbConnection conn_Cur = null;
     protected void Page_Load(object sender, EventArgs e)
     {
-        GlobalParas.GlobalParas.mDataSet = ExcelToDataSet(this.Application["filePath"].ToString());
+        GlobalParas.GlobalParas.mDataSet = ExcelToDataSet(this.Application["filePath"].ToString(), "Sheet1");
         string[] arrayFieldName = new string[GlobalParas.GlobalParas.mDataSet.Tables[0].Columns.Count];
         for (int i = 0; i < GlobalParas.GlobalParas.mDataSet.Tables[0].Columns.Count; i++)
         {
@@ -132,37 +133,53 @@ public partial class Data : System.Web.UI.Page
     {
         DataSet ds = new DataSet();
         string strConn = string.Empty;
-        if (string.IsNullOrEmpty(sheetName)) { sheetName = "Sheet1"; }
         pathName = @"C:\Users\Public\Music\" + pathName;
-        FileInfo file = new FileInfo(pathName);
-        if (!file.Exists) { throw new Exception("文件不存在"); }
-        string extension = file.Extension.ToLower();
-        switch (extension)
-        {
-            case ".xls":
-                strConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + pathName + ";Extended Properties='Excel 8.0;HDR=Yes;IMEX=1;'";
-                break;
-            case ".xlsx":
-                strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + pathName + ";Extended Properties='Excel 12.0;HDR=Yes;IMEX=1;'";
-                break;
-            default:
-                strConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + pathName + ";Extended Properties='Excel 8.0;HDR=Yes;IMEX=1;'";
-                break;
-        }
-        //链接Excel
-        OleDbConnection cnnxls = new OleDbConnection(strConn);
+        if (string.IsNullOrEmpty(sheetName)) { sheetName = GetExcelFirstTableName(pathName); }
+        if (!File.Exists(pathName)) { throw new Exception("文件不存在"); }
+        
         //读取Excel里面有 表Sheet1
-        OleDbDataAdapter oda = new OleDbDataAdapter(string.Format("select * from [{0}$]", sheetName), cnnxls);
+        OleDbDataAdapter oda = new OleDbDataAdapter(string.Format("select * from [{0}$]", sheetName), GetConnection(pathName));
         //将Excel里面有表内容装载到内存表中！
         oda.Fill(ds);
         oda.Dispose();
-        cnnxls.Close();
         return ds;
     }
-    public OleDbConnection GetConnection(string pathName, string sheetName = null)
+
+    /// <summary>
+    /// C#中获取Excel文件的第一个表名
+    /// Excel文件中第一个表名的缺省值是Sheet1$, 但有时也会被改变为其他名字. 如果需要在C#中使用OleDb读写Excel文件, 就需要知道这个名字是什么. 以下代码就是实现这个功能的:
+    /// </summary>
+    /// <param name="pathName"></param>
+    /// <returns></returns>
+    public static string GetExcelFirstTableName(string pathName)
+    {
+        //string pathName = @"C:\Users\Public\Music\" + excelFileName;
+        string tableName = null;
+        if (File.Exists(pathName))
+        {
+            //if (conn_Cur==null)
+            //{
+            //    conn_Cur = GetConnection(pathName);
+            //}
+            using (conn_Cur = GetConnection(pathName))
+            {
+                conn_Cur.Open();
+                DataTable dt = conn_Cur.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                tableName = dt.Rows[0][2].ToString().Trim();
+            }
+        }
+        return tableName;
+    }
+
+    /// <summary>
+    /// 利用excelFileName生成OleDbConnection，可用来赋值全局变量OleDbConnection
+    /// </summary>
+    /// <param name="pathName">完整的文件路径</param>
+    /// <returns></returns>
+    public static OleDbConnection GetConnection(string pathName)
     {
         string strConn = string.Empty;
-        if (string.IsNullOrEmpty(sheetName)) { sheetName = "Sheet1"; }
+        //string pathName = @"C:\Users\Public\Music\" + excelFileName;
         FileInfo file = new FileInfo(pathName);
         if (!file.Exists) { throw new Exception("文件不存在"); }
         string extension = file.Extension.ToLower();
@@ -182,11 +199,12 @@ public partial class Data : System.Web.UI.Page
         OleDbConnection cnnxls = new OleDbConnection(strConn);
         return cnnxls;
     }
+
     public DataSet SelectCMD(string sqlStr, string pathName, string sheetName = null)
     {
         DataSet ds = new DataSet();
         if (string.IsNullOrEmpty(sheetName)) { sheetName = "Sheet1"; }
-        OleDbConnection cnnxls = GetConnection(pathName, sheetName);
+        OleDbConnection cnnxls = GetConnection(pathName);
         OleDbDataAdapter oda = new OleDbDataAdapter(string.Format("select * from [{0}$]", sheetName) + sqlStr, cnnxls);
         //将Excel里面有表内容装载到内存表中！
         oda.Fill(ds);

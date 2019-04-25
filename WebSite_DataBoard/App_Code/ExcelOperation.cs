@@ -482,7 +482,7 @@ public class ExcelOperation
                         break;
                 } 
                 #endregion
-                //For ECharts3:DCR(Delivery Class Reliablity)及时交付率
+                //For ECharts3:DCR(Delivery Class Reliablity)及时交付率 需要+1WD
                 #region For ECharts3:DCR(Delivery Class Reliablity)及时交付率
                 //0400/0481
                 switch (ProcessMonitor.mDLV_Plant)
@@ -491,7 +491,10 @@ public class ExcelOperation
                         if (ProcessMonitor.mPO_Status == PO_Status.PO_Finished || ProcessMonitor.mPO_Status == PO_Status.DLV)
                         {
                             Data2Trace.count_0400_PO_DLV++;
-                            if (ProcessMonitor.mActualTime.Date_ActualFinishDate > ProcessMonitor.Date_QuotationLT)
+                            
+                            //需要加1个工作日,将FinishDate转换成ReadyToShipDate
+                            //if (ProcessMonitor.mActualTime.Date_ActualFinishDate > ProcessMonitor.Date_QuotationLT)
+                            if (HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, false) + 1 > ProcessMonitor.mEstimatedTime.QuotationLT)
                             {
                                 //超期完成的订单
                                 Data2Trace.count_0400_PO_DLV_Delay++;
@@ -523,7 +526,7 @@ public class ExcelOperation
                                     Data2Trace.count_0400_PO_noDLV_Delay++;
                                     if ((DateTime.Today.AddDays(-1)) == ProcessMonitor.Date_QuotationLT && (ProcessMonitor.mPO_Status != PO_Status.DLV || ProcessMonitor.mPO_Status != PO_Status.PO_Finished))
                                     {
-                                        Data2Trace.count_0400_PO_LastFailed++;
+                                        Data2Trace.count_0400_PO_LastFailed++;//根据QuotationLT
                                     }
                                 }
                                 else
@@ -554,7 +557,8 @@ public class ExcelOperation
                         if (ProcessMonitor.mPO_Status == PO_Status.PO_Finished || ProcessMonitor.mPO_Status == PO_Status.DLV)
                         {
                             Data2Trace.count_0481_PO_DLV++;
-                            if (ProcessMonitor.mActualTime.Date_ActualFinishDate > ProcessMonitor.Date_QuotationLT)
+                            //需要加1个工作日,将FinishDate转换成ReadyToShipDate
+                            if (HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, false) + 1 > ProcessMonitor.mEstimatedTime.QuotationLT)
                             {
                                 //超期完成的订单
                                 Data2Trace.count_0481_PO_DLV_Delay++;
@@ -697,35 +701,68 @@ public class ExcelOperation
                 //public static double LT_0481_YTD; 
 	            #endregion
                 //For ECharts7:Reminders for 3Weeks&2Weeks
-                #region For ECharts7:Reminders for 3Weeks&2Weeks
+                #region For ECharts7:Reminders for 3Weeks&2Weeks & Last Failed Order
                 //public static int count_Reminder3Weeks_LT;
                 //public static int count_Reminder2Weeks_LT;
                 //public static int count_Reminder3Weeks_ConfirmedDt;
                 //public static int count_Reminder2Weeks_ConfirmedDt;
-                //0400未完成的订单
-                if ((ProcessMonitor.mPO_Status != PO_Status.DLV && ProcessMonitor.mPO_Status != PO_Status.PO_Finished) && ProcessMonitor.mDLV_Plant == DLV_Plant.P_0400)
+                //public static int count_Reminder_Monitor_LastFailed_DC;
+                //public static int count_Reminder_Monitor_LastFailed_Req;
+                if (ProcessMonitor.mDLV_Plant == DLV_Plant.P_0400)
                 {
-                    if (ProcessMonitor.Date_QuotationLT >DateTime.Today.AddDays(7)
-                        &&ProcessMonitor.Date_QuotationLT <=DateTime.Today.AddDays(14))
+                    //0400订单
+                    if ((ProcessMonitor.mPO_Status != PO_Status.DLV && ProcessMonitor.mPO_Status != PO_Status.PO_Finished))
                     {
-                        Data2Trace.count_Reminder2Weeks_LT++;
+                        //0400未完成的订单
+                        if (ProcessMonitor.Date_QuotationLT > DateTime.Today.AddDays(7)
+                            && ProcessMonitor.Date_QuotationLT <= DateTime.Today.AddDays(14))
+                        {
+                            Data2Trace.count_Reminder2Weeks_LT++;
+                        }
+                        else if (ProcessMonitor.Date_QuotationLT > DateTime.Today.AddDays(14)
+                            && ProcessMonitor.Date_QuotationLT <= DateTime.Today.AddDays(21))
+                        {
+                            Data2Trace.count_Reminder3Weeks_LT++;
+                        }
+                        if (ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt > DateTime.Today.AddDays(7)
+                            && ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt <= DateTime.Today.AddDays(14))
+                        {
+                            Data2Trace.count_Reminder2Weeks_ConfirmedDt++;
+                        }
+                        else if (ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt > DateTime.Today.AddDays(14)
+                            && ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt <= DateTime.Today.AddDays(21))
+                        {
+                            Data2Trace.count_Reminder3Weeks_ConfirmedDt++;
+                        }                        
                     }
-                    else if (ProcessMonitor.Date_QuotationLT >DateTime.Today.AddDays(14)
-                        &&ProcessMonitor.Date_QuotationLT <=DateTime.Today.AddDays(21))
+                    else
                     {
-                        Data2Trace.count_Reminder3Weeks_LT++;
-                    }
-                    if (ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt > DateTime.Today.AddDays(7) 
-                        && ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt <= DateTime.Today.AddDays(14))
-                    {
-                        Data2Trace.count_Reminder2Weeks_ConfirmedDt++;
-                    }
-                    else if (ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt > DateTime.Today.AddDays(14) 
-                        && ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt <= DateTime.Today.AddDays(21))
-                    {
-                        Data2Trace.count_Reminder3Weeks_ConfirmedDt++;
+                        //0400已完成的订单
+                        if (ProcessMonitor.mEstimatedTime.Date_RequestDate > ProcessMonitor.Date_QuotationLT)
+                        {
+                            //Date_RequestDate为准
+                            if (ProcessMonitor.mActualTime.Date_ActualFinishDate > ProcessMonitor.mEstimatedTime.Date_RequestDate)
+                            {
+                                Data2Trace.count_FailedMonitor_Req++;
+                            }
+                        }
+                        else
+                        {
+                            //Date_QuotationLT为准
+                            if (ProcessMonitor.mActualTime.Date_ActualFinishDate > ProcessMonitor.Date_QuotationLT)
+                            {
+                                Data2Trace.count_FailedMonitor_DC++;
+                            }
+                        }
                     }
                 }
+                
+                //根据Date_QuotationLT和Date_RequestDate的比较判断以哪个做基准
+                else if ((DateTime.Today.AddDays(-1)) == ProcessMonitor.mEstimatedTime.Date_RequestDate && (ProcessMonitor.mPO_Status != PO_Status.DLV || ProcessMonitor.mPO_Status != PO_Status.PO_Finished))
+                {
+
+                }
+
                 #endregion
                 //For ECharts8:Repertory Monitor
                 #region For ECharts8:Repertory Monitor
