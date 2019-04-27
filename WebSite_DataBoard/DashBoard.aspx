@@ -153,6 +153,31 @@
         myChart8.showLoading({
             text: '正在努力的读取数据中...',   
         });
+        var count = 0;
+        var time_count;
+        time_count = setInterval(function () {
+                count++;
+                if (count%2==0) {
+                    document.getElementById('divECharts1').style.display="none";
+                    document.getElementById('divECharts2').style.display="none";
+                    document.getElementById('divECharts3').style.display="none";
+                    document.getElementById('divECharts6').style.display="none";
+                    document.getElementById('divECharts5').style.display="block";
+                    document.getElementById('divECharts4').style.display="block";
+                    document.getElementById('divECharts7').style.display="block";
+                    document.getElementById('divECharts8').style.display="block";
+                } 
+                else {
+                    document.getElementById('divECharts1').style.display="block";
+                    document.getElementById('divECharts2').style.display="block";
+                    document.getElementById('divECharts3').style.display="block";
+                    document.getElementById('divECharts6').style.display="block";
+                    document.getElementById('divECharts5').style.display="none";
+                    document.getElementById('divECharts4').style.display="none";
+                    document.getElementById('divECharts7').style.display="none";
+                    document.getElementById('divECharts8').style.display="none";
+                }                  
+            }, 10000);
     </script>
     <script type="text/javascript">
         function setECharts1(filepath) {
