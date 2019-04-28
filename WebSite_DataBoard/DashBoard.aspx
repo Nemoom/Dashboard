@@ -161,33 +161,33 @@
         });
         var count = 0;
         var time_count;
-        time_count = setInterval(function () {
-                count++;
-                if (count%2==0) {
-//                    document.getElementById('divECharts1').style.display="none";
-//                    document.getElementById('divECharts2').style.display="none";
-//                    document.getElementById('divECharts3').style.display="none";
-//                    document.getElementById('divECharts6').style.display="none";
-//                    document.getElementById('divECharts5').style.display="block";
-//                    document.getElementById('divECharts4').style.display="block";
-//                    document.getElementById('divECharts7').style.display="block";
-//                    document.getElementById('divECharts8').style.display="block";
-                    document.getElementById('Panel2').style.display="none";
-                    document.getElementById('Panel1').style.display="block";
-                } 
-                else {
-//                    document.getElementById('divECharts1').style.display="block";
-//                    document.getElementById('divECharts2').style.display="block";
-//                    document.getElementById('divECharts3').style.display="block";
-//                    document.getElementById('divECharts6').style.display="block";
-//                    document.getElementById('divECharts5').style.display="none";
-//                    document.getElementById('divECharts4').style.display="none";
-//                    document.getElementById('divECharts7').style.display="none";
-//                    document.getElementById('divECharts8').style.display="none";
-                    document.getElementById('Panel1').style.display="none";
-                    document.getElementById('Panel2').style.display="block";
-                }                  
-            }, 10000);
+//        time_count = setInterval(function () {
+//                count++;
+//                if (count%2==0) {
+////                    document.getElementById('divECharts1').style.display="none";
+////                    document.getElementById('divECharts2').style.display="none";
+////                    document.getElementById('divECharts3').style.display="none";
+////                    document.getElementById('divECharts6').style.display="none";
+////                    document.getElementById('divECharts5').style.display="block";
+////                    document.getElementById('divECharts4').style.display="block";
+////                    document.getElementById('divECharts7').style.display="block";
+////                    document.getElementById('divECharts8').style.display="block";
+//                    document.getElementById('Panel2').style.display="none";
+//                    document.getElementById('Panel1').style.display="block";
+//                } 
+//                else {
+////                    document.getElementById('divECharts1').style.display="block";
+////                    document.getElementById('divECharts2').style.display="block";
+////                    document.getElementById('divECharts3').style.display="block";
+////                    document.getElementById('divECharts6').style.display="block";
+////                    document.getElementById('divECharts5').style.display="none";
+////                    document.getElementById('divECharts4').style.display="none";
+////                    document.getElementById('divECharts7').style.display="none";
+////                    document.getElementById('divECharts8').style.display="none";
+//                    document.getElementById('Panel1').style.display="none";
+//                    document.getElementById('Panel2').style.display="block";
+//                }                  
+//            }, 10000);
     </script>
     <script type="text/javascript">
         function setECharts1(filepath) {
@@ -604,7 +604,7 @@
                     max: 100,
 //                    interval: 50,
                     axisLabel: {
-                        formatter: '{value}'
+                        formatter: '{value}%'
                     }
                 },        
             ],
@@ -612,21 +612,28 @@
                 {
                     name:'0400+0481 DCR',
                     type:'bar',
-//                    label: {
-//                        normal: {
-//                            show: true,
-//                            position: 'top'
-//                        }
-//                    },
-                    markPoint : {
-                         data : [
-                            {
-                                name: '最优值',
-                                type: 'max'
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: function(params){
+                                if (params.value > 0) {
+                                    return params.value;
+                                } else {
+                                    return '';
+                                }
                             }
-                        ],
-                        animationThreshold :78
+                        }
                     },
+//                    markPoint : {
+//                         data : [
+//                            {
+//                                name: '最优值',
+//                                type: 'max'
+//                            }
+//                        ],
+//                        animationThreshold :78
+//                    },
                     markLine : {
                         data : [
                             {name: 'Target',yAxis: 78}
@@ -637,21 +644,28 @@
                 {
                     name:'0400 DCR',
                     type:'bar',
-//                    label: {
-//                        normal: {
-//                            show: true,
-//                            position: 'top'
-//                        }
-//                    },
-                    markPoint : {
-                         data : [
-                            {
-                                name: '最优值',
-                                type: 'max'
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: function(params){
+                                if (params.value > 0) {
+                                    return params.value;
+                                } else {
+                                    return '';
+                                }
                             }
-                        ],
-                        animationThreshold :78
+                        }
                     },
+//                    markPoint : {
+//                         data : [
+//                            {
+//                                name: '最优值',
+//                                type: 'max'
+//                            }
+//                        ],
+//                        animationThreshold :78
+//                    },
                     markLine : {
                         data : [
                             {name: 'Target',yAxis: 78}
@@ -662,21 +676,28 @@
                 {
                     name:'0481 DCR',
                     type:'bar',
-//                    label: {
-//                        normal: {
-//                            show: true,
-//                            position: 'top'
-//                        }
-//                    },
-                    markPoint : {
-                         data : [
-                            {
-                                name: '最优值',
-                                type: 'max'
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: function(params){
+                                if (params.value > 0) {
+                                    return params.value;
+                                } else {
+                                    return '';
+                                }
                             }
-                        ],
-                        animationThreshold :78
+                        }
                     },
+//                    markPoint : {
+//                         data : [
+//                            {
+//                                name: '最优值',
+//                                type: 'max'
+//                            }
+//                        ],
+//                        animationThreshold :78
+//                    },
                     markLine : {
                         data : [
                             {name: 'Target',yAxis: 78}

@@ -297,8 +297,8 @@ public partial class Data : System.Web.UI.Page
     protected void btn_AbnormalOrder_Click(object sender, EventArgs e)
     {
         //显示在first confirmed date设定后，planned date同时晚于Requested Date及delivery class的生产订单清单
-        string sqlStr = " where ";
-        GlobalParas.GlobalParas.mDataSet = SelectCMD(" where [Segment]='PLAS'", @"C:\Users\Public\Music\" + this.Application["filePath"].ToString());
+        string sqlStr = " where [" + excelHeader[31] + "]>["+ excelHeader[32] + "]";
+        GlobalParas.GlobalParas.mDataSet = SelectCMD(sqlStr, @"C:\Users\Public\Music\" + this.Application["filePath"].ToString());
         GridView1.DataSource = GlobalParas.GlobalParas.mDataSet;
         GridView1.DataBind();
     }
@@ -307,7 +307,7 @@ public partial class Data : System.Web.UI.Page
         //以first confirmed date为基准，提前3周提醒物料计划检查物料情况
         DateTime startDay = DateTime.Today.AddDays(14);
         DateTime endDay = DateTime.Today.AddDays(21);
-        string sqlStr = " where [1st ConfirmedDt] between #" + startDay.Year + "-" + startDay.Month + "-" + startDay.Day
+        string sqlStr = " where [" + excelHeader[31] + "] between #" + startDay.Year + "-" + startDay.Month + "-" + startDay.Day
             + "# and #" + endDay.Year + "-" + endDay.Month + "-" + endDay.Day + "#";
         GlobalParas.GlobalParas.mDataSet = SelectCMD(sqlStr, @"C:\Users\Public\Music\" + this.Application["filePath"].ToString());
         GridView1.DataSource = GlobalParas.GlobalParas.mDataSet;
@@ -319,7 +319,7 @@ public partial class Data : System.Web.UI.Page
         //以first confirmed date为基准，提前2周提醒生产计划安排生产时间
         DateTime startDay = DateTime.Today.AddDays(7);
         DateTime endDay = DateTime.Today.AddDays(14);
-        string sqlStr = " where [1st ConfirmedDt] between #" + startDay.Year + "-" + startDay.Month + "-" + startDay.Day
+        string sqlStr = " where [" + excelHeader[31] + "] between #" + startDay.Year + "-" + startDay.Month + "-" + startDay.Day
             + "# and #" + endDay.Year + "-" + endDay.Month + "-" + endDay.Day + "#";
         GlobalParas.GlobalParas.mDataSet = SelectCMD(sqlStr, @"C:\Users\Public\Music\" + this.Application["filePath"].ToString());
         GridView1.DataSource = GlobalParas.GlobalParas.mDataSet;
