@@ -55,56 +55,62 @@
             <input id="Text1" name="text" type="text" runat="server" style="display:none;"
             value="demo.XLSX"/>
             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-            <table style="width: 100%;">
-                <tr style="height: 25%;">
-                    <td style="width: 50%;">
-                        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                        <div id="divECharts1" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
-                        </div>
-                    </td>
-                    <td style="width: 50%;">
-                        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                        <div id="divECharts2" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
-                        </div>
-                    </td>
-                </tr>
-                <tr style="height: 25%;">
-                    <td style="width: 50%;">
-                        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                        <div id="divECharts3" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
-                        </div>
-                    </td>
-                    <td style="width: 50%;">
-                        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                        <div id="divECharts6" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
-                        </div>
-                    </td>
-                </tr>
-                <tr style="height: 25%;">
-                    <td style="width: 50%;">
-                        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                        <div id="divECharts5" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
-                        </div>
-                    </td>
-                    <td style="width: 50%;">
-                        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                        <div id="divECharts4" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
-                        </div>
-                    </td>
-                </tr>
-                <tr style="height: 25%;">
-                    <td style="width: 50%;">
-                        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                        <div id="divECharts7" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
-                        </div>
-                    </td>
-                    <td style="width: 50%;">
-                        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                        <div id="divECharts8" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
-                        </div>
-                    </td>
-                </tr>
-            </table>
+            <asp:Panel ID="Panel1" runat="server" Height="1050">
+                <table style="width: 100%;">
+                    <tr style="height: 50%;">
+                        <td style="width: 50%;">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="divECharts1" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            </div>
+                        </td>
+                        <td style="width: 50%;">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="divECharts2" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="height: 50%;">
+                        <td style="width: 50%;">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="divECharts3" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            </div>
+                        </td>
+                        <td style="width: 50%;">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="divECharts6" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </asp:Panel>
+            <asp:Panel ID="Panel2" runat="server" Height="1050">
+                <table style="width: 100%;">
+                    <tr style="height: 50%;">
+                        <td style="width: 50%;">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="divECharts5" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            </div>
+                        </td>
+                        <td style="width: 50%;">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="divECharts4" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="height: 50%;">
+                        <td style="width: 50%;">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="divECharts7" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            </div>
+                        </td>
+                        <td style="width: 50%;">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="divECharts8" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </asp:Panel>            
         </div>
         <div class="clear">
             Copyright © Festo AG & Co. KG
@@ -158,24 +164,28 @@
         time_count = setInterval(function () {
                 count++;
                 if (count%2==0) {
-                    document.getElementById('divECharts1').style.display="none";
-                    document.getElementById('divECharts2').style.display="none";
-                    document.getElementById('divECharts3').style.display="none";
-                    document.getElementById('divECharts6').style.display="none";
-                    document.getElementById('divECharts5').style.display="block";
-                    document.getElementById('divECharts4').style.display="block";
-                    document.getElementById('divECharts7').style.display="block";
-                    document.getElementById('divECharts8').style.display="block";
+//                    document.getElementById('divECharts1').style.display="none";
+//                    document.getElementById('divECharts2').style.display="none";
+//                    document.getElementById('divECharts3').style.display="none";
+//                    document.getElementById('divECharts6').style.display="none";
+//                    document.getElementById('divECharts5').style.display="block";
+//                    document.getElementById('divECharts4').style.display="block";
+//                    document.getElementById('divECharts7').style.display="block";
+//                    document.getElementById('divECharts8').style.display="block";
+                    document.getElementById('Panel2').style.display="none";
+                    document.getElementById('Panel1').style.display="block";
                 } 
                 else {
-                    document.getElementById('divECharts1').style.display="block";
-                    document.getElementById('divECharts2').style.display="block";
-                    document.getElementById('divECharts3').style.display="block";
-                    document.getElementById('divECharts6').style.display="block";
-                    document.getElementById('divECharts5').style.display="none";
-                    document.getElementById('divECharts4').style.display="none";
-                    document.getElementById('divECharts7').style.display="none";
-                    document.getElementById('divECharts8').style.display="none";
+//                    document.getElementById('divECharts1').style.display="block";
+//                    document.getElementById('divECharts2').style.display="block";
+//                    document.getElementById('divECharts3').style.display="block";
+//                    document.getElementById('divECharts6').style.display="block";
+//                    document.getElementById('divECharts5').style.display="none";
+//                    document.getElementById('divECharts4').style.display="none";
+//                    document.getElementById('divECharts7').style.display="none";
+//                    document.getElementById('divECharts8').style.display="none";
+                    document.getElementById('Panel1').style.display="none";
+                    document.getElementById('Panel2').style.display="block";
                 }                  
             }, 10000);
     </script>
