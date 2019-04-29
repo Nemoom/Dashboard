@@ -19,7 +19,7 @@ public class ProcessMonitor
     //订单交付工厂代号
     public static DLV_Plant mDLV_Plant;
     //依据报价承诺给客户多少个工作日交付计算出的具体交付日期
-    public static DateTime Date_QuotationLT { get { return HolidayHelper.GetInstance().GetReckonDate(mActualTime.Date_SO_CreatedOn, mEstimatedTime.QuotationLT, false); } }
+    public static DateTime Date_QuotationLT { get { return HolidayHelper.GetInstance().GetReckonDate(mActualTime.Date_SO_CreatedOn, mEstimatedTime.QuotationLT, true); } }
     //SO创建到PO创建的时间间隔(WD)
     public static int Gap_SO2PO { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_PO_CreatedOn, mActualTime.Date_SO_CreatedOn, false)); } }
     //PO创建到PO释放的时间间隔(WD)

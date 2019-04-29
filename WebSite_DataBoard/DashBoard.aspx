@@ -585,7 +585,7 @@
             legend: {
                 bottom: 10,
                 left: 'center',
-                data:['0400+0481 DCR','0400 DCR','0481 DCR']
+                data:['0400 DCR','0481 DCR','0400+0481 DCR']
             },
             xAxis: [
                 {
@@ -608,39 +608,7 @@
                     }
                 },        
             ],
-            series: [
-                {
-                    name:'0400+0481 DCR',
-                    type:'bar',
-                    label: {
-                        normal: {
-                            show: true,
-                            position: 'top',
-                            formatter: function(params){
-                                if (params.value > 0) {
-                                    return params.value;
-                                } else {
-                                    return '';
-                                }
-                            }
-                        }
-                    },
-//                    markPoint : {
-//                         data : [
-//                            {
-//                                name: '最优值',
-//                                type: 'max'
-//                            }
-//                        ],
-//                        animationThreshold :78
-//                    },
-                    markLine : {
-                        data : [
-                            {name: 'Target',yAxis: 78}
-                        ]
-                    },
-                    data:var_DCR
-                },
+            series: [                
                 {
                     name:'0400 DCR',
                     type:'bar',
@@ -705,7 +673,39 @@
                     },
                     data:var_DCR_0481
         
-                }
+                },
+                {
+                    name:'0400+0481 DCR',
+                    type:'bar',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: function(params){
+                                if (params.value > 0) {
+                                    return params.value;
+                                } else {
+                                    return '';
+                                }
+                            }
+                        }
+                    },
+//                    markPoint : {
+//                         data : [
+//                            {
+//                                name: '最优值',
+//                                type: 'max'
+//                            }
+//                        ],
+//                        animationThreshold :78
+//                    },
+                    markLine : {
+                        data : [
+                            {name: 'Target',yAxis: 78}
+                        ]
+                    },
+                    data:var_DCR
+                },
             ]
         }     
        
@@ -756,6 +756,9 @@
             legend: {
                 bottom: 10,
                 left: 'center',
+                selected: {
+                '预计完成量': false
+                },
                 data:['订单完成量','预计完成量','订单金额']
             },
             xAxis: [
@@ -935,7 +938,10 @@
             legend: {
                 bottom: 10,
                 left: 'center',
-                data:['0400+0481 LT','0400 LT','0481 LT']
+                data:['0400 LT','0481 LT','0400+0481 LT'],
+                selected: {
+                '0481 LT': false, '0400+0481 LT': false
+                }
             },
             xAxis: [
                 {
@@ -958,38 +964,32 @@
                     }
                 },               
             ],
-            series: [
-                {
-                    name:'0400+0481 LT',
-                    type:'bar',
-                    markPoint : {
-                         data : [
-                            {
-                                name: 'max',
-                                type: 'max'
-                            }
-                        ],
-                        animationThreshold :50
-                    },
-                    markLine : {
-                        data : [
-                            {name: 'Target',yAxis: 50}
-                        ]
-                    },
-                    data:var_LT
-                },   
+            series: [                 
                 {
                     name:'0400 LT',
                     type:'bar',
-                    markPoint : {
-                         data : [
-                            {
-                                name: 'max',
-                                type: 'max'
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: function(params){
+                                if (params.value > 0) {
+                                    return params.value;
+                                } else {
+                                    return '';
+                                }
                             }
-                        ],
-                        animationThreshold :50
+                        }
                     },
+//                    markPoint : {
+//                         data : [
+//                            {
+//                                name: 'max',
+//                                type: 'max'
+//                            }
+//                        ],
+//                        animationThreshold :50
+//                    },
                     markLine : {
                         data : [
                             {name: 'Target',yAxis: 50}
@@ -1000,22 +1000,67 @@
                 {
                     name:'0481 LT',
                     type:'bar',
-                    markPoint : {
-                         data : [
-                            {
-                                name: 'max',
-                                type: 'max'
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: function(params){
+                                if (params.value > 0) {
+                                    return params.value;
+                                } else {
+                                    return '';
+                                }
                             }
-                        ],
-                        animationThreshold :50
+                        }
                     },
+//                    markPoint : {
+//                         data : [
+//                            {
+//                                name: 'max',
+//                                type: 'max'
+//                            }
+//                        ],
+//                        animationThreshold :50
+//                    },
                     markLine : {
                         data : [
                             {name: 'Target',yAxis: 50}
                         ]
                     },
                     data:var_LT_0481
-                }               
+                },
+                {
+                    name:'0400+0481 LT',
+                    type:'bar',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: function(params){
+                                if (params.value > 0) {
+                                    return params.value;
+                                } else {
+                                    return '';
+                                }
+                            }
+                        }
+                    },
+//                    markPoint : {
+//                         data : [
+//                            {
+//                                name: 'max',
+//                                type: 'max'
+//                            }
+//                        ],
+//                        animationThreshold :50
+//                    },
+                    markLine : {
+                        data : [
+                            {name: 'Target',yAxis: 50}
+                        ]
+                    },
+                    data:var_LT
+                }             
             ]
         }
         myChart6.hideLoading();    //隐藏加载动画

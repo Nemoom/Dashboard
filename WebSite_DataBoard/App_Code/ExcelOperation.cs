@@ -494,7 +494,7 @@ public class ExcelOperation
                             
                             //需要加1个工作日,将FinishDate转换成ReadyToShipDate
                             //if (ProcessMonitor.mActualTime.Date_ActualFinishDate > ProcessMonitor.Date_QuotationLT)
-                            if (HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, false) + 1 > ProcessMonitor.mEstimatedTime.QuotationLT)
+                            if (HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, true) + 1 > ProcessMonitor.mEstimatedTime.QuotationLT)
                             {
                                 //超期完成的订单
                                 Data2Trace.count_0400_PO_DLV_Delay++;
@@ -558,7 +558,7 @@ public class ExcelOperation
                         {
                             Data2Trace.count_0481_PO_DLV++;
                             //需要加1个工作日,将FinishDate转换成ReadyToShipDate
-                            if (HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, false) + 1 > ProcessMonitor.mEstimatedTime.QuotationLT)
+                            if (HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, true) + 1 > ProcessMonitor.mEstimatedTime.QuotationLT)
                             {
                                 //超期完成的订单
                                 Data2Trace.count_0481_PO_DLV_Delay++;
