@@ -24,20 +24,22 @@ public class ProcessMonitor
     public static int Gap_SO2PO { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_PO_CreatedOn, mActualTime.Date_SO_CreatedOn, false)); } }
     //PO创建到PO释放的时间间隔(WD)
     public static int Gap_PO2Release { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualReleaseDate, mActualTime.Date_PO_CreatedOn, false)); } }
+    //PO释放到完成生产入库的时间间隔(WD)
+    public static int Gap_Release2Finish { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualFinishDate, mActualTime.Date_ActualReleaseDate, false)); } }
     //完成生产入库到起运发货的时间间隔(WD)
     public static int Gap_Finish2Shipment { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ShipmentStartOn, mActualTime.Date_ActualFinishDate, false)); } }
-    //Lead Time(CDS)
+    //Lead Time(CDS)，已完成订单/未完成订单返回内容不同
     public static int LT
     {
         get
         {
             if (mPO_Status == PO_Status.DLV || mPO_Status == PO_Status.PO_Finished)
             {
-                return (mActualTime.Date_ActualFinishDate - mActualTime.Date_SO_CreatedOn).Days;
+                return (mActualTime.Date_ActualFinishDate - mActualTime.Date_SO_CreatedOn).Days + 1;
             }
             else
             {
-                return 0;
+                return (DateTime.Today - mActualTime.Date_SO_CreatedOn).Days;
             }
         }
     }

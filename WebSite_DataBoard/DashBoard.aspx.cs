@@ -21,7 +21,7 @@ public partial class DashBoard : System.Web.UI.Page
         ////this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" + this.Application["filePath"].ToString() + "','" + excelResult_POnum + "','" + excelResult_Finishnum + "','" + excelResult_NetValue + "')", true);
         //////this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2()", true);
         ExcelOperation mExcelOperation = new ExcelOperation();
-        bool bool_ExcelImpoert = mExcelOperation.ExcelImportWithLayoutCheck(this.Application["filePath"].ToString(), "Souce data");
+        bool bool_ExcelImpoert = mExcelOperation.ExcelImportWithLayoutCheck(this.Application["filePath"].ToString(), "Sheet1");
         if (bool_ExcelImpoert)
         {
             mExcelOperation.TraceFromExcel();

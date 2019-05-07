@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using NPOI.XSSF.UserModel;
 using System.IO;
+using NPOI.SS.UserModel;
 
 /// <summary>
 ///ExcelOperation 的摘要说明
@@ -100,11 +101,13 @@ public class ExcelOperation
     public string[] excelHeader = new string[40];
     public List<KeyValuePair<int, string>> excelHead = new List<KeyValuePair<int, string>>();
     public XSSFWorkbook wb;
+    XSSFWorkbook xssfworkbook;
     private XSSFSheet sht;
     public int rowsCount, colsCount;
 
     public bool ExcelImportWithLayoutCheck(string filename, string sheetName = "Sheet1")
     {
+        xssfworkbook = new XSSFWorkbook();
         bool bool_ImportResult = true;
         wb = new XSSFWorkbook(File.OpenRead(@"C:\Users\Public\Music\" + filename));
         //wb = new XSSFWorkbook(File.OpenRead(@"F:\" + filename));
@@ -131,6 +134,7 @@ public class ExcelOperation
     public void TraceFromExcel()
     {
         //Clean last count and array init
+        #region Clean last count and array init
         Data2Trace.CleanCounter();
         for (int i = 0; i < mylist_SO_perMonth.Length; i++)
         {
@@ -159,12 +163,19 @@ public class ExcelOperation
         for (int i = 0; i < mylist_LT_perWeek.Length; i++)
         {
             mylist_LT_perWeek[i] = new List<int>();
-        }
+        } 
+        #endregion
+        ISheet sheet = xssfworkbook.CreateSheet("Cell comments in POI HSSF");
+        ICellStyle cellStyle = wb.CreateCellStyle();
+        
         //逐行统计
         for (int i = 1; i < rowsCount; i++)
         {
             RowRecordProcess(i);
+            ICell cell1 = sheet.CreateRow(i).CreateCell(1);
+            cell1.SetCellValue(ProcessMonitor.Date_QuotationLT);
         }
+        WriteToFile();
         //ECharts5&ECharts6需要处理一下原始数据
         //ECharts5 SO Create perMonth
         for (int i = 0; i < mylist_SO_perMonth.Length; i++)
@@ -247,6 +258,15 @@ public class ExcelOperation
         }
     }
 
+    private void WriteToFile()
+    {
+        //Write the stream data of workbook to the root directory
+        FileStream file = new FileStream(@"F:\test.xlsx", FileMode.Create);
+
+        xssfworkbook.Write(file);
+        file.Close();
+    }
+
     List<string>[] mylist_SO_perMonth = new List<string>[12];
     List<string> mylist_SO_YTD = new List<string>();
     List<int>[] mylist_0400_LT_perMonth = new List<int>[12];
@@ -265,6 +285,7 @@ public class ExcelOperation
         {
             //提取关注的信息到监控类中并统计部分数据
             XSSFRow nRow = (XSSFRow)sht.GetRow(rowIndex);
+            XSSFCell mCell = (XSSFCell)nRow.CreateCell(55, NPOI.SS.UserModel.CellType.Numeric);
             if (((XSSFCell)nRow.GetCell(2)).CellType == NPOI.SS.UserModel.CellType.Blank)
             {
                 //销售订单号为空，以此判断此行为空
@@ -428,7 +449,7 @@ public class ExcelOperation
                     Console.WriteLine(ex.ToString());
                 } 
                 #endregion
-
+                mCell.SetCellValue(ProcessMonitor.Date_QuotationLT);
                 #region 统计
                 //For ECharts1：PO Create Monitor
                 #region For ECharts1：PO Create Monitor

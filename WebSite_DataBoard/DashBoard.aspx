@@ -20,7 +20,7 @@
         <div class="header">
             <div class="title">
                 <h1>
-                    Transparent kit
+                    Transparency kit
                 </h1>
             </div>
             <div class="loginDisplay">
@@ -77,7 +77,7 @@
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts6" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts4" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                     </tr>
@@ -93,7 +93,7 @@
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts4" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts6" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                     </tr>
@@ -110,7 +110,36 @@
                         </td>
                     </tr>
                 </table>
+            </asp:Panel>   
+            <asp:Panel ID="Panel3" runat="server" Height="1050">
+                <table style="width: 100%;">
+                    <tr style="height: 50%;">
+                        <td style="width: 50%;">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="divECharts9" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            </div>
+                        </td>
+                        <td style="width: 50%;">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="divECharts10" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="height: 50%;">
+                        <td style="width: 50%;">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="divECharts11" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            </div>
+                        </td>
+                        <td style="width: 50%;">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="divECharts12" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </asp:Panel>            
+         
         </div>
         <div class="clear">
             Copyright © Festo AG & Co. KG
