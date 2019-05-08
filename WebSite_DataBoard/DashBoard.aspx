@@ -206,24 +206,24 @@
     
         var count = 0;
         var time_count;
-        time_count = setInterval(function () {
-                count++;
-                if (count%3==0) {                    
-                    document.getElementById('Panel1').style.display="block";
-                    document.getElementById('Panel2').style.display="none";
-                    document.getElementById('Panel3').style.display="none";
-                } 
-                else if (count%3==1){
-                    document.getElementById('Panel1').style.display="none";
-                    document.getElementById('Panel2').style.display="block";
-                    document.getElementById('Panel3').style.display="none";
-                }   
-                else {
-                    document.getElementById('Panel1').style.display="none";
-                    document.getElementById('Panel2').style.display="none";
-                    document.getElementById('Panel3').style.display="block";
-                }                  
-            }, 10000);
+//        time_count = setInterval(function () {
+//                count++;
+//                if (count%3==0) {                    
+//                    document.getElementById('Panel1').style.display="block";
+//                    document.getElementById('Panel2').style.display="none";
+//                    document.getElementById('Panel3').style.display="none";
+//                } 
+//                else if (count%3==1){
+//                    document.getElementById('Panel1').style.display="none";
+//                    document.getElementById('Panel2').style.display="block";
+//                    document.getElementById('Panel3').style.display="none";
+//                }   
+//                else {
+//                    document.getElementById('Panel1').style.display="none";
+//                    document.getElementById('Panel2').style.display="none";
+//                    document.getElementById('Panel3').style.display="block";
+//                }                  
+//            }, 10000);
     </script>
     <script type="text/javascript">
         function setECharts2(values_ECharts1_1,values_ECharts1_2,values_ECharts1_3,values_ECharts1_4,values_ECharts2_1,values_ECharts2_2,values_ECharts2_3,values_ECharts2_4,values_ECharts3_1,values_ECharts3_2,values_ECharts3_3,values_ECharts3_4) {    
@@ -281,7 +281,8 @@
             legend: {
                 bottom: 10,
                 left: 'center',
-                data:['0400 DCR','0481 DCR','0400+0481 DCR']
+                data:['0400 DCR','0481 DCR','0400+0481 DCR'],
+                selected:{'0400 DCR': false ,'0481 DCR': false}
             },
             xAxis: [
                 {
@@ -592,17 +593,21 @@
         // 图表使用-------------------
         var option1_3 = {
                         title: [{
-                            text: 'Reminder Monitor',
-                            subtext: 'According to Quotation LT',       
-                            x: '25%',
-                            y: '10',
-                            textAlign: 'center'
-                        }, { 
-                            text: 'Failed Monitor',       
-                            subtext: 'Failed Order',
-                            x: '75%',
-                            y: '10',
-                            textAlign: 'center'
+                              text: 'DCR ALERT',
+                              subtext:'0400',
+                              x:'50%',
+                              y:'10'
+//                            text: 'Reminder Monitor',
+//                            subtext: 'According to Quotation LT',       
+//                            x: '25%',
+//                            y: '10',
+//                            textAlign: 'center'
+//                        }, { 
+//                            text: 'Failed Monitor',       
+//                            subtext: 'Failed Order',
+//                            x: '75%',
+//                            y: '10',
+//                            textAlign: 'center'
                         }],
                         tooltip: {
                             trigger: 'item',
@@ -655,6 +660,91 @@
         myChart1_3.hideLoading();    //隐藏加载动画
         myChart1_3.setOption(option1_3);        
         //*****************************************************************************************************************************
+        //**                                                      myChart1_4                                                         **
+        //*****************************************************************************************************************************
+        // 基于准备好的dom，初始化echarts图表
+        var myChart1_4 = echarts.init(document.getElementById('divECharts1_4'),'FestoColor_6');
+        // 过渡---------------------
+        myChart1_4.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+
+        var var_Echarts1_4=values_ECharts1_4.split('!');
+          
+        var values_Ongoing_Monitor = []; 
+        
+        values_Ongoing_Monitor.push({ "value": var_Echarts1_4[0], "name": '<=40' });
+        values_Ongoing_Monitor.push({ "value": var_Echarts1_4[1], "name": '40-50' }); 
+        values_Ongoing_Monitor.push({ "value": var_Echarts1_4[2], "name": '>50' });
+
+        // 图表使用-------------------
+        var option1_4 = {
+                        title: {
+                            text: 'Ongoing Pro. Order Monitoring',
+                            subtext: '0400',    
+                            x: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            x: 'left',
+                            data:  ['<=40','40-50','>50']
+                        },
+                        series: [
+                            {                                
+                                name: '数量',
+                                clockWise:false,
+                                type: 'pie',
+                                radius: '65%',
+                                center: ['50%', '60%'],
+                                label: {
+                                    normal: {
+                                        formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                                        backgroundColor: '#eee',
+                                        borderColor: '#aaa',
+                                        borderWidth: 1,
+                                        borderRadius: 4,
+                                        rich: {
+                                            a: {
+                                                color: '#999',
+                                                lineHeight: 22,
+                                                align: 'center'
+                                            },
+                                            hr: {
+                                                borderColor: '#aaa',
+                                                width: '100%',
+                                                borderWidth: 0.5,
+                                                height: 0
+                                            },
+                                            b: {
+                                                fontSize: 16,
+                                                lineHeight: 33
+                                            },
+                                            per: {
+                                                color: '#eee',
+                                                backgroundColor: '#334455',
+                                                padding: [2, 4],
+                                                borderRadius: 2
+                                            }
+                                        }
+                                    }
+                                },
+                                labelLine: {
+                                    normal: {
+                                        length1: 30
+                                    }
+                                },                    
+                                data: values_Ongoing_Monitor
+                            },                          
+                            ]
+                    };         
+       
+        myChart1_4.hideLoading();    //隐藏加载动画
+        myChart1_4.setOption(option1_4);
+        //*****************************************************************************************************************************
         //**                                                      myChart2_1                                                         **
         //*****************************************************************************************************************************
          // 基于准备好的dom，初始化echarts图表
@@ -666,14 +756,17 @@
 
         var var_Echarts2_1=values_ECharts2_1.split(';');
 
-        var count_SO_soCreated_perMonth=var_Echarts2_1[0].split('!');
-        var NetValue_SO_soCreated_perMonth = var_Echarts2_1[1].split('!'); 
-        var count_SO_soCreated_perMonth1=count_SO_soCreated_perMonth.splice(0,count_SO_soCreated_perMonth.length-1);
+        var count_SO_soCreated_0400_perMonth=var_Echarts2_1[0].split('!');
+        var count_SO_soCreated_0481_perMonth = var_Echarts2_1[1].split('!'); 
+        var NetValue_SO_soCreated_perMonth = var_Echarts2_1[2].split('!'); 
+
+        var count_SO_soCreated_0400_perMonth1=count_SO_soCreated_0400_perMonth.splice(0,count_SO_soCreated_0400_perMonth.length-1);
+        var count_SO_soCreated_0481_perMonth1=count_SO_soCreated_0481_perMonth.splice(0,count_SO_soCreated_0481_perMonth.length-1);
         var NetValue_SO_soCreated_perMonth1 = NetValue_SO_soCreated_perMonth.splice(0,NetValue_SO_soCreated_perMonth.length-1);  
        
         var option2_1 = {
             title: {
-                        text: 'Create SOs Monitor', 
+                        text: 'Monthly SO Input', 
                         x: 'center'
                     },
             tooltip: {
@@ -696,7 +789,7 @@
             legend: {
                 bottom: 10,
                 left: 'center',
-                data:['新进订单量','订单金额']
+                data:['0400新进订单量','0481新进订单量','订单金额']
             },
             xAxis: [
                 {
@@ -731,10 +824,29 @@
             ],
             series: [
                 {
-                    name:'新进订单量',
+                    name:'0400新进订单量',
+                    stack: '新进订单量',
                     type:'bar',
-                    data:count_SO_soCreated_perMonth1
-                },                
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'insideTop'
+                        }
+                    },
+                    data:count_SO_soCreated_0400_perMonth1
+                },   
+                {
+                    name:'0481新进订单量',
+                    stack: '新进订单量',
+                    type:'bar',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'insideTop'
+                        }
+                    },
+                    data:count_SO_soCreated_0481_perMonth1
+                },              
                 {
                     name:'订单金额',
                     type:'line',
@@ -758,21 +870,25 @@
 
         var var_Echarts2_2=values_ECharts2_2.split(';');
 
-        var count_PO_Finished_perMonth=var_Echarts2_2[0].split('!');
-        var count_PO_ForecastFinished_perMonth = var_Echarts2_2[1].split('!');   
-        var NetValue_PO_Finished_perMonth = var_Echarts2_2[2].split('!');   
+        var count_PO_Finished_0400_perMonth=var_Echarts2_2[0].split('!');
+        var count_PO_Finished_0481_perMonth = var_Echarts2_2[1].split('!');   
+        var count_PO_ForecastFinished_perMonth = var_Echarts2_2[2].split('!');  
+        var NetValue_PO_Finished_perMonth = var_Echarts2_2[3].split('!');   
+        var count_PO_Finished_perMonth = var_Echarts2_2[4].split('!');   
 
-        var count_PO_Finished_perMonth1=count_PO_Finished_perMonth.splice(0,count_PO_Finished_perMonth.length-1);
+        var count_PO_Finished_0400_perMonth1=count_PO_Finished_0400_perMonth.splice(0,count_PO_Finished_0400_perMonth.length-1);
+        var count_PO_Finished_0481_perMonth1=count_PO_Finished_0481_perMonth.splice(0,count_PO_Finished_0481_perMonth.length-1);
         var count_PO_ForecastFinished_perMonth1=count_PO_ForecastFinished_perMonth.splice(0,count_PO_ForecastFinished_perMonth.length-1);
         var NetValue_PO_Finished_perMonth1 = NetValue_PO_Finished_perMonth.splice(0,NetValue_PO_Finished_perMonth.length-1);
-       
+        var count_PO_Finished_perMonth1=count_PO_Finished_perMonth.splice(0,count_PO_Finished_perMonth.length-1);
+
         var option2_2 = {
             title: {
-                        text: 'Finish POs Monitor', 
+                        text: 'Monthly Finished Pro. Order', 
                         x: 'center'
                     },
             tooltip: {
-                trigger: 'axis',
+//                trigger: 'axis',
                 axisPointer: {
                     type: 'cross',
                     crossStyle: {
@@ -794,7 +910,7 @@
                 selected: {
                 '预计完成量': false
                 },
-                data:['订单完成量','预计完成量','订单金额']
+                data:['0400订单完成量','0481订单完成量','预计完成量','订单金额']
             },
             xAxis: [
                 {
@@ -829,9 +945,28 @@
             ],
             series: [
                 {
-                    name:'订单完成量',
+                    name:'0400订单完成量',
                     type:'bar',
-                    data:count_PO_Finished_perMonth1
+                    stack: '完成量',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'insideTop'
+                        }
+                    },
+                    data:count_PO_Finished_0400_perMonth1
+                },
+                {
+                    name:'0481订单完成量',
+                    type:'bar',
+                    stack: '完成量',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'insideTop'
+                        }
+                    },
+                    data:count_PO_Finished_0481_perMonth1
                 },
                 {
                     name:'预计完成量',
@@ -844,9 +979,40 @@
                     yAxisIndex: 1,
                     data:NetValue_PO_Finished_perMonth1
         
+                },
+                {
+                    name:'合计',
+                    type:'bar',
+                    stack: '完成量',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            textStyle: {
+//                                color: '#000'
+                            },
+                            formatter:''
+                        }
+                    },
+                    data:[0,0,0,0,0,0,0,0,0,0,0,0]
                 }
             ]
         }
+        var series = option2_2["series"];
+        var fun = function (params) { 
+                var data3 =0;
+                for(var i=0,l=2;i<l;i++){ 
+                    data3 += parseInt(series[i].data[params.dataIndex])
+                } 
+                if (data3 > 0) {
+                    return data3;
+                } else {
+                    return '';
+                }
+                
+            }
+        //加载页面时候替换最后一个series的formatter
+        series[series.length-1]["label"]["normal"]["formatter"] = fun
         myChart2_2.hideLoading();    //隐藏加载动画
         myChart2_2.setOption(option2_2);      
         //*****************************************************************************************************************************

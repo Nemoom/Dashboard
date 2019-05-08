@@ -156,6 +156,30 @@ public class Data2Trace
             return mstr_PO_Finished_perMonth.Substring(0, mstr_PO_Finished_perMonth.Length - 1);
         }
     }
+    public static string str_PO_Finished_0400_perMonth
+    {
+        get
+        {
+            string mstr_PO_Finished_0400_perMonth = "";
+            for (int i = 0; i < count_PO_Finished_0400_perMonth.Length; i++)
+            {
+                mstr_PO_Finished_0400_perMonth = mstr_PO_Finished_0400_perMonth + count_PO_Finished_0400_perMonth[i].ToString() + "!";
+            }
+            return mstr_PO_Finished_0400_perMonth.Substring(0, mstr_PO_Finished_0400_perMonth.Length - 1);
+        }
+    }
+    public static string str_PO_Finished_0481_perMonth
+    {
+        get
+        {
+            string mstr_PO_Finished_0481_perMonth = "";
+            for (int i = 0; i < count_PO_Finished_0481_perMonth.Length; i++)
+            {
+                mstr_PO_Finished_0481_perMonth = mstr_PO_Finished_0481_perMonth + count_PO_Finished_0481_perMonth[i].ToString() + "!";
+            }
+            return mstr_PO_Finished_0481_perMonth.Substring(0, mstr_PO_Finished_0481_perMonth.Length - 1);
+        }
+    }
     public static string str_PO_ForecastFinished_perMonth
     {
         get
@@ -190,6 +214,30 @@ public class Data2Trace
                 mstr_SO_soCreated_perMonth = mstr_SO_soCreated_perMonth + count_SO_soCreated_perMonth[i].ToString() + "!";
             }
             return mstr_SO_soCreated_perMonth.Substring(0, mstr_SO_soCreated_perMonth.Length - 1);
+        }
+    }
+    public static string str_SO_soCreated_0400_perMonth
+    {
+        get
+        {
+            string mstr_SO_soCreated_0400_perMonth = "";
+            for (int i = 0; i < count_SO_soCreated_0400_perMonth.Length; i++)
+            {
+                mstr_SO_soCreated_0400_perMonth = mstr_SO_soCreated_0400_perMonth + count_SO_soCreated_0400_perMonth[i].ToString() + "!";
+            }
+            return mstr_SO_soCreated_0400_perMonth.Substring(0, mstr_SO_soCreated_0400_perMonth.Length - 1);
+        }
+    }
+    public static string str_SO_soCreated_0481_perMonth
+    {
+        get
+        {
+            string mstr_SO_soCreated_0481_perMonth = "";
+            for (int i = 0; i < count_SO_soCreated_0481_perMonth.Length; i++)
+            {
+                mstr_SO_soCreated_0481_perMonth = mstr_SO_soCreated_0481_perMonth + count_SO_soCreated_0481_perMonth[i].ToString() + "!";
+            }
+            return mstr_SO_soCreated_0481_perMonth.Substring(0, mstr_SO_soCreated_0481_perMonth.Length - 1);
         }
     }
     public static string str_NetValue_SO_soCreated_perMonth
@@ -319,7 +367,7 @@ public class Data2Trace
     {
         get
         {
-            return count_Stored_5 + "!" + count_Stored_5_10 + "!" + count_Stored_10_20 + "!" + count_Stored_20 + "!" + count_Stored;
+            return count_Ongoing_40 + "!" + count_Ongoing_40_50 + "!" + count_Ongoing_50;
         }
     }
     //ECharts2_1:SO Create perMonth
@@ -327,7 +375,8 @@ public class Data2Trace
     {
         get
         {
-            return str_SO_soCreated_perMonth + "!" + count_SO_soCreated_YTD.ToString() + ";"
+            return str_SO_soCreated_0400_perMonth + "!" + count_SO_soCreated_0400_YTD.ToString() + ";"
+                + str_SO_soCreated_0481_perMonth + "!" + count_SO_soCreated_0481_YTD.ToString() + ";"
                 + str_NetValue_SO_soCreated_perMonth + "!" + NetValue_SO_soCreated_YTD.ToString("F2");
         }
     }
@@ -336,9 +385,11 @@ public class Data2Trace
     {
         get
         {
-            return str_PO_Finished_perMonth + "!" + count_PO_Finished_YTD.ToString() + ";"
+            return str_PO_Finished_0400_perMonth + "!" + count_PO_Finished_0400_YTD.ToString() + ";"
+                + str_PO_Finished_0481_perMonth + "!" + count_PO_Finished_0481_YTD.ToString() + ";"
                 + str_PO_ForecastFinished_perMonth + "!" + count_PO_ForecastFinished_YTD.ToString() + ";"
-                + str_NetValue_PO_Finished_perMonth + "!" + NetValue_PO_Finished_YTD.ToString("F2");
+                + str_NetValue_PO_Finished_perMonth + "!" + NetValue_PO_Finished_YTD.ToString("F2") + ";"
+                + str_PO_Finished_perMonth + "!" + count_PO_Finished_YTD.ToString();
         }
     }   
     //ECharts2_3:Repertory Monitor
