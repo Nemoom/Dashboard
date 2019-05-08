@@ -14,10 +14,20 @@ public class ProcessMonitor
 		//TODO: 在此处添加构造函数逻辑
 		//
 	}
-    //订单完成状态
-    public static PO_Status mPO_Status;
+
+    public static string mPO;
+    public static string mSO;
     //订单交付工厂代号
     public static DLV_Plant mDLV_Plant;
+    //该订单的净值
+    public static double mNetValue;
+    //Excel中的实际时间节点
+    public static ActualTime mActualTime;
+    //Excel中的预计时间节点
+    public static EstimatedTime mEstimatedTime;
+
+    //订单完成状态
+    public static PO_Status mPO_Status;
     //依据报价承诺给客户多少个工作日交付计算出的具体交付日期
     public static DateTime Date_QuotationLT { get { return HolidayHelper.GetInstance().GetReckonDate(mActualTime.Date_SO_CreatedOn, mEstimatedTime.QuotationLT, true); } }
     //SO创建到PO创建的时间间隔(WD)
@@ -28,7 +38,9 @@ public class ProcessMonitor
     public static int Gap_Release2Finish { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualFinishDate, mActualTime.Date_ActualReleaseDate, false)); } }
     //完成生产入库到起运发货的时间间隔(WD)
     public static int Gap_Finish2Shipment { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ShipmentStartOn, mActualTime.Date_ActualFinishDate, false)); } }
-    //Lead Time(CDS)，已完成订单/未完成订单返回内容不同
+    //以完成生产入库但未发货订单，完成生产入库至今的时间间隔(WD)
+    public static int Gap_Finish2Today { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(DateTime.Today, mActualTime.Date_ActualFinishDate, false)); } }
+    //已完成订单Lead Time(CDS)
     public static int LT
     {
         get
@@ -39,18 +51,26 @@ public class ProcessMonitor
             }
             else
             {
-                return (DateTime.Today - mActualTime.Date_SO_CreatedOn).Days;
+                return 0;
             }
         }
     }
-    //Excel中的实际时间节点
-    public static ActualTime mActualTime;
-    //Excel中的预计时间节点
-    public static EstimatedTime mEstimatedTime;
-    public static string mPO;
-    public static string mSO;
-    //该订单的净值
-    public static double mNetValue;
+
+    //未完成订单Lead Time(CDS)
+    public static int LT_Ongoing
+    {
+        get
+        {
+            if (mPO_Status == PO_Status.DLV || mPO_Status == PO_Status.PO_Finished)
+            {
+                return 0;
+            }
+            else
+            {
+                return (DateTime.Today - mActualTime.Date_SO_CreatedOn).Days;
+            }
+        }
+    }  
 
     public struct ActualTime 
     {
@@ -69,6 +89,7 @@ public class ProcessMonitor
         public DateTime Date_BasicEndDate;
         public DateTime Date_2ndConfirmedDt;
     }
+
     public static void CleanDate()
     {
         mActualTime.Date_SO_CreatedOn = new DateTime();

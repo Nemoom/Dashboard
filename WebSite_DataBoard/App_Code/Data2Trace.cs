@@ -358,17 +358,8 @@ public class Data2Trace
     } 
     #endregion
 
-    //ECharts1:PO Create Monitor
-    public static int[] count_PO_soCreated_perMonth = new int[12];
-    public static int[] count_CreatedDelay_perMonth = new int[12];
-    public static int count_PO_soCreated_YTD;
-    public static int count_CreatedDelay_YTD;
-    //ECharts2:PO Release Monitor
-    public static int[] count_PO_poCreated_perMonth = new int[12];
-    public static int[] count_ReleaseDelay_perMonth = new int[12];
-    public static int count_PO_poCreated_YTD;
-    public static int count_ReleaseDelay_YTD;
-    //ECharts3:DCR(Delivery Class Reliablity)及时交付率
+    #region Panel1
+    //ECharts1-1:DCR(Delivery Class Reliablity)及时交付率【0400+0481】
     public static int count_0400_PO_DLV;
     public static int count_0400_PO_DLV_OnTime;
     public static int count_0400_PO_DLV_Delay;
@@ -394,41 +385,113 @@ public class Data2Trace
     public static int count_0481_PO_OnTime_YTD;
     public static int[] count_0481_PO_Finished_perMonth = new int[12];
     public static int count_0481_PO_Finished_YTD;
-    //ECharts4:Finish POs
-    public static int[] count_PO_Finished_perMonth = new int[12];
-    public static int count_PO_Finished_YTD;
-    public static double[] NetValue_PO_Finished_perMonth = new double[12];
-    public static double NetValue_PO_Finished_YTD;
-    public static int[] count_PO_ForecastFinished_perMonth = new int[12];
-    public static int count_PO_ForecastFinished_YTD;
-    //ECharts5:SO Create perMonth
-    public static int[] count_SO_soCreated_perMonth = new int[12];//需要查重，从List<string>中处理一下
-    public static int count_SO_soCreated_YTD;//需要查重，从List<string>中处理一下
-    public static double[] NetValue_SO_soCreated_perMonth = new double[12];
-    public static double NetValue_SO_soCreated_YTD;
-    //ECharts6:LT(Average Lead Time：CDS)平均交货时间
+    //ECharts1-2:LT(Average Lead Time：CDS)平均交货时间【0400】
     public static double[] LT_perMonth = new double[12];
     public static double[] LT_perWeek = new double[4];
     public static double LT_YTD;
+
     public static double[] LT_0400_perMonth = new double[12];
     public static double[] LT_0400_perWeek = new double[4];
     public static double LT_0400_YTD;
+
     public static double[] LT_0481_perMonth = new double[12];
     public static double[] LT_0481_perWeek = new double[4];
     public static double LT_0481_YTD;
-    //ECharts7:Reminders for 3Weeks&2Weeks & Last Failed Order
+    //ECharts1-3:DCR ALERT【0400】Reminders for 3Weeks&2Weeks & Last Failed Order
     public static int count_Reminder3Weeks_LT;
     public static int count_Reminder2Weeks_LT;
     public static int count_Reminder3Weeks_ConfirmedDt;
     public static int count_Reminder2Weeks_ConfirmedDt;
     public static int count_FailedMonitor_DC;//昨天为止失败的订单
     public static int count_FailedMonitor_Req;
-    //ECharts8:Repertory Monitor
+    //ECharts1-4:Ongoing Pro. Order【0400】
+    public static int count_Ongoing_40;
+    public static int count_Ongoing_40_50;
+    public static int count_Ongoing_50;
+    #endregion
+
+    #region Panel2
+    //ECharts2-1:Monthly SO Input【0400+0481】
+    public static int[] count_SO_soCreated_perMonth = new int[12];//需要查重，从List<string>中处理一下
+    public static int count_SO_soCreated_YTD;//需要查重，从List<string>中处理一下
+    public static double[] NetValue_SO_soCreated_perMonth = new double[12];
+    public static double NetValue_SO_soCreated_YTD;
+
+    public static int[] count_SO_soCreated_0400_perMonth = new int[12];//需要查重，从List<string>中处理一下
+    public static int count_SO_soCreated_0400_YTD;//需要查重，从List<string>中处理一下
+    public static double[] NetValue_SO_soCreated_0400_perMonth = new double[12];
+    public static double NetValue_SO_soCreated_0400_YTD;
+
+    public static int[] count_SO_soCreated_0481_perMonth = new int[12];//需要查重，从List<string>中处理一下
+    public static int count_SO_soCreated_0481_YTD;//需要查重，从List<string>中处理一下
+    public static double[] NetValue_SO_soCreated_0481_perMonth = new double[12];
+    public static double NetValue_SO_soCreated_0481_YTD;
+    //ECharts2-2:Monthly Finished Pro. Order【0400+0481】
+    public static int[] count_PO_Finished_perMonth = new int[12];
+    public static int count_PO_Finished_YTD;
+    public static double[] NetValue_PO_Finished_perMonth = new double[12];
+    public static double NetValue_PO_Finished_YTD;
+    public static int[] count_PO_ForecastFinished_perMonth = new int[12];
+    public static int count_PO_ForecastFinished_YTD;
+
+    public static int[] count_PO_Finished_0400_perMonth = new int[12];
+    public static int count_PO_Finished_0400_YTD;
+    public static double[] NetValue_PO_Finished_0400_perMonth = new double[12];
+    public static double NetValue_PO_Finished_0400_YTD;
+    public static int[] count_PO_ForecastFinished_0400_perMonth = new int[12];
+    public static int count_PO_ForecastFinished_0400_YTD;
+
+    public static int[] count_PO_Finished_0481_perMonth = new int[12];
+    public static int count_PO_Finished_0481_YTD;
+    public static double[] NetValue_PO_Finished_0481_perMonth = new double[12];
+    public static double NetValue_PO_Finished_0481_YTD;
+    public static int[] count_PO_ForecastFinished_0481_perMonth = new int[12];
+    public static int count_PO_ForecastFinished_0481_YTD;
+    //ECharts2-3:CS Shippment Statistic【YTD 0400+0481】
     public static int count_Stored_5;
     public static int count_Stored_5_10;
     public static int count_Stored_10_20;
     public static int count_Stored_20;
-    public static int count_Stored;//已完成无ShipmentStartOn
+    public static int count_Stored;//已完成无ShipmentStartOn 
+    //ECharts2-4:Ready fot Shippment Monitoring【YTD 0400+0481】
+    public static int count_Ready4Shippment_10;
+    public static int count_Ready4Shippment_10_20;
+    public static int count_Ready4Shippment_20_30;
+    public static int count_Ready4Shippment_30;
+    #endregion
+
+    #region Panel3 【0400】E2E Process Monitoring
+    //ECharts3-1:SO->PO Creation Monitoring(1WD)
+    public static int[] count_PO_soCreated_perMonth = new int[12];
+    public static int[] count_CreatedDelay_perMonth = new int[12];
+    public static int count_PO_soCreated_YTD;
+    public static int count_CreatedDelay_YTD;
+
+    public static int[] count_PO_soCreated_0400_perMonth = new int[12];
+    public static int[] count_CreatedDelay_0400_perMonth = new int[12];
+    public static int count_PO_soCreated_0400_YTD;
+    public static int count_CreatedDelay_0400_YTD;
+    //ECharts3-2:PO Creation->PO Release Monitoring(5WD)
+    public static int[] count_PO_poCreated_perMonth = new int[12];
+    public static int[] count_ReleaseDelay_perMonth = new int[12];
+    public static int count_PO_poCreated_YTD;
+    public static int count_ReleaseDelay_YTD;
+
+    public static int[] count_PO_poCreated_0400_perMonth = new int[12];
+    public static int[] count_ReleaseDelay_0400_perMonth = new int[12];
+    public static int count_PO_poCreated_0400_YTD;
+    public static int count_ReleaseDelay_0400_YTD;
+    //ECharts3-3:PO Release->Actual finish Monitoring(23WD)【Average】
+    public static double[] averageTime_POFinish_perMonth = new double[12];
+    public static double averageTime_POFinish_YTD;
+    public static double[] averageTime_POFinish_0400_perMonth = new double[12];
+    public static double averageTime_POFinish_0400_YTD;
+    //ECharts3-4:Actual finish->Ex-plant Monitoring(2WD)【Average】
+    public static double[] averageTime_Ex_plant_perMonth = new double[12];
+    public static double averageTime_Ex_plant_YTD;
+    public static double[] averageTime_Ex_plant_0400_perMonth = new double[12];
+    public static double averageTime_Ex_plant_0400_YTD; 
+    #endregion
 
     public static void CleanCounter()
     {
