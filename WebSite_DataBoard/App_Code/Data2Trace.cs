@@ -279,24 +279,9 @@ public class Data2Trace
     #endregion
 
     #region Send to ECharts.aspx
-    //ECharts1:PO Create Monitor
-    public static string values_ECharts1
-    {
-        get
-        {
-            return str_PO_soCreated_perMonth + ";" + str_CreatedDelay_perMonth + ";" + (count_PO_soCreated_YTD - count_CreatedDelay_YTD).ToString() + "!" + count_CreatedDelay_YTD.ToString();
-        }
-    }
-    //ECharts2:PO Release Monitor
-    public static string values_ECharts2
-    {
-        get
-        {
-            return str_PO_poCreated_perMonth + ";" + str_ReleaseDelay_perMonth + ";" + (count_PO_poCreated_YTD - count_ReleaseDelay_YTD).ToString() + "!" + count_ReleaseDelay_YTD.ToString();
-        }
-    }
-    //ECharts3:DCR(Delivery Class Reliablity)
-    public static string values_ECharts3
+    
+    //ECharts1_1:DCR(Delivery Class Reliablity)
+    public static string values_ECharts1_1
     {
         get
         {
@@ -306,27 +291,8 @@ public class Data2Trace
                 + str_DCR_0481 + "!" + Convert.ToInt16(((Convert.ToDouble(count_0481_PO_OnTime_YTD) / Convert.ToDouble(count_0481_PO_Finished_YTD)) * 100)).ToString();
         }
     }
-    //ECharts4:Finish POs
-    public static string values_ECharts4
-    {
-        get
-        {
-            return str_PO_Finished_perMonth + "!" + count_PO_Finished_YTD.ToString() + ";"
-                + str_PO_ForecastFinished_perMonth + "!" + count_PO_ForecastFinished_YTD.ToString() + ";"
-                + str_NetValue_PO_Finished_perMonth + "!" + NetValue_PO_Finished_YTD.ToString("F2");
-        }
-    }
-    //ECharts5:SO Create perMonth
-    public static string values_ECharts5
-    {
-        get
-        {
-            return str_SO_soCreated_perMonth + "!" + count_SO_soCreated_YTD.ToString() + ";"
-                + str_NetValue_SO_soCreated_perMonth + "!" + NetValue_SO_soCreated_YTD.ToString("F2");
-        }
-    }
-    //ECharts6:LT(Average Lead Time：CDS)
-    public static string values_ECharts6
+    //ECharts1_2:LT(Average Lead Time：CDS)
+    public static string values_ECharts1_2
     {
         get
         {
@@ -338,8 +304,8 @@ public class Data2Trace
             //    + ";" + str_LT_0481_perMonth + "!" + str_LT_0481_perWeek + "!" + LT_0481_YTD.ToString("F2");
         }
     }
-    //ECharts7:Reminders for 3Weeks&2Weeks
-    public static string values_ECharts7
+    //ECharts1_3:Reminders for 3Weeks&2Weeks
+    public static string values_ECharts1_3
     {
         get
         {
@@ -348,14 +314,91 @@ public class Data2Trace
                + count_Reminder3Weeks_ConfirmedDt + "!" + count_Reminder2Weeks_ConfirmedDt;
         }
     }
-    //ECharts8:Repertory Monitor
-    public static string values_ECharts8
+    //ECharts1_4:Ongoing Pro. Order Monitoring
+    public static string values_ECharts1_4
     {
         get
         {
             return count_Stored_5 + "!" + count_Stored_5_10 + "!" + count_Stored_10_20 + "!" + count_Stored_20 + "!" + count_Stored;
         }
-    } 
+    }
+    //ECharts2_1:SO Create perMonth
+    public static string values_ECharts2_1
+    {
+        get
+        {
+            return str_SO_soCreated_perMonth + "!" + count_SO_soCreated_YTD.ToString() + ";"
+                + str_NetValue_SO_soCreated_perMonth + "!" + NetValue_SO_soCreated_YTD.ToString("F2");
+        }
+    }
+    //ECharts2_2:Finish POs
+    public static string values_ECharts2_2
+    {
+        get
+        {
+            return str_PO_Finished_perMonth + "!" + count_PO_Finished_YTD.ToString() + ";"
+                + str_PO_ForecastFinished_perMonth + "!" + count_PO_ForecastFinished_YTD.ToString() + ";"
+                + str_NetValue_PO_Finished_perMonth + "!" + NetValue_PO_Finished_YTD.ToString("F2");
+        }
+    }   
+    //ECharts2_3:Repertory Monitor
+    public static string values_ECharts2_3
+    {
+        get
+        {
+            return count_Stored_5 + "!" + count_Stored_5_10 + "!" + count_Stored_10_20 + "!" + count_Stored_20 + "!" + count_Stored;
+        }
+    }
+    //ECharts2_4:Ready for Shippment Monitoring
+    public static string values_ECharts2_4
+    {
+        get
+        {
+            return count_Stored_5 + "!" + count_Stored_5_10 + "!" + count_Stored_10_20 + "!" + count_Stored_20 + "!" + count_Stored;
+        }
+    }
+    //ECharts3_1:PO Create Monitor
+    public static string values_ECharts3_1
+    {
+        get
+        {
+            return str_PO_soCreated_perMonth + ";" + str_CreatedDelay_perMonth + ";" + (count_PO_soCreated_YTD - count_CreatedDelay_YTD).ToString() + "!" + count_CreatedDelay_YTD.ToString();
+        }
+    }
+    //ECharts3_2:PO Release Monitor
+    public static string values_ECharts3_2
+    {
+        get
+        {
+            return str_PO_poCreated_perMonth + ";" + str_ReleaseDelay_perMonth + ";" + (count_PO_poCreated_YTD - count_ReleaseDelay_YTD).ToString() + "!" + count_ReleaseDelay_YTD.ToString();
+        }
+    }
+    //ECharts3_3:PO Release->Actual Finish(23WD)
+    public static string values_ECharts3_3
+    {
+        get
+        {
+            return str_LT_perMonth + "!" + Convert.ToInt16(LT_YTD).ToString()
+                + ";" + str_LT_0400_perMonth + "!" + Convert.ToInt16(LT_0400_YTD).ToString()
+                + ";" + str_LT_0481_perMonth + "!" + Convert.ToInt16(LT_0481_YTD).ToString();
+            //return str_LT_perMonth + "!" + str_LT_perWeek + "!" + LT_YTD.ToString("F2")
+            //    + ";" + str_LT_0400_perMonth + "!" + str_LT_0400_perWeek + "!" + LT_0400_YTD.ToString("F2")
+            //    + ";" + str_LT_0481_perMonth + "!" + str_LT_0481_perWeek + "!" + LT_0481_YTD.ToString("F2");
+        }
+    }
+    //ECharts3_4:Actual Finish->ex-plant(2WD)
+    public static string values_ECharts3_4
+    {
+        get
+        {
+            return str_LT_perMonth + "!" + Convert.ToInt16(LT_YTD).ToString()
+                + ";" + str_LT_0400_perMonth + "!" + Convert.ToInt16(LT_0400_YTD).ToString()
+                + ";" + str_LT_0481_perMonth + "!" + Convert.ToInt16(LT_0481_YTD).ToString();
+            //return str_LT_perMonth + "!" + str_LT_perWeek + "!" + LT_YTD.ToString("F2")
+            //    + ";" + str_LT_0400_perMonth + "!" + str_LT_0400_perWeek + "!" + LT_0400_YTD.ToString("F2")
+            //    + ";" + str_LT_0481_perMonth + "!" + str_LT_0481_perWeek + "!" + LT_0481_YTD.ToString("F2");
+        }
+    }
     #endregion
 
     #region Panel1
@@ -486,11 +529,15 @@ public class Data2Trace
     public static double averageTime_POFinish_YTD;
     public static double[] averageTime_POFinish_0400_perMonth = new double[12];
     public static double averageTime_POFinish_0400_YTD;
+    public static double[] averageTime_POFinish_0481_perMonth = new double[12];
+    public static double averageTime_POFinish_0481_YTD;
     //ECharts3-4:Actual finish->Ex-plant Monitoring(2WD)【Average】
     public static double[] averageTime_Ex_plant_perMonth = new double[12];
     public static double averageTime_Ex_plant_YTD;
     public static double[] averageTime_Ex_plant_0400_perMonth = new double[12];
-    public static double averageTime_Ex_plant_0400_YTD; 
+    public static double averageTime_Ex_plant_0400_YTD;
+    public static double[] averageTime_Ex_plant_0481_perMonth = new double[12];
+    public static double averageTime_Ex_plant_0481_YTD;
     #endregion
 
     public static void CleanCounter()

@@ -27,14 +27,18 @@ public partial class DashBoard : System.Web.UI.Page
             mExcelOperation.TraceFromExcel();
         }
         this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" + 
-            Data2Trace.values_ECharts1 + "','" 
-            + Data2Trace.values_ECharts2 + "','" 
-            + Data2Trace.values_ECharts3 + "','"
-            + Data2Trace.values_ECharts4 + "','"
-            + Data2Trace.values_ECharts5 + "','"
-            + Data2Trace.values_ECharts6 + "','"
-            + Data2Trace.values_ECharts7 + "','"
-            + Data2Trace.values_ECharts8 + "')", true);
+            Data2Trace.values_ECharts1_1 + "','" 
+            + Data2Trace.values_ECharts1_2 + "','" 
+            + Data2Trace.values_ECharts1_3 + "','"
+            + Data2Trace.values_ECharts1_4 + "','"
+            + Data2Trace.values_ECharts2_1 + "','"
+            + Data2Trace.values_ECharts2_2 + "','"
+            + Data2Trace.values_ECharts2_3 + "','"
+            + Data2Trace.values_ECharts2_4 + "','"
+            + Data2Trace.values_ECharts3_1 + "','"
+            + Data2Trace.values_ECharts3_2 + "','"
+            + Data2Trace.values_ECharts3_3 + "','"
+            + Data2Trace.values_ECharts3_4 + "')", true);
 
         //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts8", "setECharts8('" +
         //    Data2Trace.values_ECharts1 + "','"

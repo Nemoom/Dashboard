@@ -140,6 +140,14 @@ public class ExcelOperation
         {
             mylist_SO_perMonth[i] = new List<string>();
         }
+        for (int i = 0; i < mylist_SO_0400_perMonth.Length; i++)
+        {
+            mylist_SO_0400_perMonth[i] = new List<string>();
+        }
+        for (int i = 0; i < mylist_SO_0481_perMonth.Length; i++)
+        {
+            mylist_SO_0481_perMonth[i] = new List<string>();
+        }
         for (int i = 0; i < mylist_0400_LT_perMonth.Length; i++)
         {
             mylist_0400_LT_perMonth[i] = new List<int>();
@@ -163,7 +171,31 @@ public class ExcelOperation
         for (int i = 0; i < mylist_LT_perWeek.Length; i++)
         {
             mylist_LT_perWeek[i] = new List<int>();
-        } 
+        }
+        for (int i = 0; i < mylist_Gap_POFinish_perMonth.Length; i++)
+        {
+            mylist_Gap_POFinish_perMonth[i] = new List<int>();
+        }
+        for (int i = 0; i < mylist_Gap_POFinish_0400_perMonth.Length; i++)
+        {
+            mylist_Gap_POFinish_0400_perMonth[i] = new List<int>();
+        }
+        for (int i = 0; i < mylist_Gap_POFinish_0481_perMonth.Length; i++)
+        {
+            mylist_Gap_POFinish_0481_perMonth[i] = new List<int>();
+        }
+        for (int i = 0; i < mylist_Gap_Ex_plant_perMonth.Length; i++)
+        {
+            mylist_Gap_Ex_plant_perMonth[i] = new List<int>();
+        }
+        for (int i = 0; i < mylist_Gap_Ex_plant_0400_perMonth.Length; i++)
+        {
+            mylist_Gap_Ex_plant_0400_perMonth[i] = new List<int>();
+        }
+        for (int i = 0; i < mylist_Gap_Ex_plant_0481_perMonth.Length; i++)
+        {
+            mylist_Gap_Ex_plant_0481_perMonth[i] = new List<int>();
+        }
         #endregion
         ISheet sheet = xssfworkbook.CreateSheet("Cell comments in POI HSSF");
         ICellStyle cellStyle = wb.CreateCellStyle();
@@ -176,15 +208,28 @@ public class ExcelOperation
             cell1.SetCellValue(ProcessMonitor.Date_QuotationLT);
         }
         WriteToFile();
-        //ECharts5&ECharts6需要处理一下原始数据
-        //ECharts5 SO Create perMonth
+        //ECharts3_1&ECharts1_2需要处理一下原始数据
+        //ECharts3_1 SO Create perMonth
         for (int i = 0; i < mylist_SO_perMonth.Length; i++)
         {
             List<string> nlist = mylist_SO_perMonth[i].Distinct().ToList();
             Data2Trace.count_SO_soCreated_perMonth[i] = nlist.Count();
             Data2Trace.count_SO_soCreated_YTD = Data2Trace.count_SO_soCreated_YTD + Data2Trace.count_SO_soCreated_perMonth[i];
         }
-        //ECharts6 LT(Average Lead Time：CDS)平均交货时间        
+        for (int i = 0; i < mylist_SO_0400_perMonth.Length; i++)
+        {
+            List<string> nlist = mylist_SO_0400_perMonth[i].Distinct().ToList();
+            Data2Trace.count_SO_soCreated_0400_perMonth[i] = nlist.Count();
+            Data2Trace.count_SO_soCreated_0400_YTD = Data2Trace.count_SO_soCreated_0400_YTD + Data2Trace.count_SO_soCreated_0400_perMonth[i];
+        }
+        for (int i = 0; i < mylist_SO_0481_perMonth.Length; i++)
+        {
+            List<string> nlist = mylist_SO_0481_perMonth[i].Distinct().ToList();
+            Data2Trace.count_SO_soCreated_0481_perMonth[i] = nlist.Count();
+            Data2Trace.count_SO_soCreated_0481_YTD = Data2Trace.count_SO_soCreated_0481_YTD + Data2Trace.count_SO_soCreated_0481_perMonth[i];
+        }
+        //ECharts1_2 LT(Average Lead Time：CDS)平均交货时间        
+        #region ECharts1_2 LT(Average Lead Time：CDS)平均交货时间 
         for (int i = 0; i < mylist_0400_LT_perMonth.Length; i++)
         {
             if (mylist_0400_LT_perMonth[i].Count == 0)
@@ -255,7 +300,157 @@ public class ExcelOperation
         {
             Data2Trace.LT_YTD = mylist_LT_YTD.Average();
 
+        } 
+        #endregion
+        //ECharts3-3:PO Release->Actual finish Monitoring(23WD)【Average】
+        #region ECharts3-3:PO Release->Actual finish Monitoring(23WD)【Average】
+        for (int i = 0; i < mylist_Gap_POFinish_perMonth.Length; i++)
+        {
+            if (mylist_Gap_POFinish_perMonth[i].Count == 0)
+            {
+                Data2Trace.averageTime_POFinish_perMonth[i] = 0;
+
+            }
+            else
+            {
+                Data2Trace.averageTime_POFinish_perMonth[i] = mylist_Gap_POFinish_perMonth[i].Average();
+
+            }
         }
+        if (mylist_Gap_POFinish_YTD.Count == 0)
+        {
+            Data2Trace.averageTime_POFinish_YTD = 0;
+
+        }
+        else
+        {
+            Data2Trace.averageTime_POFinish_YTD = mylist_Gap_POFinish_YTD.Average();
+
+        }
+
+        for (int i = 0; i < mylist_Gap_POFinish_0400_perMonth.Length; i++)
+        {
+            if (mylist_Gap_POFinish_0400_perMonth[i].Count == 0)
+            {
+                Data2Trace.averageTime_POFinish_0400_perMonth[i] = 0;
+
+            }
+            else
+            {
+                Data2Trace.averageTime_POFinish_0400_perMonth[i] = mylist_Gap_POFinish_0400_perMonth[i].Average();
+
+            }
+        }
+        if (mylist_Gap_POFinish_0400_YTD.Count == 0)
+        {
+            Data2Trace.averageTime_POFinish_0400_YTD = 0;
+
+        }
+        else
+        {
+            Data2Trace.averageTime_POFinish_0400_YTD = mylist_Gap_POFinish_0400_YTD.Average();
+
+        }
+
+        for (int i = 0; i < mylist_Gap_POFinish_0481_perMonth.Length; i++)
+        {
+            if (mylist_Gap_POFinish_0481_perMonth[i].Count == 0)
+            {
+                Data2Trace.averageTime_POFinish_0481_perMonth[i] = 0;
+
+            }
+            else
+            {
+                Data2Trace.averageTime_POFinish_0481_perMonth[i] = mylist_Gap_POFinish_0481_perMonth[i].Average();
+
+            }
+        }
+        if (mylist_Gap_POFinish_0481_YTD.Count == 0)
+        {
+            Data2Trace.averageTime_POFinish_0481_YTD = 0;
+
+        }
+        else
+        {
+            Data2Trace.averageTime_POFinish_0481_YTD = mylist_Gap_POFinish_0481_YTD.Average();
+
+        }
+        #endregion
+        //ECharts3-4:Actual finish->Ex-plant Monitoring(2WD)【Average】
+        #region ECharts3-4:Actual finish->Ex-plant Monitoring(2WD)【Average】
+        for (int i = 0; i < mylist_Gap_Ex_plant_perMonth.Length; i++)
+        {
+            if (mylist_Gap_Ex_plant_perMonth[i].Count == 0)
+            {
+                Data2Trace.averageTime_Ex_plant_perMonth[i] = 0;
+
+            }
+            else
+            {
+                Data2Trace.averageTime_Ex_plant_perMonth[i] = mylist_Gap_Ex_plant_perMonth[i].Average();
+
+            }
+        }
+        if (mylist_Gap_Ex_plant_YTD.Count == 0)
+        {
+            Data2Trace.averageTime_Ex_plant_YTD = 0;
+
+        }
+        else
+        {
+            Data2Trace.averageTime_Ex_plant_YTD = mylist_Gap_Ex_plant_YTD.Average();
+
+        }
+
+        for (int i = 0; i < mylist_Gap_Ex_plant_0400_perMonth.Length; i++)
+        {
+            if (mylist_Gap_Ex_plant_0400_perMonth[i].Count == 0)
+            {
+                Data2Trace.averageTime_Ex_plant_0400_perMonth[i] = 0;
+
+            }
+            else
+            {
+                Data2Trace.averageTime_Ex_plant_0400_perMonth[i] = mylist_Gap_Ex_plant_0400_perMonth[i].Average();
+
+            }
+        }
+        if (mylist_Gap_Ex_plant_0400_YTD.Count == 0)
+        {
+            Data2Trace.averageTime_Ex_plant_0400_YTD = 0;
+
+        }
+        else
+        {
+            Data2Trace.averageTime_Ex_plant_0400_YTD = mylist_Gap_Ex_plant_0400_YTD.Average();
+
+        }
+
+        for (int i = 0; i < mylist_Gap_Ex_plant_0481_perMonth.Length; i++)
+        {
+            if (mylist_Gap_Ex_plant_0481_perMonth[i].Count == 0)
+            {
+                Data2Trace.averageTime_Ex_plant_0481_perMonth[i] = 0;
+
+            }
+            else
+            {
+                Data2Trace.averageTime_Ex_plant_0481_perMonth[i] = mylist_Gap_Ex_plant_0481_perMonth[i].Average();
+
+            }
+        }
+        if (mylist_Gap_Ex_plant_0481_YTD.Count == 0)
+        {
+            Data2Trace.averageTime_Ex_plant_0481_YTD = 0;
+
+        }
+        else
+        {
+            Data2Trace.averageTime_Ex_plant_0481_YTD = mylist_Gap_Ex_plant_0481_YTD.Average();
+
+        }
+        #endregion
+
     }
 
     private void WriteToFile()
@@ -269,15 +464,36 @@ public class ExcelOperation
 
     List<string>[] mylist_SO_perMonth = new List<string>[12];
     List<string> mylist_SO_YTD = new List<string>();
+    List<string>[] mylist_SO_0400_perMonth = new List<string>[12];
+    List<string> mylist_SO_0400_YTD = new List<string>();
+    List<string>[] mylist_SO_0481_perMonth = new List<string>[12];
+    List<string> mylist_SO_0481_YTD = new List<string>();
+
     List<int>[] mylist_0400_LT_perMonth = new List<int>[12];
     List<int>[] mylist_0400_LT_perWeek = new List<int>[4];
     List<int> mylist_0400_LT_YTD = new List<int>();
+
     List<int>[] mylist_0481_LT_perMonth = new List<int>[12];
     List<int>[] mylist_0481_LT_perWeek = new List<int>[4];
     List<int> mylist_0481_LT_YTD = new List<int>();
+
     List<int>[] mylist_LT_perMonth = new List<int>[12];
     List<int>[] mylist_LT_perWeek = new List<int>[4];
     List<int> mylist_LT_YTD = new List<int>();
+
+    List<int>[] mylist_Gap_POFinish_perMonth = new List<int>[12];
+    List<int> mylist_Gap_POFinish_YTD = new List<int>();
+    List<int>[] mylist_Gap_POFinish_0400_perMonth = new List<int>[12];
+    List<int> mylist_Gap_POFinish_0400_YTD = new List<int>();
+    List<int>[] mylist_Gap_POFinish_0481_perMonth = new List<int>[12];
+    List<int> mylist_Gap_POFinish_0481_YTD = new List<int>();
+
+    List<int>[] mylist_Gap_Ex_plant_perMonth = new List<int>[12];
+    List<int> mylist_Gap_Ex_plant_YTD = new List<int>();
+    List<int>[] mylist_Gap_Ex_plant_0400_perMonth = new List<int>[12];
+    List<int> mylist_Gap_Ex_plant_0400_YTD = new List<int>();
+    List<int>[] mylist_Gap_Ex_plant_0481_perMonth = new List<int>[12];
+    List<int> mylist_Gap_Ex_plant_0481_YTD = new List<int>();
 
     public bool RowRecordProcess(int rowIndex)
     {
@@ -451,60 +667,8 @@ public class ExcelOperation
                 #endregion
                 mCell.SetCellValue(ProcessMonitor.Date_QuotationLT);
                 #region 统计
-                //For ECharts1：PO Create Monitor
-                #region For ECharts1：PO Create Monitor
-                switch (ProcessMonitor.mPO_Status)
-                {
-                    case PO_Status.SO_Created:
-                        break;
-                    case PO_Status.PO_Created:
-                    case PO_Status.PO_Released:
-                    case PO_Status.PO_Finished:
-                    case PO_Status.DLV:
-                        //统计SO_CreatedOn为今年的订单                
-                        if (ProcessMonitor.mActualTime.Date_SO_CreatedOn.Year == DateTime.Today.Year)
-                        {
-                            //For ECharts1
-                            Data2Trace.count_PO_soCreated_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1]++;
-                            Data2Trace.count_PO_soCreated_YTD++;
-                            //For ECharts1：1个工作日未创建PO，Avoid system issue：Credit block
-                            if (ProcessMonitor.Gap_SO2PO > 1)
-                            {
-                                Data2Trace.count_CreatedDelay_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1]++;
-                                Data2Trace.count_CreatedDelay_YTD++;
-                            }
-                        }
-                        break;
-                } 
-                #endregion
-                //For ECharts2：PO Release Monitor
-                #region For ECharts2：PO Release Monitor
-                switch (ProcessMonitor.mPO_Status)
-                {
-                    case PO_Status.SO_Created:
-                    case PO_Status.PO_Created:
-                        break;
-                    case PO_Status.PO_Released:
-                    case PO_Status.PO_Finished:
-                    case PO_Status.DLV:
-                        //统计PO_CreatedOn为今年的订单                
-                        if (ProcessMonitor.mActualTime.Date_PO_CreatedOn.Year == DateTime.Today.Year)
-                        {
-                            //For ECharts2
-                            Data2Trace.count_PO_poCreated_perMonth[ProcessMonitor.mActualTime.Date_PO_CreatedOn.Month - 1]++;
-                            Data2Trace.count_PO_poCreated_YTD++;
-                            //For ECharts2：5个工作日未释放
-                            if (ProcessMonitor.Gap_PO2Release > 5)
-                            {
-                                Data2Trace.count_ReleaseDelay_perMonth[ProcessMonitor.mActualTime.Date_PO_CreatedOn.Month - 1]++;
-                                Data2Trace.count_ReleaseDelay_YTD++;
-                            }
-                        }
-                        break;
-                } 
-                #endregion
-                //For ECharts3:DCR(Delivery Class Reliablity)及时交付率 需要+1WD
-                #region For ECharts3:DCR(Delivery Class Reliablity)及时交付率
+                //For ECharts1_1:DCR(Delivery Class Reliablity)及时交付率 需要+1WD
+                #region For ECharts1_1:DCR(Delivery Class Reliablity)及时交付率
                 //0400/0481
                 switch (ProcessMonitor.mDLV_Plant)
                 {
@@ -640,56 +804,8 @@ public class ExcelOperation
                         break;
                 }  
                 #endregion
-                //For ECharts4:Finish POs
-                #region For ECharts4:Finish POs
-                //统计ActualFinishDate为今年的月份
-                if ((ProcessMonitor.mPO_Status == PO_Status.DLV || ProcessMonitor.mPO_Status == PO_Status.PO_Finished) && ProcessMonitor.mActualTime.Date_ActualFinishDate.Year == DateTime.Today.Year)
-                {
-                    //For ECharts4
-                    Data2Trace.count_PO_Finished_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
-                    Data2Trace.count_PO_Finished_YTD++;
-                    switch (ProcessMonitor.mDLV_Plant)
-                    {
-                        case DLV_Plant.P_0400:
-                            Data2Trace.count_0400_PO_Finished_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
-                            Data2Trace.count_0400_PO_Finished_YTD++;
-                            break;
-                        case DLV_Plant.P_0481:
-                            Data2Trace.count_0481_PO_Finished_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
-                            Data2Trace.count_0481_PO_Finished_YTD++;
-                            break;
-                    }
-                    Data2Trace.NetValue_PO_Finished_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1] = Data2Trace.NetValue_PO_Finished_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1] + ProcessMonitor.mNetValue;
-                    Data2Trace.NetValue_PO_Finished_YTD = Data2Trace.NetValue_PO_Finished_YTD + ProcessMonitor.mNetValue;
-                }
-                else
-                {
-                    //未完成订单，查看Basic End Date看看预计完成时间在哪个月
-                    if (ProcessMonitor.mEstimatedTime.Date_BasicEndDate.Year == DateTime.Today.Year)
-                    {
-                        //For ECharts4
-                        Data2Trace.count_PO_ForecastFinished_perMonth[ProcessMonitor.mEstimatedTime.Date_BasicEndDate.Month - 1]++;
-                        Data2Trace.count_PO_ForecastFinished_YTD++;
-                    }
-                }
-                #endregion
-                //For ECharts5:SO Create perMonth
-                #region For ECharts5:SO Create perMonth
-                //统计SO_CreatedOn为今年的月份
-                if (ProcessMonitor.mActualTime.Date_SO_CreatedOn.Year == DateTime.Today.Year)
-                {
-                    //For ECharts5
-                    mylist_SO_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1].Add(ProcessMonitor.mSO);
-                    mylist_SO_YTD.Add(ProcessMonitor.mSO);
-                    Data2Trace.NetValue_SO_soCreated_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1] =
-                        Data2Trace.NetValue_SO_soCreated_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1] + 
-                        ProcessMonitor.mNetValue;
-                    Data2Trace.NetValue_SO_soCreated_YTD = Data2Trace.NetValue_SO_soCreated_YTD + ProcessMonitor.mNetValue;
-             
-                }
-                #endregion
-                //For ECharts6:LT(Average Lead Time：CDS)平均交货时间
-                #region For ECharts6:LT(Average Lead Time：CDS)平均交货时间
+                //For ECharts1_2:LT(Average Lead Time：CDS)平均交货时间
+                #region For ECharts1_2:LT(Average Lead Time：CDS)平均交货时间
                 if (ProcessMonitor.mPO_Status == PO_Status.PO_Finished || ProcessMonitor.mPO_Status == PO_Status.DLV)
                 {
                     if (ProcessMonitor.mActualTime.Date_ActualFinishDate.Year == DateTime.Today.Year)
@@ -710,7 +826,7 @@ public class ExcelOperation
                         }
                     }
                 }
-                
+
                 //public static double[] LT_perMonth = new double[12];
                 //public static double[] LT_perWeek = new double[4];
                 //public static double LT_YTD;
@@ -720,9 +836,9 @@ public class ExcelOperation
                 //public static double[] LT_0481_perMonth = new double[12];
                 //public static double[] LT_0481_perWeek = new double[4];
                 //public static double LT_0481_YTD; 
-	            #endregion
-                //For ECharts7:Reminders for 3Weeks&2Weeks
-                #region For ECharts7:Reminders for 3Weeks&2Weeks & Last Failed Order
+                #endregion
+                //For ECharts1_3:Reminders for 3Weeks&2Weeks & ECharts1-4:Ongoing Pro. Order【0400】
+                #region For ECharts1_3 & ECharts1-4 
                 //public static int count_Reminder3Weeks_LT;
                 //public static int count_Reminder2Weeks_LT;
                 //public static int count_Reminder3Weeks_ConfirmedDt;
@@ -754,7 +870,21 @@ public class ExcelOperation
                             && ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt <= DateTime.Today.AddDays(21))
                         {
                             Data2Trace.count_Reminder3Weeks_ConfirmedDt++;
-                        }                        
+                        }
+                        #region ECharts1-4:Ongoing Pro. Order Monitoring【0400】
+                        if (ProcessMonitor.LT_Ongoing <= 40)
+                        {
+                            Data2Trace.count_Ongoing_40++;
+                        }
+                        else if (ProcessMonitor.LT_Ongoing <= 50)
+                        {
+                            Data2Trace.count_Ongoing_40_50++;
+                        }                       
+                        else
+                        {
+                            Data2Trace.count_Ongoing_50++;
+                        }
+                        #endregion
                     }
                     else
                     {
@@ -777,7 +907,7 @@ public class ExcelOperation
                         }
                     }
                 }
-                
+
                 //根据Date_QuotationLT和Date_RequestDate的比较判断以哪个做基准
                 else if ((DateTime.Today.AddDays(-1)) == ProcessMonitor.mEstimatedTime.Date_RequestDate && (ProcessMonitor.mPO_Status != PO_Status.DLV || ProcessMonitor.mPO_Status != PO_Status.PO_Finished))
                 {
@@ -785,11 +915,113 @@ public class ExcelOperation
                 }
 
                 #endregion
-                //For ECharts8:Repertory Monitor
-                #region For ECharts8:Repertory Monitor
+                
+                //For ECharts2_1:Monthly SO Input【0400+0481】
+                #region For ECharts2_1:SO Create perMonth
+                //统计SO_CreatedOn为今年的月份
+                if (ProcessMonitor.mActualTime.Date_SO_CreatedOn.Year == DateTime.Today.Year)
+                {
+                    //For ECharts2_1
+                    mylist_SO_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1].Add(ProcessMonitor.mSO);
+                    mylist_SO_YTD.Add(ProcessMonitor.mSO);
+                    Data2Trace.NetValue_SO_soCreated_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1] =
+                        Data2Trace.NetValue_SO_soCreated_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1] + 
+                        ProcessMonitor.mNetValue;
+                    Data2Trace.NetValue_SO_soCreated_YTD = Data2Trace.NetValue_SO_soCreated_YTD + ProcessMonitor.mNetValue;
+                    switch (ProcessMonitor.mDLV_Plant)
+                    {
+                        case DLV_Plant.P_0400:
+                            mylist_SO_0400_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1].Add(ProcessMonitor.mSO);
+                            mylist_SO_0400_YTD.Add(ProcessMonitor.mSO);
+                            Data2Trace.NetValue_SO_soCreated_0400_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1] =
+                                Data2Trace.NetValue_SO_soCreated_0400_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1] + 
+                                ProcessMonitor.mNetValue;
+                            Data2Trace.NetValue_SO_soCreated_0400_YTD = Data2Trace.NetValue_SO_soCreated_0400_YTD + ProcessMonitor.mNetValue;
+                            break;
+                        case DLV_Plant.P_0481:
+                            mylist_SO_0481_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1].Add(ProcessMonitor.mSO);
+                            mylist_SO_0481_YTD.Add(ProcessMonitor.mSO);
+                            Data2Trace.NetValue_SO_soCreated_0481_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1] =
+                                Data2Trace.NetValue_SO_soCreated_0481_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1] + 
+                                ProcessMonitor.mNetValue;
+                            Data2Trace.NetValue_SO_soCreated_0481_YTD = Data2Trace.NetValue_SO_soCreated_0481_YTD + ProcessMonitor.mNetValue;
+                            break;
+                    }
+                }
+                #endregion
+                //For ECharts2_2:Monthly Finished Pro. Order【0400+0481】
+                #region For ECharts2_2:Finish POs
+                //统计ActualFinishDate为今年的月份
+                if ((ProcessMonitor.mPO_Status == PO_Status.DLV || ProcessMonitor.mPO_Status == PO_Status.PO_Finished) && ProcessMonitor.mActualTime.Date_ActualFinishDate.Year == DateTime.Today.Year)
+                {
+                    //For ECharts2_2
+                    Data2Trace.count_PO_Finished_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
+                    Data2Trace.count_PO_Finished_YTD++;
+                    switch (ProcessMonitor.mDLV_Plant)
+                    {
+                        case DLV_Plant.P_0400:
+                            Data2Trace.count_0400_PO_Finished_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
+                            Data2Trace.count_0400_PO_Finished_YTD++;
+                            Data2Trace.count_PO_Finished_0400_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
+                            Data2Trace.count_PO_Finished_0400_YTD++;
+                            Data2Trace.NetValue_PO_Finished_0400_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1] = Data2Trace.NetValue_PO_Finished_0400_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1] + ProcessMonitor.mNetValue;
+                            Data2Trace.NetValue_PO_Finished_0400_YTD = Data2Trace.NetValue_PO_Finished_0400_YTD + ProcessMonitor.mNetValue;
+                            break;
+                        case DLV_Plant.P_0481:
+                            Data2Trace.count_0481_PO_Finished_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
+                            Data2Trace.count_0481_PO_Finished_YTD++;
+                            Data2Trace.count_PO_Finished_0481_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
+                            Data2Trace.count_PO_Finished_0481_YTD++;
+                            Data2Trace.NetValue_PO_Finished_0481_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1] = Data2Trace.NetValue_PO_Finished_0481_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1] + ProcessMonitor.mNetValue;
+                            Data2Trace.NetValue_PO_Finished_0481_YTD = Data2Trace.NetValue_PO_Finished_0481_YTD + ProcessMonitor.mNetValue;
+                            break;
+                    }
+                    Data2Trace.NetValue_PO_Finished_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1] = Data2Trace.NetValue_PO_Finished_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1] + ProcessMonitor.mNetValue;
+                    Data2Trace.NetValue_PO_Finished_YTD = Data2Trace.NetValue_PO_Finished_YTD + ProcessMonitor.mNetValue;
+                }
+                else
+                {
+                    //未完成订单，查看Basic End Date看看预计完成时间在哪个月
+                    if (ProcessMonitor.mEstimatedTime.Date_BasicEndDate.Year == DateTime.Today.Year)
+                    {
+                        //For ECharts2_2
+                        switch (ProcessMonitor.mDLV_Plant)
+                        {
+                            case DLV_Plant.P_0400:
+                                Data2Trace.count_PO_ForecastFinished_0400_perMonth[ProcessMonitor.mEstimatedTime.Date_BasicEndDate.Month - 1]++;
+                                Data2Trace.count_PO_ForecastFinished_0400_YTD++;
+                                break;
+                            case DLV_Plant.P_0481:
+                                Data2Trace.count_PO_ForecastFinished_0481_perMonth[ProcessMonitor.mEstimatedTime.Date_BasicEndDate.Month - 1]++;
+                                Data2Trace.count_PO_ForecastFinished_0481_YTD++;
+                                break;
+                        }
+                        Data2Trace.count_PO_ForecastFinished_perMonth[ProcessMonitor.mEstimatedTime.Date_BasicEndDate.Month - 1]++;
+                        Data2Trace.count_PO_ForecastFinished_YTD++;
+                    }
+                }
+                #endregion
+                //For ECharts2_3:Repertory Monitor & ECharts2_4:Ready for Shippment Monitoring【YTD 0400+0481】
+                #region For ECharts2_3 & ECharts2_4【YTD 0400+0481】
                 if (ProcessMonitor.mPO_Status == PO_Status.PO_Finished)
                 {
                     Data2Trace.count_Stored++;
+                    if (ProcessMonitor.Gap_Finish2Today <= 10)
+                    {
+                        Data2Trace.count_Ready4Shippment_10++;
+                    }
+                    else if (ProcessMonitor.Gap_Finish2Today <= 20)
+                    {
+                        Data2Trace.count_Ready4Shippment_10_20++;
+                    }
+                    else if (ProcessMonitor.Gap_Finish2Today <= 30)
+                    {
+                        Data2Trace.count_Ready4Shippment_20_30++;
+                    }
+                    else
+                    {
+                        Data2Trace.count_Ready4Shippment_30++;
+                    }
                 }
                 else if (ProcessMonitor.mPO_Status == PO_Status.DLV)
                 {
@@ -810,7 +1042,128 @@ public class ExcelOperation
                         Data2Trace.count_Stored_20++;
                     }
                 }
-                #endregion              
+                #endregion             
+               
+                //For ECharts3_1：SO->PO Creation Monitoring(1WD)
+                #region For ECharts3_1：PO Create Monitor
+                switch (ProcessMonitor.mPO_Status)
+                {
+                    case PO_Status.SO_Created:
+                        break;
+                    case PO_Status.PO_Created:
+                    case PO_Status.PO_Released:
+                    case PO_Status.PO_Finished:
+                    case PO_Status.DLV:
+                        //统计SO_CreatedOn为今年的订单                
+                        if (ProcessMonitor.mActualTime.Date_SO_CreatedOn.Year == DateTime.Today.Year)
+                        {
+                            //For ECharts3_1
+                            Data2Trace.count_PO_soCreated_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1]++;
+                            Data2Trace.count_PO_soCreated_YTD++;
+                            //For ECharts3_1：1个工作日未创建PO，Avoid system issue：Credit block
+                            if (ProcessMonitor.Gap_SO2PO > 1)
+                            {
+                                Data2Trace.count_CreatedDelay_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1]++;
+                                Data2Trace.count_CreatedDelay_YTD++;
+                            }
+                            if (ProcessMonitor.mDLV_Plant==DLV_Plant.P_0400)
+                            {
+                                Data2Trace.count_PO_soCreated_0400_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1]++;
+                                Data2Trace.count_PO_soCreated_0400_YTD++;
+                                //For ECharts3_1：1个工作日未创建PO，Avoid system issue：Credit block
+                                if (ProcessMonitor.Gap_SO2PO > 1)
+                                {
+                                    Data2Trace.count_CreatedDelay_0400_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1]++;
+                                    Data2Trace.count_CreatedDelay_0400_YTD++;
+                                }
+                            }
+                        }
+                        break;
+                }
+                #endregion
+                //For ECharts3_2：PO Creation->PO Release Monitoring(5WD)
+                #region For ECharts3_2：PO Creation->PO Release Monitoring(5WD)
+                switch (ProcessMonitor.mPO_Status)
+                {
+                    case PO_Status.SO_Created:
+                    case PO_Status.PO_Created:
+                        break;
+                    case PO_Status.PO_Released:
+                    case PO_Status.PO_Finished:
+                    case PO_Status.DLV:
+                        //统计Date_ActualReleaseDate为今年的订单                
+                        if (ProcessMonitor.mActualTime.Date_ActualReleaseDate.Year == DateTime.Today.Year)
+                        {
+                            //For ECharts3_2
+                            Data2Trace.count_PO_poCreated_perMonth[ProcessMonitor.mActualTime.Date_ActualReleaseDate.Month - 1]++;
+                            Data2Trace.count_PO_poCreated_YTD++;
+                            //For ECharts3_2：5个工作日未释放
+                            if (ProcessMonitor.Gap_PO2Release > 5)
+                            {
+                                Data2Trace.count_ReleaseDelay_perMonth[ProcessMonitor.mActualTime.Date_ActualReleaseDate.Month - 1]++;
+                                Data2Trace.count_ReleaseDelay_YTD++;
+                            }
+                            if (ProcessMonitor.mDLV_Plant == DLV_Plant.P_0400)
+                            {
+                                Data2Trace.count_PO_poCreated_0400_perMonth[ProcessMonitor.mActualTime.Date_ActualReleaseDate.Month - 1]++;
+                                Data2Trace.count_PO_poCreated_0400_YTD++;
+                                //For ECharts3_2：5个工作日未释放
+                                if (ProcessMonitor.Gap_PO2Release > 5)
+                                {
+                                    Data2Trace.count_ReleaseDelay_0400_perMonth[ProcessMonitor.mActualTime.Date_ActualReleaseDate.Month - 1]++;
+                                    Data2Trace.count_ReleaseDelay_0400_YTD++;
+                                }
+                            }
+                        }
+                        break;
+                }
+                #endregion
+                //For ECharts3-3:PO Release->Actual finish Monitoring(23WD)【Average】
+                #region For ECharts3_3:PO Release->Actual finish Monitoring(23WD)【Average】
+                if (ProcessMonitor.mPO_Status == PO_Status.PO_Finished || ProcessMonitor.mPO_Status == PO_Status.DLV)
+                {
+                    if (ProcessMonitor.mActualTime.Date_ActualFinishDate.Year == DateTime.Today.Year)
+                    {
+                        mylist_Gap_POFinish_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1].Add(ProcessMonitor.Gap_Release2Finish);
+                        mylist_Gap_POFinish_YTD.Add(ProcessMonitor.Gap_Release2Finish);
+                        //0400/0481
+                        switch (ProcessMonitor.mDLV_Plant)
+                        {
+                            case DLV_Plant.P_0400:
+                                mylist_Gap_POFinish_0400_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1].Add(ProcessMonitor.Gap_Release2Finish);
+                                mylist_Gap_POFinish_0400_YTD.Add(ProcessMonitor.Gap_Release2Finish);
+                                break;
+                            case DLV_Plant.P_0481:
+                                mylist_Gap_POFinish_0481_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1].Add(ProcessMonitor.Gap_Release2Finish);
+                                mylist_Gap_POFinish_0481_YTD.Add(ProcessMonitor.Gap_Release2Finish);
+                                break;
+                        }
+                    }
+                }
+                #endregion
+                //For ECharts3-4:Actual finish->Ex-plant Monitoring(2WD)【Average】
+                #region For ECharts3_4:Actual finish->Ex-plant Monitoring(2WD)【Average】
+                if (ProcessMonitor.mPO_Status == PO_Status.DLV)
+                {
+                    if (ProcessMonitor.mActualTime.Date_ShipmentStartOn.Year == DateTime.Today.Year)
+                    {
+                        mylist_Gap_Ex_plant_perMonth[ProcessMonitor.mActualTime.Date_ShipmentStartOn.Month - 1].Add(ProcessMonitor.Gap_Finish2Shipment);
+                        mylist_Gap_Ex_plant_YTD.Add(ProcessMonitor.Gap_Finish2Shipment);
+                        //0400/0481
+                        switch (ProcessMonitor.mDLV_Plant)
+                        {
+                            case DLV_Plant.P_0400:
+                                mylist_Gap_Ex_plant_0400_perMonth[ProcessMonitor.mActualTime.Date_ShipmentStartOn.Month - 1].Add(ProcessMonitor.Gap_Finish2Shipment);
+                                mylist_Gap_Ex_plant_0400_YTD.Add(ProcessMonitor.Gap_Finish2Shipment);
+                                break;
+                            case DLV_Plant.P_0481:
+                                mylist_Gap_Ex_plant_0481_perMonth[ProcessMonitor.mActualTime.Date_ShipmentStartOn.Month - 1].Add(ProcessMonitor.Gap_Finish2Shipment);
+                                mylist_Gap_Ex_plant_0481_YTD.Add(ProcessMonitor.Gap_Finish2Shipment);
+                                break;
+                        }
+                    }
+                }
+                #endregion
                 #endregion
                 #endregion
             }

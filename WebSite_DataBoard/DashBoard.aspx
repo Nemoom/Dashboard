@@ -60,24 +60,24 @@
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts1" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts1_1" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts2" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts1_2" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                     </tr>
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts3" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts1_3" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts4" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts1_4" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                     </tr>
@@ -88,24 +88,24 @@
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts5" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts2_1" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts6" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts2_2" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                     </tr>
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts7" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts2_3" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts8" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts2_4" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                     </tr>
@@ -116,30 +116,29 @@
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts9" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts3_1" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts10" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts3_2" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                     </tr>
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts11" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts3_3" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts12" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts3_4" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                     </tr>
                 </table>
             </asp:Panel>            
-         
         </div>
         <div class="clear">
             Copyright © Festo AG & Co. KG
@@ -154,428 +153,96 @@
     <script src="Scripts/FestoColor_6.js" type="text/javascript"></script>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts图表
-        var myChart1 = echarts.init(document.getElementById('divECharts1'),'FestoColor_6');
-        var myChart2 = echarts.init(document.getElementById('divECharts2'),'FestoColor_6');
-        var myChart3 = echarts.init(document.getElementById('divECharts3'),'FestoColor_6');
-        var myChart4 = echarts.init(document.getElementById('divECharts4'),'FestoColor_6');
-        var myChart5 = echarts.init(document.getElementById('divECharts5'),'FestoColor_6');
-        var myChart6 = echarts.init(document.getElementById('divECharts6'),'FestoColor_6');
-        var myChart7 = echarts.init(document.getElementById('divECharts7'),'FestoColor_6');
-        var myChart8 = echarts.init(document.getElementById('divECharts8'),'FestoColor_6');
-        // 过渡---------------------
-        myChart1.showLoading({
-            text: '正在努力的读取数据中...',   
-        });
-        myChart2.showLoading({
-            text: '正在努力的读取数据中...',   
-        });
+        var myChart1_1 = echarts.init(document.getElementById('divECharts1_1'),'FestoColor_6');
+        var myChart1_2 = echarts.init(document.getElementById('divECharts1_2'),'FestoColor_6');
+        var myChart1_3 = echarts.init(document.getElementById('divECharts1_3'),'FestoColor_6');
+        var myChart1_4 = echarts.init(document.getElementById('divECharts1_4'),'FestoColor_6');
+        var myChart2_1 = echarts.init(document.getElementById('divECharts2_1'),'FestoColor_6');
+        var myChart2_2 = echarts.init(document.getElementById('divECharts2_2'),'FestoColor_6');
+        var myChart2_3 = echarts.init(document.getElementById('divECharts2_3'),'FestoColor_6');
+        var myChart2_4 = echarts.init(document.getElementById('divECharts2_4'),'FestoColor_6');
+        var myChart3_1 = echarts.init(document.getElementById('divECharts3_1'),'FestoColor_6');
+        var myChart3_2 = echarts.init(document.getElementById('divECharts3_2'),'FestoColor_6');
+        var myChart3_3 = echarts.init(document.getElementById('divECharts3_3'),'FestoColor_6');
+        var myChart3_4 = echarts.init(document.getElementById('divECharts3_4'),'FestoColor_6');
         
-        myChart3.showLoading({
+        // 过渡---------------------
+        myChart1_1.showLoading({
+            text: '正在努力的读取数据中...',   
+        });
+        myChart1_2.showLoading({
+            text: '正在努力的读取数据中...',   
+        });        
+        myChart1_3.showLoading({
             text: '正在努力的读取数据中...',  
         });
-        myChart4.showLoading({
+        myChart1_4.showLoading({
             text: '正在努力的读取数据中...',   
         });
-        myChart5.showLoading({
+        myChart2_1.showLoading({
             text: '正在努力的读取数据中...',   
         });
-        myChart6.showLoading({
+        myChart2_2.showLoading({
+            text: '正在努力的读取数据中...',   
+        });        
+        myChart2_3.showLoading({
+            text: '正在努力的读取数据中...',  
+        });
+        myChart2_4.showLoading({
             text: '正在努力的读取数据中...',   
         });
-        myChart7.showLoading({
+        myChart3_1.showLoading({
             text: '正在努力的读取数据中...',   
         });
-        myChart8.showLoading({
+        myChart3_2.showLoading({
+            text: '正在努力的读取数据中...',   
+        });        
+        myChart3_3.showLoading({
+            text: '正在努力的读取数据中...',  
+        });
+        myChart3_4.showLoading({
             text: '正在努力的读取数据中...',   
         });
+    
         var count = 0;
         var time_count;
-//        time_count = setInterval(function () {
-//                count++;
-//                if (count%2==0) {
-////                    document.getElementById('divECharts1').style.display="none";
-////                    document.getElementById('divECharts2').style.display="none";
-////                    document.getElementById('divECharts3').style.display="none";
-////                    document.getElementById('divECharts6').style.display="none";
-////                    document.getElementById('divECharts5').style.display="block";
-////                    document.getElementById('divECharts4').style.display="block";
-////                    document.getElementById('divECharts7').style.display="block";
-////                    document.getElementById('divECharts8').style.display="block";
-//                    document.getElementById('Panel2').style.display="none";
-//                    document.getElementById('Panel1').style.display="block";
-//                } 
-//                else {
-////                    document.getElementById('divECharts1').style.display="block";
-////                    document.getElementById('divECharts2').style.display="block";
-////                    document.getElementById('divECharts3').style.display="block";
-////                    document.getElementById('divECharts6').style.display="block";
-////                    document.getElementById('divECharts5').style.display="none";
-////                    document.getElementById('divECharts4').style.display="none";
-////                    document.getElementById('divECharts7').style.display="none";
-////                    document.getElementById('divECharts8').style.display="none";
-//                    document.getElementById('Panel1').style.display="none";
-//                    document.getElementById('Panel2').style.display="block";
-//                }                  
-//            }, 10000);
+        time_count = setInterval(function () {
+                count++;
+                if (count%3==0) {                    
+                    document.getElementById('Panel1').style.display="block";
+                    document.getElementById('Panel2').style.display="none";
+                    document.getElementById('Panel3').style.display="none";
+                } 
+                else if (count%3==1){
+                    document.getElementById('Panel1').style.display="none";
+                    document.getElementById('Panel2').style.display="block";
+                    document.getElementById('Panel3').style.display="none";
+                }   
+                else {
+                    document.getElementById('Panel1').style.display="none";
+                    document.getElementById('Panel2').style.display="none";
+                    document.getElementById('Panel3').style.display="block";
+                }                  
+            }, 10000);
     </script>
     <script type="text/javascript">
-        function setECharts1(filepath) {
-            // 基于准备好的dom，初始化echarts图表
-            var myChart = echarts.init(document.getElementById('divECharts1'),'FestoColor');
-            // 过渡---------------------
-            myChart.showLoading({
-                text: '正在努力的读取数据中...',    //loading
-            });
-            // ajax getting data...............       
-
-            // 图表使用-------------------
-            var option = {
-                title: {
-                    text: '项目完成度统计',
-                    x: 'center'
-                },
-                tooltip: {
-                    trigger: 'item',
-                    formatter: "{a} <br/>{b} : {c} ({d}%)"
-                },
-                legend: {
-                    orient: 'vertical',
-                    x: 'left',
-                    data: []
-                },
-                series: [
-                    {
-                        clockWise:false,
-                        name: '数量',
-                        type: 'pie',
-                        radius: [0, '30%'],
-                        center: ['50%', '60%'],
-                        label: {
-                            normal: {
-                                position: 'inner'
-                            }
-                        },
-                        labelLine: {
-                            normal: {
-                                show: false
-                            }
-                        },                   
-                        data: []
-                    },
-                    {
-                        clockWise:false,
-                        name: '数量',
-                        type: 'pie',
-                        radius: ['40%', '55%'],
-                        center: ['50%', '60%'],
-                        label: {
-                            normal: {
-                                formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
-                                backgroundColor: '#eee',
-                                borderColor: '#aaa',
-                                borderWidth: 1,
-                                borderRadius: 4,
-                                rich: {
-                                    a: {
-                                        color: '#999',
-                                        lineHeight: 22,
-                                        align: 'center'
-                                    },
-                                    hr: {
-                                        borderColor: '#aaa',
-                                        width: '100%',
-                                        borderWidth: 0.5,
-                                        height: 0
-                                    },
-                                    b: {
-                                        fontSize: 16,
-                                        lineHeight: 33
-                                    },
-                                    per: {
-                                        color: '#eee',
-                                        backgroundColor: '#334455',
-                                        padding: [2, 4],
-                                        borderRadius: 2
-                                    }
-                                }
-                            }
-                        },
-                        labelLine: {
-                            normal: {
-                                length1: 20
-                            }
-                        },    
-                        data: []
-                    }
-                ]
-            };
-
-            // 为echarts对象加载数据 
-            myChart.setOption(option); 
-
-            var names = [];    //类别数组（实际用来盛放X轴坐标值）
-            var values1 = [];    //inside
-            var values2 = [];    //outside
-            //var filename =  document.getElementById("Text1").value;
-            var filename =  filepath;
-            $.ajax({
-                type: "post",
-                async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-                url: "Ajax/Handler.ashx",    //请求发送到TestServlet处
-                data: {filename:filename},
-                dataType: "json",        //返回数据形式为json
-                success: function (result) {
-                    //请求成功时执行该函数内容，result即为服务器返回的json对象
-                    if (result) {
-                        //标题列表
-                        for (var i = 0; i < result.length; i++) {
-                            names.push({ "name": result[i].name });
-                        }
-                        //饼数据和连线标题
-                        for (var i = 0; i < 2; i++) {
-                            values1.push({ "value": result[i].value, "name": result[i].name });
-                        }
-                        for (var i = 2; i < result.length; i++) {
-                            values2.push({ "value": result[i].value, "name": result[i].name });
-                        }
-                        myChart.hideLoading();    //隐藏加载动画
-                        myChart.setOption({        //加载数据图表
-                            legend: {
-                                data: names,
-                            },
-                            series: [
-                            {
-                                data: values1,
-                            },
-                            {
-                                data: values2,
-                            },
-                            ]
-                        });
-                    }
-                },
-                error: function (errorMsg) {
-                    //请求失败时执行该函数
-                    alert("图表请求数据失败!");
-                    myChart.hideLoading();
-                }
-            });
-
-             /*窗口自适应，关键代码*/
-	        setTimeout(function (){
-	            window.onresize = function () {
-	        	    myChart.resize();	        	
-	            }
-	        },200)
-        }
-    </script>
-    <script type="text/javascript">
-        function setECharts2(values_ECharts1,values_ECharts2,values_ECharts3,values_ECharts4,values_ECharts5,values_ECharts6,values_ECharts7,values_ECharts8) {    
+        function setECharts2(values_ECharts1_1,values_ECharts1_2,values_ECharts1_3,values_ECharts1_4,values_ECharts2_1,values_ECharts2_2,values_ECharts2_3,values_ECharts2_4,values_ECharts3_1,values_ECharts3_2,values_ECharts3_3,values_ECharts3_4) {    
+        
         //*****************************************************************************************************************************
-        //**                                                      myChart1                                                           **
+        //**                                                      myChart1_1                                                         **
         //*****************************************************************************************************************************
         // 基于准备好的dom，初始化echarts图表
-        var myChart1 = echarts.init(document.getElementById('divECharts1'),'FestoColor_6');
+        var myChart1_1 = echarts.init(document.getElementById('divECharts1_1'),'FestoColor_6');
         // 过渡---------------------
-        myChart1.showLoading({
+        myChart1_1.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
         });
 
-        var var_Echarts1=values_ECharts1.split(';');
+        var var_Echarts1_1=values_ECharts1_1.split(';');
 
-        var count_PO_soCreated_perMonth = var_Echarts1[0].split('!');  
-        var count_CreatedDelay_perMonth = var_Echarts1[1].split('!'); 
-        var PO_CreationMonitor_YTD = var_Echarts1[2].split('!');   
-        var values_PO_CreationMonitor_YTD = [];    
-        values_PO_CreationMonitor_YTD.push({ "value": PO_CreationMonitor_YTD[0], "name": '正常创建PO数(YTD)' });
-        values_PO_CreationMonitor_YTD.push({ "value": PO_CreationMonitor_YTD[1], "name": '延期创建PO数(YTD)' });        
-
-        // 图表使用-------------------
-        var option1 = {
-                        title: {
-                            text: 'PO Creation Process Monitor',  
-                            subtext: 'LT > 0.5(WD)',
-                            x: 'center'                           
-                        },
-                        tooltip : {
-                            trigger: 'axis'
-                        },
-                        toolbox: {
-                            show : false,
-                            y: 'bottom',
-                            feature : {
-                                mark : {show: true},
-                                dataView : {show: true, readOnly: false},
-                                magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                                restore : {show: true},
-                                saveAsImage : {show: true}
-                            }
-                        },
-                        calculable : true,
-                        legend: {
-                            bottom: 10,
-                            left: 'center',
-                            data:['创建PO数','延期创建PO数','正常创建PO数(YTD)','延期创建PO数(YTD)']
-                            
-                        },
-                        xAxis : [
-                            {
-                                type : 'category',
-                                splitLine : {show : false},
-                                data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
-                            }
-                        ],
-                        yAxis : [
-                            {
-                                type : 'value',
-                                position: 'left'
-                            }
-                        ],
-                        series : [
-                            {
-                                name:'创建PO数',
-                                type:'bar',
-                                data:count_PO_soCreated_perMonth
-                            },
-                            {
-                                name:'延期创建PO数',
-                                type:'bar',                                
-                                data:count_CreatedDelay_perMonth
-                            },                        
-
-                            {
-                                name:'PO Creation Monitor(YTD)',
-                                type:'pie',
-                                tooltip : {
-                                    trigger: 'item',
-                                    formatter: '{a} <br/>{b} : {c} ({d}%)'
-                                },
-                                center: ['70%',130],
-                                radius : [0, 50],
-                                itemStyle :　{
-                                    normal : {
-                                        labelLine : {
-                                            length : 20
-                                        }
-                                    }
-                                },
-                                data:values_PO_CreationMonitor_YTD                                
-                            }
-                        ]
-                    };         
-       
-        myChart1.hideLoading();    //隐藏加载动画
-        myChart1.setOption(option1);
-        //*****************************************************************************************************************************
-        //**                                                      myChart2                                                           **
-        //*****************************************************************************************************************************
-        // 基于准备好的dom，初始化echarts图表
-        var myChart2 = echarts.init(document.getElementById('divECharts2'),'FestoColor_6');
-        // 过渡---------------------
-        myChart2.showLoading({
-            text: '正在努力的读取数据中...',    //loading话术
-        });
-
-        var var_Echarts2=values_ECharts2.split(';');
-
-        var count_PO_poCreated_perMonth = var_Echarts2[0].split('!');  
-        var count_ReleaseDelay_perMonth = var_Echarts2[1].split('!'); 
-        var PO_Release_YTD = var_Echarts2[2].split('!');   
-        var values_PO_Release_YTD = [];    
-        values_PO_Release_YTD.push({ "value": PO_Release_YTD[0], "name": '按时释放PO数(YTD)' });
-        values_PO_Release_YTD.push({ "value": PO_Release_YTD[1], "name": '延期释放PO数(YTD)' });        
-
-        // 图表使用-------------------
-        var option2 = {
-                        title: {
-                            text: 'PO Release Process Monitor', 
-                            subtext: 'LT > 5(WD)',
-                            x: 'center'
-                        },
-                        tooltip : {
-                            trigger: 'axis'
-                        },
-                        toolbox: {
-                            show : false,
-                            y: 'bottom',
-                            feature : {
-                                mark : {show: true},
-                                dataView : {show: true, readOnly: false},
-                                magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                                restore : {show: true},
-                                saveAsImage : {show: true}
-                            }
-                        },
-                        calculable : true,
-                        legend: {
-                            bottom: 10,
-                            left: 'center',
-                            data:['创建PO数','延期释放PO数','按时释放PO数(YTD)','延期释放PO数(YTD)']
-                        },
-                        xAxis : [
-                            {
-                                type : 'category',
-                                splitLine : {show : false},
-                                data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
-                            }
-                        ],
-                        yAxis : [
-                            {
-                                type : 'value',
-                                position: 'left'
-
-                            }
-                        ],
-                        series : [
-                            {
-                                name:'创建PO数',
-                                type:'bar',
-                                data:count_PO_poCreated_perMonth
-                            },
-                            {
-                                name:'延期释放PO数',
-                                type:'bar',                                
-                                data:count_ReleaseDelay_perMonth
-                            },                        
-
-                            {
-                                name:'PO Release Monitor(YTD)',
-                                type:'pie',
-                                tooltip : {
-                                    trigger: 'item',
-                                    formatter: '{a} <br/>{b} : {c} ({d}%)'
-                                },
-                                center: ['70%',130],
-                                radius : [0, 50],
-                                itemStyle :　{
-                                    normal : {
-                                        labelLine : {
-                                            length : 20
-                                        }
-                                    }
-                                },
-                                data:values_PO_Release_YTD                                
-                            }
-                        ]
-                    };         
-       
-        myChart2.hideLoading();    //隐藏加载动画
-        myChart2.setOption(option2);
-        //*****************************************************************************************************************************
-        //**                                                      myChart3                                                           **
-        //*****************************************************************************************************************************
-        // 基于准备好的dom，初始化echarts图表
-        var myChart3 = echarts.init(document.getElementById('divECharts3'),'FestoColor_6');
-        // 过渡---------------------
-        myChart3.showLoading({
-            text: '正在努力的读取数据中...',    //loading话术
-        });
-
-        var var_Echarts3=values_ECharts3.split(';');
-
-        var var_DCR = var_Echarts3[0].split('!');  
-        var var_DCR_0400 = var_Echarts3[1].split('!'); 
-        var var_DCR_0481 = var_Echarts3[2].split('!');
+        var var_DCR = var_Echarts1_1[0].split('!');  
+        var var_DCR_0400 = var_Echarts1_1[1].split('!'); 
+        var var_DCR_0481 = var_Echarts1_1[2].split('!');
           
 ////        var values_DCR_inside = []; 
 ////        var values_DCR_outside = [];    
@@ -588,7 +255,7 @@
 ////        values_DCR_outside.push({ "value": str_DCR_outside[4], "name": '正常' });
 
         // 图表使用-------------------
-        var option3 = {
+        var option1_1 = {
             title: {
                         text: 'DCR(Delivery Class Reliablity)', 
                         subtext: 'According to Quotation LT',
@@ -738,219 +405,24 @@
             ]
         }     
        
-        myChart3.hideLoading();    //隐藏加载动画
-        myChart3.setOption(option3);
+        myChart1_1.hideLoading();    //隐藏加载动画
+        myChart1_1.setOption(option1_1);
         //*****************************************************************************************************************************
-        //**                                                      myChart4                                                           **
-        //*****************************************************************************************************************************
-         // 基于准备好的dom，初始化echarts图表
-        var myChart4 = echarts.init(document.getElementById('divECharts4'),'FestoColor_6');
-        // 过渡---------------------
-        myChart4.showLoading({
-            text: '正在努力的读取数据中...',    //loading话术
-        });
-
-        var var_Echarts4=values_ECharts4.split(';');
-
-        var count_PO_Finished_perMonth=var_Echarts4[0].split('!');
-        var count_PO_ForecastFinished_perMonth = var_Echarts4[1].split('!');   
-        var NetValue_PO_Finished_perMonth = var_Echarts4[2].split('!');   
-
-        var count_PO_Finished_perMonth1=count_PO_Finished_perMonth.splice(0,count_PO_Finished_perMonth.length-1);
-        var count_PO_ForecastFinished_perMonth1=count_PO_ForecastFinished_perMonth.splice(0,count_PO_ForecastFinished_perMonth.length-1);
-        var NetValue_PO_Finished_perMonth1 = NetValue_PO_Finished_perMonth.splice(0,NetValue_PO_Finished_perMonth.length-1);
-       
-        var option4 = {
-            title: {
-                        text: 'Finish POs Monitor', 
-                        x: 'center'
-                    },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'cross',
-                    crossStyle: {
-                        color: '#999'
-                    }
-                }
-            },
-            toolbox: {
-                feature: {
-                    dataView: {show: true, readOnly: false},
-                    magicType: {show: true, type: ['line', 'bar']},
-                    restore: {show: true},
-                    saveAsImage: {show: true}
-                }
-            },
-            legend: {
-                bottom: 10,
-                left: 'center',
-                selected: {
-                '预计完成量': false
-                },
-                data:['订单完成量','预计完成量','订单金额']
-            },
-            xAxis: [
-                {
-                    type: 'category',
-                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
-                    axisPointer: {
-                        type: 'shadow'
-                    }
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value',
-                    name: '订单量',
-//                    min: 0,
-//                    max: 1000,
-//                    interval: 50,
-                    axisLabel: {
-                        formatter: '{value}'
-                    }
-                },
-                {
-                    type: 'value',
-                    name: '金额',
-//                    min: 0,
-//                    max: 50000000,
-//                    interval: 5000,
-                    axisLabel: {
-                        formatter: '{value} 元'
-                    }
-                }
-            ],
-            series: [
-                {
-                    name:'订单完成量',
-                    type:'bar',
-                    data:count_PO_Finished_perMonth1
-                },
-                {
-                    name:'预计完成量',
-                    type:'bar',
-                    data:count_PO_ForecastFinished_perMonth1       
-                },
-                {
-                    name:'订单金额',
-                    type:'line',
-                    yAxisIndex: 1,
-                    data:NetValue_PO_Finished_perMonth1
-        
-                }
-            ]
-        }
-        myChart4.hideLoading();    //隐藏加载动画
-        myChart4.setOption(option4);
-        //*****************************************************************************************************************************
-        //**                                                      myChart5                                                           **
+        //**                                                      myChart1_2                                                         **
         //*****************************************************************************************************************************
          // 基于准备好的dom，初始化echarts图表
-        var myChart5 = echarts.init(document.getElementById('divECharts5'),'FestoColor_6');
+        var myChart1_2 = echarts.init(document.getElementById('divECharts1_2'),'FestoColor_6');
         // 过渡---------------------
-        myChart5.showLoading({
-            text: '正在努力的读取数据中...',    //loading话术
-        });
-
-        var var_Echarts5=values_ECharts5.split(';');
-
-        var count_SO_soCreated_perMonth=var_Echarts5[0].split('!');
-        var NetValue_SO_soCreated_perMonth = var_Echarts5[1].split('!'); 
-        var count_SO_soCreated_perMonth1=count_SO_soCreated_perMonth.splice(0,count_SO_soCreated_perMonth.length-1);
-        var NetValue_SO_soCreated_perMonth1 = NetValue_SO_soCreated_perMonth.splice(0,NetValue_SO_soCreated_perMonth.length-1);  
-       
-        var option5 = {
-            title: {
-                        text: 'Create SOs Monitor', 
-                        x: 'center'
-                    },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'cross',
-                    crossStyle: {
-                        color: '#999'
-                    }
-                }
-            },
-            toolbox: {
-                feature: {
-                    dataView: {show: true, readOnly: false},
-                    magicType: {show: true, type: ['line', 'bar']},
-                    restore: {show: true},
-                    saveAsImage: {show: true}
-                }
-            },
-            legend: {
-                bottom: 10,
-                left: 'center',
-                data:['新进订单量','订单金额']
-            },
-            xAxis: [
-                {
-                    type: 'category',
-                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
-                    axisPointer: {
-                        type: 'shadow'
-                    }
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value',
-                    name: '订单量',
-//                    min: 0,
-//                    max: 1000,
-//                    interval: 50,
-                    axisLabel: {
-                        formatter: '{value}'
-                    }
-                },
-                {
-                    type: 'value',
-                    name: '金额',
-//                    min: 0,
-//                    max: 50000000,
-//                    interval: 5000,
-                    axisLabel: {
-                        formatter: '{value} 元'
-                    }
-                }
-            ],
-            series: [
-                {
-                    name:'新进订单量',
-                    type:'bar',
-                    data:count_SO_soCreated_perMonth1
-                },                
-                {
-                    name:'订单金额',
-                    type:'line',
-                    yAxisIndex: 1,
-                    data:NetValue_SO_soCreated_perMonth1
-        
-                }
-            ]
-        }
-        myChart5.hideLoading();    //隐藏加载动画
-        myChart5.setOption(option5);
-        //*****************************************************************************************************************************
-        //**                                                      myChart6                                                           **
-        //*****************************************************************************************************************************
-         // 基于准备好的dom，初始化echarts图表
-        var myChart6 = echarts.init(document.getElementById('divECharts6'),'FestoColor_6');
-        // 过渡---------------------
-        myChart6.showLoading({
+        myChart1_2.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
         });
      
-        var var_Echarts6=values_ECharts6.split(';');
+        var var_Echarts1_2=values_ECharts1_2.split(';');
 
-        var var_LT = var_Echarts6[0].split('!');  
-        var var_LT_0400 = var_Echarts6[1].split('!'); 
-        var var_LT_0481 = var_Echarts6[2].split('!');
-        var option6 = {
+        var var_LT = var_Echarts1_2[0].split('!');  
+        var var_LT_0400 = var_Echarts1_2[1].split('!'); 
+        var var_LT_0481 = var_Echarts1_2[2].split('!');
+        var option1_2 = {
             title: {
                         text: 'Average LeadTime', 
                         x: 'center'
@@ -1092,22 +564,22 @@
                 }             
             ]
         }
-        myChart6.hideLoading();    //隐藏加载动画
-        myChart6.setOption(option6);
+        myChart1_2.hideLoading();    //隐藏加载动画
+        myChart1_2.setOption(option1_2);
         //*****************************************************************************************************************************
-        //**                                                      myChart7                                                           **
+        //**                                                      myChart1_3                                                         **
         //*****************************************************************************************************************************
         // 基于准备好的dom，初始化echarts图表
-        var myChart7 = echarts.init(document.getElementById('divECharts7'),'FestoColor_6');
+        var myChart1_3 = echarts.init(document.getElementById('divECharts1_3'),'FestoColor_6');
         // 过渡---------------------
-        myChart7.showLoading({
+        myChart1_3.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
         });
 
-        var var_Echarts7=values_ECharts7.split(';');
+        var var_Echarts1_3=values_ECharts1_3.split(';');
 
-        var var_Reminder_Monitor_LT = var_Echarts7[0].split('!');  
-        var var_Failed_Monitor = var_Echarts7[1].split('!'); 
+        var var_Reminder_Monitor_LT = var_Echarts1_3[0].split('!');  
+        var var_Failed_Monitor = var_Echarts1_3[1].split('!'); 
           
         var values_Reminder_Monitor_LT = []; 
         var values_Failed_Monitor = []; 
@@ -1118,7 +590,7 @@
         values_Failed_Monitor.push({ "value": var_Failed_Monitor[1], "name": 'Request Failed' }); 
 
         // 图表使用-------------------
-        var option7 = {
+        var option1_3 = {
                         title: [{
                             text: 'Reminder Monitor',
                             subtext: 'According to Quotation LT',       
@@ -1180,30 +652,225 @@
                             ]
                     };         
        
-        myChart7.hideLoading();    //隐藏加载动画
-        myChart7.setOption(option7);
+        myChart1_3.hideLoading();    //隐藏加载动画
+        myChart1_3.setOption(option1_3);        
         //*****************************************************************************************************************************
-        //**                                                      myChart8                                                           **
+        //**                                                      myChart2_1                                                         **
         //*****************************************************************************************************************************
-        // 基于准备好的dom，初始化echarts图表
-        var myChart8 = echarts.init(document.getElementById('divECharts8'),'FestoColor_6');
+         // 基于准备好的dom，初始化echarts图表
+        var myChart2_1 = echarts.init(document.getElementById('divECharts2_1'),'FestoColor_6');
         // 过渡---------------------
-        myChart8.showLoading({
+        myChart2_1.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
         });
 
-        var var_Echarts8=values_ECharts8.split('!');
+        var var_Echarts2_1=values_ECharts2_1.split(';');
+
+        var count_SO_soCreated_perMonth=var_Echarts2_1[0].split('!');
+        var NetValue_SO_soCreated_perMonth = var_Echarts2_1[1].split('!'); 
+        var count_SO_soCreated_perMonth1=count_SO_soCreated_perMonth.splice(0,count_SO_soCreated_perMonth.length-1);
+        var NetValue_SO_soCreated_perMonth1 = NetValue_SO_soCreated_perMonth.splice(0,NetValue_SO_soCreated_perMonth.length-1);  
+       
+        var option2_1 = {
+            title: {
+                        text: 'Create SOs Monitor', 
+                        x: 'center'
+                    },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            toolbox: {
+                feature: {
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            legend: {
+                bottom: 10,
+                left: 'center',
+                data:['新进订单量','订单金额']
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: '订单量',
+//                    min: 0,
+//                    max: 1000,
+//                    interval: 50,
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                },
+                {
+                    type: 'value',
+                    name: '金额',
+//                    min: 0,
+//                    max: 50000000,
+//                    interval: 5000,
+                    axisLabel: {
+                        formatter: '{value} 元'
+                    }
+                }
+            ],
+            series: [
+                {
+                    name:'新进订单量',
+                    type:'bar',
+                    data:count_SO_soCreated_perMonth1
+                },                
+                {
+                    name:'订单金额',
+                    type:'line',
+                    yAxisIndex: 1,
+                    data:NetValue_SO_soCreated_perMonth1
+        
+                }
+            ]
+        }
+        myChart2_1.hideLoading();    //隐藏加载动画
+        myChart2_1.setOption(option2_1);  
+        //*****************************************************************************************************************************
+        //**                                                      myChart2_2                                                         **
+        //*****************************************************************************************************************************
+         // 基于准备好的dom，初始化echarts图表
+        var myChart2_2 = echarts.init(document.getElementById('divECharts2_2'),'FestoColor_6');
+        // 过渡---------------------
+        myChart2_2.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+
+        var var_Echarts2_2=values_ECharts2_2.split(';');
+
+        var count_PO_Finished_perMonth=var_Echarts2_2[0].split('!');
+        var count_PO_ForecastFinished_perMonth = var_Echarts2_2[1].split('!');   
+        var NetValue_PO_Finished_perMonth = var_Echarts2_2[2].split('!');   
+
+        var count_PO_Finished_perMonth1=count_PO_Finished_perMonth.splice(0,count_PO_Finished_perMonth.length-1);
+        var count_PO_ForecastFinished_perMonth1=count_PO_ForecastFinished_perMonth.splice(0,count_PO_ForecastFinished_perMonth.length-1);
+        var NetValue_PO_Finished_perMonth1 = NetValue_PO_Finished_perMonth.splice(0,NetValue_PO_Finished_perMonth.length-1);
+       
+        var option2_2 = {
+            title: {
+                        text: 'Finish POs Monitor', 
+                        x: 'center'
+                    },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            toolbox: {
+                feature: {
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            legend: {
+                bottom: 10,
+                left: 'center',
+                selected: {
+                '预计完成量': false
+                },
+                data:['订单完成量','预计完成量','订单金额']
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: '订单量',
+//                    min: 0,
+//                    max: 1000,
+//                    interval: 50,
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                },
+                {
+                    type: 'value',
+                    name: '金额',
+//                    min: 0,
+//                    max: 50000000,
+//                    interval: 5000,
+                    axisLabel: {
+                        formatter: '{value} 元'
+                    }
+                }
+            ],
+            series: [
+                {
+                    name:'订单完成量',
+                    type:'bar',
+                    data:count_PO_Finished_perMonth1
+                },
+                {
+                    name:'预计完成量',
+                    type:'bar',
+                    data:count_PO_ForecastFinished_perMonth1       
+                },
+                {
+                    name:'订单金额',
+                    type:'line',
+                    yAxisIndex: 1,
+                    data:NetValue_PO_Finished_perMonth1
+        
+                }
+            ]
+        }
+        myChart2_2.hideLoading();    //隐藏加载动画
+        myChart2_2.setOption(option2_2);      
+        //*****************************************************************************************************************************
+        //**                                                      myChart2_3                                                         **
+        //*****************************************************************************************************************************
+        // 基于准备好的dom，初始化echarts图表
+        var myChart2_3 = echarts.init(document.getElementById('divECharts2_3'),'FestoColor_6');
+        // 过渡---------------------
+        myChart2_3.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+
+        var var_Echarts2_3=values_ECharts2_3.split('!');
           
         var values_Overstocked_Monitor = []; 
         
-        values_Overstocked_Monitor.push({ "value": var_Echarts8[0], "name": '<=5' });
-        values_Overstocked_Monitor.push({ "value": var_Echarts8[1], "name": '5-10' }); 
-        values_Overstocked_Monitor.push({ "value": var_Echarts8[2], "name": '10-20' });
-        values_Overstocked_Monitor.push({ "value": var_Echarts8[3], "name": '>20' }); 
-        values_Overstocked_Monitor.push({ "value": var_Echarts8[4], "name": '未发货' });
+        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[0], "name": '<=5' });
+        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[1], "name": '5-10' }); 
+        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[2], "name": '10-20' });
+        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[3], "name": '>20' }); 
+        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[4], "name": '未发货' });
 
         // 图表使用-------------------
-        var option8 = {
+        var option2_3 = {
                         title: {
                             text: 'Overstocked Monitor',
                             x: 'center'
@@ -1266,21 +933,211 @@
                             ]
                     };         
        
-        myChart8.hideLoading();    //隐藏加载动画
-        myChart8.setOption(option8);
+        myChart2_3.hideLoading();    //隐藏加载动画
+        myChart2_3.setOption(option2_3);
+        //*****************************************************************************************************************************
+        //**                                                      myChart3_1                                                         **
+        //*****************************************************************************************************************************
+        // 基于准备好的dom，初始化echarts图表
+        var myChart3_1 = echarts.init(document.getElementById('divECharts3_1'),'FestoColor_6');
+        // 过渡---------------------
+        myChart3_1.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+
+        var var_Echarts3_1=values_ECharts3_1.split(';');
+
+        var count_PO_soCreated_perMonth = var_Echarts3_1[0].split('!');  
+        var count_CreatedDelay_perMonth = var_Echarts3_1[1].split('!'); 
+        var PO_CreationMonitor_YTD = var_Echarts3_1[2].split('!');   
+        var values_PO_CreationMonitor_YTD = [];    
+        values_PO_CreationMonitor_YTD.push({ "value": PO_CreationMonitor_YTD[0], "name": '正常创建PO数(YTD)' });
+        values_PO_CreationMonitor_YTD.push({ "value": PO_CreationMonitor_YTD[1], "name": '延期创建PO数(YTD)' });        
+
+        // 图表使用-------------------
+        var option3_1 = {
+                        title: {
+                            text: 'PO Creation Process Monitor',  
+                            subtext: 'LT > 0.5(WD)',
+                            x: 'center'                           
+                        },
+                        tooltip : {
+                            trigger: 'axis'
+                        },
+                        toolbox: {
+                            show : false,
+                            y: 'bottom',
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        calculable : true,
+                        legend: {
+                            bottom: 10,
+                            left: 'center',
+                            data:['创建PO数','延期创建PO数','正常创建PO数(YTD)','延期创建PO数(YTD)']
+                            
+                        },
+                        xAxis : [
+                            {
+                                type : 'category',
+                                splitLine : {show : false},
+                                data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value',
+                                position: 'left'
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'创建PO数',
+                                type:'bar',
+                                data:count_PO_soCreated_perMonth
+                            },
+                            {
+                                name:'延期创建PO数',
+                                type:'bar',                                
+                                data:count_CreatedDelay_perMonth
+                            },                        
+
+                            {
+                                name:'PO Creation Monitor(YTD)',
+                                type:'pie',
+                                tooltip : {
+                                    trigger: 'item',
+                                    formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                },
+                                center: ['70%',130],
+                                radius : [0, 50],
+                                itemStyle :　{
+                                    normal : {
+                                        labelLine : {
+                                            length : 20
+                                        }
+                                    }
+                                },
+                                data:values_PO_CreationMonitor_YTD                                
+                            }
+                        ]
+                    };         
+       
+        myChart3_1.hideLoading();    //隐藏加载动画
+        myChart3_1.setOption(option3_1);
+        //*****************************************************************************************************************************
+        //**                                                      myChart3_2                                                         **
+        //*****************************************************************************************************************************
+        // 基于准备好的dom，初始化echarts图表
+        var myChart3_2 = echarts.init(document.getElementById('divECharts3_2'),'FestoColor_6');
+        // 过渡---------------------
+        myChart3_2.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+
+        var var_Echarts3_2=values_ECharts3_2.split(';');
+
+        var count_PO_poCreated_perMonth = var_Echarts3_2[0].split('!');  
+        var count_ReleaseDelay_perMonth = var_Echarts3_2[1].split('!'); 
+        var PO_Release_YTD = var_Echarts3_2[2].split('!');   
+        var values_PO_Release_YTD = [];    
+        values_PO_Release_YTD.push({ "value": PO_Release_YTD[0], "name": '按时释放PO数(YTD)' });
+        values_PO_Release_YTD.push({ "value": PO_Release_YTD[1], "name": '延期释放PO数(YTD)' });        
+
+        // 图表使用-------------------
+        var option3_2 = {
+                        title: {
+                            text: 'PO Release Process Monitor', 
+                            subtext: 'LT > 5(WD)',
+                            x: 'center'
+                        },
+                        tooltip : {
+                            trigger: 'axis'
+                        },
+                        toolbox: {
+                            show : false,
+                            y: 'bottom',
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        calculable : true,
+                        legend: {
+                            bottom: 10,
+                            left: 'center',
+                            data:['创建PO数','延期释放PO数','按时释放PO数(YTD)','延期释放PO数(YTD)']
+                        },
+                        xAxis : [
+                            {
+                                type : 'category',
+                                splitLine : {show : false},
+                                data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value',
+                                position: 'left'
+
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'创建PO数',
+                                type:'bar',
+                                data:count_PO_poCreated_perMonth
+                            },
+                            {
+                                name:'延期释放PO数',
+                                type:'bar',                                
+                                data:count_ReleaseDelay_perMonth
+                            },                        
+
+                            {
+                                name:'PO Release Monitor(YTD)',
+                                type:'pie',
+                                tooltip : {
+                                    trigger: 'item',
+                                    formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                },
+                                center: ['70%',130],
+                                radius : [0, 50],
+                                itemStyle :　{
+                                    normal : {
+                                        labelLine : {
+                                            length : 20
+                                        }
+                                    }
+                                },
+                                data:values_PO_Release_YTD                                
+                            }
+                        ]
+                    };         
+       
+        myChart3_2.hideLoading();    //隐藏加载动画
+        myChart3_2.setOption(option3_2);
         //*****************************************************************************************************************************
          /*窗口自适应，关键代码*/
         //*****************************************************************************************************************************
 	    setTimeout(function (){
 	        window.onresize = function () {
-                myChart1.resize();	
-                myChart2.resize();	
-                myChart3.resize();   
-                myChart4.resize();	
-                myChart5.resize();	
-                myChart6.resize(); 
-                myChart7.resize(); 
-                myChart8.resize();       	
+                myChart1_1.resize();	
+                myChart1_2.resize();	
+                myChart1_3.resize();   
+                myChart2_1.resize();	
+                myChart2_2.resize();	
+                myChart2_3.resize(); 
+                myChart3_1.resize(); 
+                myChart3_2.resize();       	
 	        }
 	    },200)
         return false;
