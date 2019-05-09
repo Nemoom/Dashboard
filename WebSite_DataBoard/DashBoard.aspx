@@ -595,8 +595,7 @@
                         title: [{
                               text: 'DCR ALERT',
                               subtext:'0400',
-                              x:'50%',
-                              y:'10'
+                              x: 'center'
 //                            text: 'Reminder Monitor',
 //                            subtext: 'According to Quotation LT',       
 //                            x: '25%',
@@ -853,9 +852,39 @@
                     yAxisIndex: 1,
                     data:NetValue_SO_soCreated_perMonth1
         
+                },
+                {
+                    name:'合计',
+                    type:'bar',
+                    stack: '新进订单量',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            textStyle: {
+//                                color: '#000'
+                            },
+                            formatter:''
+                        }
+                    },
+                    data:[0,0,0,0,0,0,0,0,0,0,0,0]
                 }
             ]
         }
+        var series2_1 = option2_1["series"];
+        var fun2_1 = function (params) { 
+                var data2_1 =0;
+                for(var i=0,l=2;i<l;i++){ 
+                    data2_1 += parseInt(series2_1[i].data[params.dataIndex])
+                } 
+                if (data2_1 > 0) {
+                    return data2_1;
+                } else {
+                    return '';
+                }
+            }
+        //加载页面时候替换最后一个series的formatter
+        series2_1[series2_1.length-1]["label"]["normal"]["formatter"] = fun2_1
         myChart2_1.hideLoading();    //隐藏加载动画
         myChart2_1.setOption(option2_1);  
         //*****************************************************************************************************************************
@@ -1102,6 +1131,78 @@
         myChart2_3.hideLoading();    //隐藏加载动画
         myChart2_3.setOption(option2_3);
         //*****************************************************************************************************************************
+        //**                                                      myChart2_4                                                         **
+        //*****************************************************************************************************************************
+        // 基于准备好的dom，初始化echarts图表
+        var myChart2_4 = echarts.init(document.getElementById('divECharts2_4'),'FestoColor_6');
+        // 过渡---------------------
+        myChart2_4.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+
+        var var_Echarts2_4=values_ECharts2_4.split('!');
+          
+        var values_Ready4Shippment_Monitor = []; 
+        
+        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[0], "name": '<=10' });
+        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[1], "name": '10-20' }); 
+        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[2], "name": '20-30' });
+        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[3], "name": '>30' }); 
+
+        // 图表使用-------------------
+        var option2_4 = {
+                        title: {
+                            text: 'Ready for Shippment Monitoring',
+                            x: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            x: 'left',
+                            data:  ['<=10','10-20','20-30','>30']
+                        },
+                        series: [
+                            {                                
+                                name: '数量',
+                                clockWise:false,
+                                type: 'pie',
+                                radius: '65%',
+                                center: ['50%', '60%'],
+                                label: {
+                                    normal: {
+                                        formatter: '{b|{b}：{c}} \n {per|{d}%}  ',                                        
+                                        position:'inside',
+                                        rich: {                                            
+                                            b: {
+                                                color: '#eee',
+                                                fontSize: 16,
+                                                lineHeight: 33
+                                            },
+                                            per: {
+                                                color: '#eee',
+                                                backgroundColor: '#334455',
+                                                padding: [2, 4],
+                                                borderRadius: 2
+                                            }
+                                        }
+                                    }
+                                },
+                                labelLine: {
+                                    normal: {
+                                        length1: 30
+                                    }
+                                },                    
+                                data: values_Ready4Shippment_Monitor
+                            },                          
+                            ]
+                    };         
+       
+        myChart2_4.hideLoading();    //隐藏加载动画
+        myChart2_4.setOption(option2_4);
+        //*****************************************************************************************************************************
         //**                                                      myChart3_1                                                         **
         //*****************************************************************************************************************************
         // 基于准备好的dom，初始化echarts图表
@@ -1123,7 +1224,7 @@
         // 图表使用-------------------
         var option3_1 = {
                         title: {
-                            text: 'PO Creation Process Monitor',  
+                            text: 'SO → PO Release',  
                             subtext: 'LT > 0.5(WD)',
                             x: 'center'                           
                         },
@@ -1218,7 +1319,7 @@
         // 图表使用-------------------
         var option3_2 = {
                         title: {
-                            text: 'PO Release Process Monitor', 
+                            text: 'PO Creation → PO Release', 
                             subtext: 'LT > 5(WD)',
                             x: 'center'
                         },
@@ -1292,18 +1393,342 @@
         myChart3_2.hideLoading();    //隐藏加载动画
         myChart3_2.setOption(option3_2);
         //*****************************************************************************************************************************
+        //**                                                      myChart3_3                                                         **
+        //*****************************************************************************************************************************
+         // 基于准备好的dom，初始化echarts图表
+        var myChart3_3 = echarts.init(document.getElementById('divECharts3_3'),'FestoColor_6');
+        // 过渡---------------------
+        myChart3_3.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+     
+        var var_Echarts3_3=values_ECharts3_3.split(';');
+
+        var var_POFinish = var_Echarts3_3[0].split('!');  
+        var var_POFinish_0400 = var_Echarts3_3[1].split('!'); 
+        var var_POFinish_0481 = var_Echarts3_3[2].split('!');
+        var option3_3 = {
+            title: {
+                        text: 'PO Release → Actual finish', 
+                        subtext:'23WD',
+                        x: 'center'
+                    },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#999'
+                    }
+                }
+            },         
+            legend: {
+                bottom: 10,
+                left: 'center',
+                data:['0400','0481','0400+0481'],
+                selected: {
+                '0481': false, '0400+0481': false
+                }
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月','YTD'],
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: 'Average Workday',
+//                    min: 0,
+//                    max: 1000,
+//                    interval: 50,
+                    axisLabel: {
+                        formatter: '{value}WD'
+                    }
+                },               
+            ],
+            series: [                 
+                {
+                    name:'0400',
+                    type:'bar',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: function(params){
+                                if (params.value > 0) {
+                                    return params.value;
+                                } else {
+                                    return '';
+                                }
+                            }
+                        }
+                    },
+//                    markPoint : {
+//                         data : [
+//                            {
+//                                name: 'max',
+//                                type: 'max'
+//                            }
+//                        ],
+//                        animationThreshold :50
+//                    },
+                    markLine : {
+                        data : [
+                            {name: 'Target',yAxis: 23}
+                        ]
+                    },
+                    data:var_POFinish_0400
+                },   
+                {
+                    name:'0481',
+                    type:'bar',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: function(params){
+                                if (params.value > 0) {
+                                    return params.value;
+                                } else {
+                                    return '';
+                                }
+                            }
+                        }
+                    },
+//                    markPoint : {
+//                         data : [
+//                            {
+//                                name: 'max',
+//                                type: 'max'
+//                            }
+//                        ],
+//                        animationThreshold :50
+//                    },
+                    markLine : {
+                        data : [
+                            {name: 'Target',yAxis: 23}
+                        ]
+                    },
+                    data:var_POFinish_0481
+                },
+                {
+                    name:'0400+0481',
+                    type:'bar',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: function(params){
+                                if (params.value > 0) {
+                                    return params.value;
+                                } else {
+                                    return '';
+                                }
+                            }
+                        }
+                    },
+//                    markPoint : {
+//                         data : [
+//                            {
+//                                name: 'max',
+//                                type: 'max'
+//                            }
+//                        ],
+//                        animationThreshold :50
+//                    },
+                    markLine : {
+                        data : [
+                            {name: 'Target',yAxis: 23}
+                        ]
+                    },
+                    data:var_POFinish
+                }             
+            ]
+        }
+        myChart3_3.hideLoading();    //隐藏加载动画
+        myChart3_3.setOption(option3_3);
+        //*****************************************************************************************************************************
+        //**                                                      myChart3_4                                                         **
+        //*****************************************************************************************************************************
+         // 基于准备好的dom，初始化echarts图表
+        var myChart3_4 = echarts.init(document.getElementById('divECharts3_4'),'FestoColor_6');
+        // 过渡---------------------
+        myChart3_4.showLoading({
+            text: '正在努力的读取数据中...',    //loading话术
+        });
+     
+        var var_Echarts3_4=values_ECharts3_4.split(';');
+
+        var var_Ex_plant = var_Echarts3_4[0].split('!');  
+        var var_Ex_plant_0400 = var_Echarts3_4[1].split('!'); 
+        var var_Ex_plant_0481 = var_Echarts3_4[2].split('!');
+        var option3_4 = {
+            title: {
+                        text: 'Actual finish → Ex-plant', 
+                        subtext:'2WD',
+                        x: 'center'
+                    },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#999'
+                    }
+                }
+            },         
+            legend: {
+                bottom: 10,
+                left: 'center',
+                data:['0400','0481','0400+0481'],
+                selected: {
+                '0481': false, '0400+0481': false
+                }
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月','YTD'],
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: 'Average Workday',
+//                    min: 0,
+//                    max: 1000,
+//                    interval: 50,
+                    axisLabel: {
+                        formatter: '{value}WD'
+                    }
+                },               
+            ],
+            series: [                 
+                {
+                    name:'0400',
+                    type:'bar',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: function(params){
+                                if (params.value > 0) {
+                                    return params.value;
+                                } else {
+                                    return '';
+                                }
+                            }
+                        }
+                    },
+//                    markPoint : {
+//                         data : [
+//                            {
+//                                name: 'max',
+//                                type: 'max'
+//                            }
+//                        ],
+//                        animationThreshold :50
+//                    },
+                    markLine : {
+                        data : [
+                            {name: 'Target',yAxis: 2}
+                        ]
+                    },
+                    data:var_Ex_plant_0400
+                },   
+                {
+                    name:'0481',
+                    type:'bar',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: function(params){
+                                if (params.value > 0) {
+                                    return params.value;
+                                } else {
+                                    return '';
+                                }
+                            }
+                        }
+                    },
+//                    markPoint : {
+//                         data : [
+//                            {
+//                                name: 'max',
+//                                type: 'max'
+//                            }
+//                        ],
+//                        animationThreshold :50
+//                    },
+                    markLine : {
+                        data : [
+                            {name: 'Target',yAxis: 2}
+                        ]
+                    },
+                    data:var_Ex_plant_0481
+                },
+                {
+                    name:'0400+0481',
+                    type:'bar',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top',
+                            formatter: function(params){
+                                if (params.value > 0) {
+                                    return params.value;
+                                } else {
+                                    return '';
+                                }
+                            }
+                        }
+                    },
+//                    markPoint : {
+//                         data : [
+//                            {
+//                                name: 'max',
+//                                type: 'max'
+//                            }
+//                        ],
+//                        animationThreshold :50
+//                    },
+                    markLine : {
+                        data : [
+                            {name: 'Target',yAxis: 2}
+                        ]
+                    },
+                    data:var_Ex_plant
+                }             
+            ]
+        }
+        myChart3_4.hideLoading();    //隐藏加载动画
+        myChart3_4.setOption(option3_4);
+        //*****************************************************************************************************************************
          /*窗口自适应，关键代码*/
         //*****************************************************************************************************************************
 	    setTimeout(function (){
 	        window.onresize = function () {
                 myChart1_1.resize();	
                 myChart1_2.resize();	
-                myChart1_3.resize();   
+                myChart1_3.resize();
+                myChart1_4.resize();   
                 myChart2_1.resize();	
                 myChart2_2.resize();	
                 myChart2_3.resize(); 
+                myChart2_4.resize();
                 myChart3_1.resize(); 
-                myChart3_2.resize();       	
+                myChart3_2.resize();
+                myChart3_3.resize(); 
+                myChart3_4.resize();       	
 	        }
 	    },200)
         return false;

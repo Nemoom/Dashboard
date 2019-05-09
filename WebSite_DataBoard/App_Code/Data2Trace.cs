@@ -323,7 +323,80 @@ public class Data2Trace
             }
             return mstr_LT_0481_perWeek.Substring(0, mstr_LT_0481_perWeek.Length - 1);
         }
-    }  
+    }
+    public static string str_averageTime_Ex_plant_0400_perMonth
+    {
+        get
+        {
+            string mstr_averageTime_Ex_plant_0400_perMonth = "";
+            for (int i = 0; i < averageTime_Ex_plant_0400_perMonth.Length; i++)
+            {
+                mstr_averageTime_Ex_plant_0400_perMonth = mstr_averageTime_Ex_plant_0400_perMonth + Convert.ToInt16(averageTime_Ex_plant_0400_perMonth[i]).ToString() + "!";
+            }
+            return mstr_averageTime_Ex_plant_0400_perMonth.Substring(0, mstr_averageTime_Ex_plant_0400_perMonth.Length - 1);
+        }
+    }
+    public static string str_averageTime_Ex_plant_0481_perMonth
+    {
+        get
+        {
+            string mstr_averageTime_Ex_plant_0481_perMonth = "";
+            for (int i = 0; i < averageTime_Ex_plant_0481_perMonth.Length; i++)
+            {
+                mstr_averageTime_Ex_plant_0481_perMonth = mstr_averageTime_Ex_plant_0481_perMonth + Convert.ToInt16(averageTime_Ex_plant_0481_perMonth[i]).ToString() + "!";
+            }
+            return mstr_averageTime_Ex_plant_0481_perMonth.Substring(0, mstr_averageTime_Ex_plant_0481_perMonth.Length - 1);
+        }
+    }
+    public static string str_averageTime_Ex_plant_perMonth
+    {
+        get
+        {
+            string mstr_averageTime_Ex_plant_perMonth = "";
+            for (int i = 0; i < averageTime_Ex_plant_perMonth.Length; i++)
+            {
+                mstr_averageTime_Ex_plant_perMonth = mstr_averageTime_Ex_plant_perMonth + Convert.ToInt16(averageTime_Ex_plant_perMonth[i]).ToString() + "!";
+            }
+            return mstr_averageTime_Ex_plant_perMonth.Substring(0, mstr_averageTime_Ex_plant_perMonth.Length - 1);
+        }
+    }
+
+    public static string str_averageTime_POFinish_0400_perMonth
+    {
+        get
+        {
+            string mstr_averageTime_POFinish_0400_perMonth = "";
+            for (int i = 0; i < averageTime_POFinish_0400_perMonth.Length; i++)
+            {
+                mstr_averageTime_POFinish_0400_perMonth = mstr_averageTime_POFinish_0400_perMonth + Convert.ToInt16(averageTime_POFinish_0400_perMonth[i]).ToString() + "!";
+            }
+            return mstr_averageTime_POFinish_0400_perMonth.Substring(0, mstr_averageTime_POFinish_0400_perMonth.Length - 1);
+        }
+    }
+    public static string str_averageTime_POFinish_0481_perMonth
+    {
+        get
+        {
+            string mstr_averageTime_POFinish_0481_perMonth = "";
+            for (int i = 0; i < averageTime_POFinish_0481_perMonth.Length; i++)
+            {
+                mstr_averageTime_POFinish_0481_perMonth = mstr_averageTime_POFinish_0481_perMonth + Convert.ToInt16(averageTime_POFinish_0481_perMonth[i]).ToString() + "!";
+            }
+            return mstr_averageTime_POFinish_0481_perMonth.Substring(0, mstr_averageTime_POFinish_0481_perMonth.Length - 1);
+        }
+    }
+    public static string str_averageTime_POFinish_perMonth
+    {
+        get
+        {
+            string mstr_averageTime_POFinish_perMonth = "";
+            for (int i = 0; i < averageTime_POFinish_perMonth.Length; i++)
+            {
+                mstr_averageTime_POFinish_perMonth = mstr_averageTime_POFinish_perMonth + Convert.ToInt16(averageTime_POFinish_perMonth[i]).ToString() + "!";
+            }
+            return mstr_averageTime_POFinish_perMonth.Substring(0, mstr_averageTime_POFinish_perMonth.Length - 1);
+        }
+    }
     #endregion
 
     #region Send to ECharts.aspx
@@ -405,7 +478,7 @@ public class Data2Trace
     {
         get
         {
-            return count_Stored_5 + "!" + count_Stored_5_10 + "!" + count_Stored_10_20 + "!" + count_Stored_20 + "!" + count_Stored;
+            return count_Ready4Shippment_10 + "!" + count_Ready4Shippment_10_20 + "!" + count_Ready4Shippment_20_30 + "!" + count_Ready4Shippment_30;
         }
     }
     //ECharts3_1:PO Create Monitor
@@ -429,12 +502,10 @@ public class Data2Trace
     {
         get
         {
-            return str_LT_perMonth + "!" + Convert.ToInt16(LT_YTD).ToString()
-                + ";" + str_LT_0400_perMonth + "!" + Convert.ToInt16(LT_0400_YTD).ToString()
-                + ";" + str_LT_0481_perMonth + "!" + Convert.ToInt16(LT_0481_YTD).ToString();
-            //return str_LT_perMonth + "!" + str_LT_perWeek + "!" + LT_YTD.ToString("F2")
-            //    + ";" + str_LT_0400_perMonth + "!" + str_LT_0400_perWeek + "!" + LT_0400_YTD.ToString("F2")
-            //    + ";" + str_LT_0481_perMonth + "!" + str_LT_0481_perWeek + "!" + LT_0481_YTD.ToString("F2");
+            return str_averageTime_POFinish_perMonth + "!" + Convert.ToInt16(averageTime_POFinish_YTD).ToString()
+                + ";" + str_averageTime_POFinish_0400_perMonth + "!" + Convert.ToInt16(averageTime_POFinish_0400_YTD).ToString()
+                + ";" + str_averageTime_POFinish_0481_perMonth + "!" + Convert.ToInt16(averageTime_POFinish_0481_YTD).ToString();
+            
         }
     }
     //ECharts3_4:Actual Finish->ex-plant(2WD)
@@ -442,12 +513,9 @@ public class Data2Trace
     {
         get
         {
-            return str_LT_perMonth + "!" + Convert.ToInt16(LT_YTD).ToString()
-                + ";" + str_LT_0400_perMonth + "!" + Convert.ToInt16(LT_0400_YTD).ToString()
-                + ";" + str_LT_0481_perMonth + "!" + Convert.ToInt16(LT_0481_YTD).ToString();
-            //return str_LT_perMonth + "!" + str_LT_perWeek + "!" + LT_YTD.ToString("F2")
-            //    + ";" + str_LT_0400_perMonth + "!" + str_LT_0400_perWeek + "!" + LT_0400_YTD.ToString("F2")
-            //    + ";" + str_LT_0481_perMonth + "!" + str_LT_0481_perWeek + "!" + LT_0481_YTD.ToString("F2");
+            return str_averageTime_Ex_plant_perMonth + "!" + Convert.ToInt16(averageTime_Ex_plant_YTD).ToString()
+                + ";" + str_averageTime_Ex_plant_0400_perMonth + "!" + Convert.ToInt16(averageTime_Ex_plant_0400_YTD).ToString()
+                + ";" + str_averageTime_Ex_plant_0481_perMonth + "!" + Convert.ToInt16(averageTime_Ex_plant_0481_YTD).ToString();
         }
     }
     #endregion
