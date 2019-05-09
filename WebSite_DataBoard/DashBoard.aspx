@@ -206,24 +206,24 @@
     
         var count = 0;
         var time_count;
-//        time_count = setInterval(function () {
-//                count++;
-//                if (count%3==0) {                    
-//                    document.getElementById('Panel1').style.display="block";
-//                    document.getElementById('Panel2').style.display="none";
-//                    document.getElementById('Panel3').style.display="none";
-//                } 
-//                else if (count%3==1){
-//                    document.getElementById('Panel1').style.display="none";
-//                    document.getElementById('Panel2').style.display="block";
-//                    document.getElementById('Panel3').style.display="none";
-//                }   
-//                else {
-//                    document.getElementById('Panel1').style.display="none";
-//                    document.getElementById('Panel2').style.display="none";
-//                    document.getElementById('Panel3').style.display="block";
-//                }                  
-//            }, 10000);
+        time_count = setInterval(function () {
+                count++;
+                if (count%3==0) {                    
+                    document.getElementById('Panel1').style.display="block";
+                    document.getElementById('Panel2').style.display="none";
+                    document.getElementById('Panel3').style.display="none";
+                } 
+                else if (count%3==1){
+                    document.getElementById('Panel1').style.display="none";
+                    document.getElementById('Panel2').style.display="block";
+                    document.getElementById('Panel3').style.display="none";
+                }   
+                else {
+                    document.getElementById('Panel1').style.display="none";
+                    document.getElementById('Panel2').style.display="none";
+                    document.getElementById('Panel3').style.display="block";
+                }                  
+            }, 20000);
     </script>
     <script type="text/javascript">
         function setECharts2(values_ECharts1_1,values_ECharts1_2,values_ECharts1_3,values_ECharts1_4,values_ECharts2_1,values_ECharts2_2,values_ECharts2_3,values_ECharts2_4,values_ECharts3_1,values_ECharts3_2,values_ECharts3_3,values_ECharts3_4) {    
@@ -585,7 +585,7 @@
         var values_Reminder_Monitor_LT = []; 
         var values_Failed_Monitor = []; 
         
-        values_Reminder_Monitor_LT.push({ "value": var_Reminder_Monitor_LT[0], "name": '物料计划提醒' });
+        values_Reminder_Monitor_LT.push({ "value": var_Reminder_Monitor_LT[0], "name": '生产物料计划提醒' });
         values_Reminder_Monitor_LT.push({ "value": var_Reminder_Monitor_LT[1], "name": '生产计划提醒' }); 
         values_Failed_Monitor.push({ "value": var_Failed_Monitor[0], "name": 'DC Failed' });
         values_Failed_Monitor.push({ "value": var_Failed_Monitor[1], "name": 'Request Failed' }); 
@@ -609,14 +609,15 @@
 //                            textAlign: 'center'
                         }],
                         tooltip: {
-                            trigger: 'item',
+//                            trigger: 'item',
                             formatter: "{a} <br/>{b} : {c} ({d}%)"
                         },
                         legend: {
                             bottom: 10,
                             left: 'center',
-                            data:  ['物料计划提醒','生产计划提醒','DC Failed','Request Failed']
+                            data:  ['生产物料计划提醒','生产计划提醒','DC Failed','Request Failed']
                         },
+                        
                         series: [
                             {                                
                                 name: '数量',
@@ -626,7 +627,21 @@
                                 center: ['25%', '50%'],
                                 label: {
                                     normal: {
-                                        position: 'inner'
+                                        formatter: '{b|{b}：{c}} \n {per|{d}%}  ',                                        
+                                        position:'inside',
+                                        rich: {                                            
+                                            b: {
+                                                color: '#eee',
+                                                fontSize: 16,
+                                                lineHeight: 33
+                                            },
+                                            per: {
+                                                color: '#eee',
+                                                backgroundColor: '#334455',
+                                                padding: [2, 4],
+                                                borderRadius: 2
+                                            }
+                                        }
                                     }
                                 },
                                 labelLine: {
@@ -643,7 +658,21 @@
                                 center: ['75%', '50%'],
                                 label: {
                                     normal: {
-                                        position: 'inner'
+                                        formatter: '{b|{b}：{c}} \n {per|{d}%}  ',                                        
+                                        position:'inside',
+                                        rich: {                                            
+                                            b: {
+                                                color: '#eee',
+                                                fontSize: 16,
+                                                lineHeight: 33
+                                            },
+                                            per: {
+                                                color: '#eee',
+                                                backgroundColor: '#334455',
+                                                padding: [2, 4],
+                                                borderRadius: 2
+                                            }
+                                        }
                                     }
                                 },
                                 labelLine: {
@@ -672,9 +701,9 @@
           
         var values_Ongoing_Monitor = []; 
         
-        values_Ongoing_Monitor.push({ "value": var_Echarts1_4[0], "name": '<=40' });
-        values_Ongoing_Monitor.push({ "value": var_Echarts1_4[1], "name": '40-50' }); 
-        values_Ongoing_Monitor.push({ "value": var_Echarts1_4[2], "name": '>50' });
+        values_Ongoing_Monitor.push({ "value": var_Echarts1_4[0], "name": '<=40 CDS' });
+        values_Ongoing_Monitor.push({ "value": var_Echarts1_4[1], "name": '40-50 CDS' }); 
+        values_Ongoing_Monitor.push({ "value": var_Echarts1_4[2], "name": '>50 CDS' });
 
         // 图表使用-------------------
         var option1_4 = {
@@ -690,7 +719,7 @@
                         legend: {
                             orient: 'vertical',
                             x: 'left',
-                            data:  ['<=40','40-50','>50']
+                            data:  ['<=40 CDS','40-50 CDS','>50 CDS']
                         },
                         series: [
                             {                                
@@ -698,7 +727,7 @@
                                 clockWise:false,
                                 type: 'pie',
                                 radius: '65%',
-                                center: ['50%', '60%'],
+                                center: ['50%', '50%'],
                                 label: {
                                     normal: {
                                         formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
@@ -1058,10 +1087,10 @@
           
         var values_Overstocked_Monitor = []; 
         
-        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[0], "name": '<=5' });
-        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[1], "name": '5-10' }); 
-        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[2], "name": '10-20' });
-        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[3], "name": '>20' }); 
+        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[0], "name": '<=5 WD' });
+        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[1], "name": '5-10 WD' }); 
+        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[2], "name": '10-20 WD' });
+        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[3], "name": '>20 WD' }); 
         values_Overstocked_Monitor.push({ "value": var_Echarts2_3[4], "name": '未发货' });
 
         // 图表使用-------------------
@@ -1077,7 +1106,7 @@
                         legend: {
                             orient: 'vertical',
                             x: 'left',
-                            data:  ['<=5','5-10','10-20','>20','未发货']
+                            data:  ['<=5 WD','5-10 WD','10-20 WD','>20 WD','未发货']
                         },
                         series: [
                             {                                
@@ -1144,10 +1173,10 @@
           
         var values_Ready4Shippment_Monitor = []; 
         
-        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[0], "name": '<=10' });
-        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[1], "name": '10-20' }); 
-        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[2], "name": '20-30' });
-        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[3], "name": '>30' }); 
+        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[0], "name": '<=10 WD' });
+        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[1], "name": '10-20 WD' }); 
+        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[2], "name": '20-30 WD' });
+        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[3], "name": '>30 WD' }); 
 
         // 图表使用-------------------
         var option2_4 = {
@@ -1162,7 +1191,7 @@
                         legend: {
                             orient: 'vertical',
                             x: 'left',
-                            data:  ['<=10','10-20','20-30','>30']
+                            data:  ['<=10 WD','10-20 WD','20-30 WD','>30 WD']
                         },
                         series: [
                             {                                
@@ -1224,7 +1253,7 @@
         // 图表使用-------------------
         var option3_1 = {
                         title: {
-                            text: 'SO → PO Release',  
+                            text: 'SO → PO Creation',  
                             subtext: 'LT > 0.5(WD)',
                             x: 'center'                           
                         },
@@ -1266,11 +1295,37 @@
                             {
                                 name:'创建PO数',
                                 type:'bar',
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        position: 'top',
+                                        formatter: function(params){
+                                            if (params.value > 0) {
+                                                return params.value;
+                                            } else {
+                                                return '';
+                                            }
+                                        }
+                                    }
+                                },
                                 data:count_PO_soCreated_perMonth
                             },
                             {
                                 name:'延期创建PO数',
-                                type:'bar',                                
+                                type:'bar',
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        position: 'top',
+                                        formatter: function(params){
+                                            if (params.value > 0) {
+                                                return params.value;
+                                            } else {
+                                                return '';
+                                            }
+                                        }
+                                    }
+                                },                                
                                 data:count_CreatedDelay_perMonth
                             },                        
 
@@ -1287,6 +1342,38 @@
                                     normal : {
                                         labelLine : {
                                             length : 20
+                                        }
+                                    }
+                                },
+                                label: {
+                                    normal: {
+                                        formatter: '{a|  {b}  }{abg|}\n{hr|}\n  {c}  {per|{d}%}  ',
+                                        backgroundColor: '#eee',
+                                        borderColor: '#aaa',
+                                        borderWidth: 1,
+                                        borderRadius: 4,
+                                        rich: {
+                                            a: {
+                                                color: '#999',
+                                                lineHeight: 22,
+                                                align: 'center'
+                                            },
+                                            hr: {
+                                                borderColor: '#aaa',
+                                                width: '100%',
+                                                borderWidth: 0.5,
+                                                height: 0
+                                            },
+                                            b: {
+                                                fontSize: 16,
+                                                lineHeight: 33
+                                            },
+                                            per: {
+                                                color: '#eee',
+                                                backgroundColor: '#334455',
+                                                padding: [2, 4],
+                                                borderRadius: 2
+                                            }
                                         }
                                     }
                                 },
@@ -1361,11 +1448,37 @@
                             {
                                 name:'创建PO数',
                                 type:'bar',
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        position: 'top',
+                                        formatter: function(params){
+                                            if (params.value > 0) {
+                                                return params.value;
+                                            } else {
+                                                return '';
+                                            }
+                                        }
+                                    }
+                                },
                                 data:count_PO_poCreated_perMonth
                             },
                             {
                                 name:'延期释放PO数',
-                                type:'bar',                                
+                                type:'bar',    
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        position: 'top',
+                                        formatter: function(params){
+                                            if (params.value > 0) {
+                                                return params.value;
+                                            } else {
+                                                return '';
+                                            }
+                                        }
+                                    }
+                                },                            
                                 data:count_ReleaseDelay_perMonth
                             },                        
 
@@ -1382,6 +1495,39 @@
                                     normal : {
                                         labelLine : {
                                             length : 20
+                                        }
+                                    }
+                                },
+                                label: {
+                                    normal: {
+                                        formatter: '{a|  {b}  }{abg|}\n{hr|}\n  {c}  {per|{d}%}  ',
+                                        backgroundColor: '#eee',
+                                        borderColor: '#aaa',
+                                        borderWidth: 1,
+                                        borderRadius: 4,
+                                        rich: {
+                                            a: {
+                                                color: '#999',
+//                                                fontSize: 16,
+                                                lineHeight: 22,
+                                                align: 'center'
+                                            },
+                                            hr: {
+                                                borderColor: '#aaa',
+                                                width: '100%',
+                                                borderWidth: 0.5,
+                                                height: 0
+                                            },
+                                            b: {
+                                                fontSize: 16,
+                                                lineHeight: 33
+                                            },
+                                            per: {
+                                                color: '#eee',
+                                                backgroundColor: '#334455',
+                                                padding: [2, 4],
+                                                borderRadius: 2
+                                            }
                                         }
                                     }
                                 },
