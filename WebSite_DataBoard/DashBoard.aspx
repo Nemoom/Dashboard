@@ -223,7 +223,7 @@
                     document.getElementById('Panel2').style.display="none";
                     document.getElementById('Panel3').style.display="block";
                 }                  
-            }, 20000);
+            }, 30000);
     </script>
     <script type="text/javascript">
         function setECharts2(values_ECharts1_1,values_ECharts1_2,values_ECharts1_3,values_ECharts1_4,values_ECharts2_1,values_ECharts2_2,values_ECharts2_3,values_ECharts2_4,values_ECharts3_1,values_ECharts3_2,values_ECharts3_3,values_ECharts3_4) {    
@@ -1096,7 +1096,8 @@
         // 图表使用-------------------
         var option2_3 = {
                         title: {
-                            text: 'Overstocked Monitor',
+                            text: 'CS Shippment Statistic',
+                            subtext:'0400+0481',
                             x: 'center'
                         },
                         tooltip: {
@@ -1182,6 +1183,7 @@
         var option2_4 = {
                         title: {
                             text: 'Ready for Shippment Monitoring',
+                            subtext:'0400+0481',
                             x: 'center'
                         },
                         tooltip: {
