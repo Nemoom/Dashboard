@@ -20,9 +20,9 @@ public class Data2Trace
         get
         {
             string mstr_PO_soCreated_perMonth = "";
-            for (int i = 0; i < count_PO_soCreated_perMonth.Length; i++)
+            for (int i = 0; i < count_PO_soCreated_0400_perMonth.Length; i++)
             {
-                mstr_PO_soCreated_perMonth = mstr_PO_soCreated_perMonth + count_PO_soCreated_perMonth[i].ToString() + "!";
+                mstr_PO_soCreated_perMonth = mstr_PO_soCreated_perMonth + count_PO_soCreated_0400_perMonth[i].ToString() + "!";
             }
             return mstr_PO_soCreated_perMonth.Substring(0, mstr_PO_soCreated_perMonth.Length - 1);
         }
@@ -32,9 +32,9 @@ public class Data2Trace
         get
         {
             string mstr_CreatedDelay_perMonth = "";
-            for (int i = 0; i < count_CreatedDelay_perMonth.Length; i++)
+            for (int i = 0; i < count_CreatedDelay_0400_perMonth.Length; i++)
             {
-                mstr_CreatedDelay_perMonth = mstr_CreatedDelay_perMonth + count_CreatedDelay_perMonth[i].ToString() + "!";
+                mstr_CreatedDelay_perMonth = mstr_CreatedDelay_perMonth + count_CreatedDelay_0400_perMonth[i].ToString() + "!";
             }
             return mstr_CreatedDelay_perMonth.Substring(0, mstr_CreatedDelay_perMonth.Length - 1);
         }
@@ -44,9 +44,9 @@ public class Data2Trace
         get
         {
             string mstr_PO_poCreated_perMonth = "";
-            for (int i = 0; i < count_PO_poCreated_perMonth.Length; i++)
+            for (int i = 0; i < count_PO_poCreated_0400_perMonth.Length; i++)
             {
-                mstr_PO_poCreated_perMonth = mstr_PO_poCreated_perMonth + count_PO_poCreated_perMonth[i].ToString() + "!";
+                mstr_PO_poCreated_perMonth = mstr_PO_poCreated_perMonth + count_PO_poCreated_0400_perMonth[i].ToString() + "!";
             }
             return mstr_PO_poCreated_perMonth.Substring(0, mstr_PO_poCreated_perMonth.Length - 1);
         }
@@ -56,9 +56,9 @@ public class Data2Trace
         get
         {
             string mstr_ReleaseDelay_perMonth = "";
-            for (int i = 0; i < count_ReleaseDelay_perMonth.Length; i++)
+            for (int i = 0; i < count_ReleaseDelay_0400_perMonth.Length; i++)
             {
-                mstr_ReleaseDelay_perMonth = mstr_ReleaseDelay_perMonth + count_ReleaseDelay_perMonth[i].ToString() + "!";
+                mstr_ReleaseDelay_perMonth = mstr_ReleaseDelay_perMonth + count_ReleaseDelay_0400_perMonth[i].ToString() + "!";
             }
             return mstr_ReleaseDelay_perMonth.Substring(0, mstr_ReleaseDelay_perMonth.Length - 1);
         }
@@ -473,12 +473,12 @@ public class Data2Trace
             return count_Stored_5 + "!" + count_Stored_5_10 + "!" + count_Stored_10_20 + "!" + count_Stored_20 + "!" + count_Stored;
         }
     }
-    //ECharts2_4:Ready for Shippment Monitoring
+    //ECharts2_4:Ready for Shipment Monitoring
     public static string values_ECharts2_4
     {
         get
         {
-            return count_Ready4Shippment_10 + "!" + count_Ready4Shippment_10_20 + "!" + count_Ready4Shippment_20_30 + "!" + count_Ready4Shippment_30;
+            return count_Ready4Shipment_10 + "!" + count_Ready4Shipment_10_20 + "!" + count_Ready4Shipment_20_30 + "!" + count_Ready4Shipment_30;
         }
     }
     //ECharts3_1:PO Create Monitor
@@ -486,7 +486,7 @@ public class Data2Trace
     {
         get
         {
-            return str_PO_soCreated_perMonth + ";" + str_CreatedDelay_perMonth + ";" + (count_PO_soCreated_YTD - count_CreatedDelay_YTD).ToString() + "!" + count_CreatedDelay_YTD.ToString();
+            return str_PO_soCreated_perMonth + ";" + str_CreatedDelay_perMonth + ";" + (count_PO_soCreated_0400_YTD - count_CreatedDelay_0400_YTD).ToString() + "!" + count_CreatedDelay_0400_YTD.ToString();
         }
     }
     //ECharts3_2:PO Release Monitor
@@ -494,7 +494,7 @@ public class Data2Trace
     {
         get
         {
-            return str_PO_poCreated_perMonth + ";" + str_ReleaseDelay_perMonth + ";" + (count_PO_poCreated_YTD - count_ReleaseDelay_YTD).ToString() + "!" + count_ReleaseDelay_YTD.ToString();
+            return str_PO_poCreated_perMonth + ";" + str_ReleaseDelay_perMonth + ";" + (count_PO_poCreated_0400_YTD - count_ReleaseDelay_0400_YTD).ToString() + "!" + count_ReleaseDelay_0400_YTD.ToString();
         }
     }
     //ECharts3_3:PO Release->Actual Finish(23WD)
@@ -609,17 +609,17 @@ public class Data2Trace
     public static double NetValue_PO_Finished_0481_YTD;
     public static int[] count_PO_ForecastFinished_0481_perMonth = new int[12];
     public static int count_PO_ForecastFinished_0481_YTD;
-    //ECharts2-3:CS Shippment Statistic【YTD 0400+0481】
+    //ECharts2-3:CS Shipment Statistic【YTD 0400+0481】
     public static int count_Stored_5;
     public static int count_Stored_5_10;
     public static int count_Stored_10_20;
     public static int count_Stored_20;
     public static int count_Stored;//已完成无ShipmentStartOn 
-    //ECharts2-4:Ready fot Shippment Monitoring【YTD 0400+0481】
-    public static int count_Ready4Shippment_10;
-    public static int count_Ready4Shippment_10_20;
-    public static int count_Ready4Shippment_20_30;
-    public static int count_Ready4Shippment_30;
+    //ECharts2-4:Ready fot Shipment Monitoring【YTD 0400+0481】
+    public static int count_Ready4Shipment_10;
+    public static int count_Ready4Shipment_10_20;
+    public static int count_Ready4Shipment_20_30;
+    public static int count_Ready4Shipment_30;
     #endregion
 
     #region Panel3 【0400】E2E Process Monitoring

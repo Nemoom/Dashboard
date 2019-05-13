@@ -1096,7 +1096,7 @@
         // 图表使用-------------------
         var option2_3 = {
                         title: {
-                            text: 'CS Shippment Statistic',
+                            text: 'CS Shipment Statistic',
                             subtext:'0400+0481',
                             x: 'center'
                         },
@@ -1172,17 +1172,17 @@
 
         var var_Echarts2_4=values_ECharts2_4.split('!');
           
-        var values_Ready4Shippment_Monitor = []; 
+        var values_Ready4Shipment_Monitor = []; 
         
-        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[0], "name": '<=10 WD' });
-        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[1], "name": '10-20 WD' }); 
-        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[2], "name": '20-30 WD' });
-        values_Ready4Shippment_Monitor.push({ "value": var_Echarts2_4[3], "name": '>30 WD' }); 
+        values_Ready4Shipment_Monitor.push({ "value": var_Echarts2_4[0], "name": '<=10 WD' });
+        values_Ready4Shipment_Monitor.push({ "value": var_Echarts2_4[1], "name": '10-20 WD' }); 
+        values_Ready4Shipment_Monitor.push({ "value": var_Echarts2_4[2], "name": '20-30 WD' });
+        values_Ready4Shipment_Monitor.push({ "value": var_Echarts2_4[3], "name": '>30 WD' }); 
 
         // 图表使用-------------------
         var option2_4 = {
                         title: {
-                            text: 'Ready for Shippment Monitoring',
+                            text: 'Ready for Shipment Monitoring',
                             subtext:'0400+0481',
                             x: 'center'
                         },
@@ -1226,7 +1226,7 @@
                                         length1: 30
                                     }
                                 },                    
-                                data: values_Ready4Shippment_Monitor
+                                data: values_Ready4Shipment_Monitor
                             },                          
                             ]
                     };         

@@ -10,7 +10,9 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        lbl_FilePath.Text = this.Application["filePath"].ToString();
+        FileTimeInfo mFileTimeInfo = GetLatestFileTimeInfo(@"C:\Users\Public\Music\", ".xlsx");
+        this.Application["filePath"] = mFileTimeInfo.FileName;
+        lbl_FilePath.Text = mFileTimeInfo.FileName;
     }
     protected void btn_Upload_Click(object sender, EventArgs e)
     {
@@ -20,4 +22,32 @@ public partial class _Default : System.Web.UI.Page
         this.Application["filePath"] = FileName;
         lbl_FilePath.Text = this.Application["filePath"].ToString();
     }
+    public class FileTimeInfo
+    {
+        public string FileName;  //文件名
+        public DateTime FileCreateTime; //创建时间
+    }
+
+    static FileTimeInfo GetLatestFileTimeInfo(string dir, string ext)
+    {
+        List<FileTimeInfo> list = new List<FileTimeInfo>();
+        DirectoryInfo d = new DirectoryInfo(dir);
+        foreach (FileInfo file in d.GetFiles())
+        {
+            if (file.Extension.ToUpper() == ext.ToUpper())
+            {
+                list.Add(new FileTimeInfo()
+                {
+                    FileName = file.Name,
+                    FileCreateTime = file.CreationTime
+                });
+            }
+        }
+        var f = from x in list
+                    orderby x.FileCreateTime
+                    select x;
+        return f.LastOrDefault();
+    }
+
+
 }

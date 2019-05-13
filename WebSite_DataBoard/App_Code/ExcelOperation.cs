@@ -1001,26 +1001,26 @@ public class ExcelOperation
                     }
                 }
                 #endregion
-                //For ECharts2_3:Repertory Monitor & ECharts2_4:Ready for Shippment Monitoring【YTD 0400+0481】
+                //For ECharts2_3:Repertory Monitor & ECharts2_4:Ready for Shipment Monitoring【YTD 0400+0481】
                 #region For ECharts2_3 & ECharts2_4【YTD 0400+0481】
                 if (ProcessMonitor.mPO_Status == PO_Status.PO_Finished)
                 {
                     Data2Trace.count_Stored++;
                     if (ProcessMonitor.Gap_Finish2Today <= 10)
                     {
-                        Data2Trace.count_Ready4Shippment_10++;
+                        Data2Trace.count_Ready4Shipment_10++;
                     }
                     else if (ProcessMonitor.Gap_Finish2Today <= 20)
                     {
-                        Data2Trace.count_Ready4Shippment_10_20++;
+                        Data2Trace.count_Ready4Shipment_10_20++;
                     }
                     else if (ProcessMonitor.Gap_Finish2Today <= 30)
                     {
-                        Data2Trace.count_Ready4Shippment_20_30++;
+                        Data2Trace.count_Ready4Shipment_20_30++;
                     }
                     else
                     {
-                        Data2Trace.count_Ready4Shippment_30++;
+                        Data2Trace.count_Ready4Shipment_30++;
                     }
                 }
                 else if (ProcessMonitor.mPO_Status == PO_Status.DLV)
