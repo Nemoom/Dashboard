@@ -95,8 +95,10 @@ public class Data2Trace
                 }
                 else
                 {
-                    mstr_DCR_0400 = mstr_DCR_0400 + Convert.ToInt16(((Convert.ToDouble(count_0400_PO_OnTime_perMonth[i]) / 
-                        Convert.ToDouble(count_0400_PO_Finished_perMonth[i]))*100)).ToString("") + "!";
+                    //mstr_DCR_0400 = mstr_DCR_0400 + Convert.ToInt16(((Convert.ToDouble(count_0400_PO_OnTime_perMonth[i]) / 
+                    //    Convert.ToDouble(count_0400_PO_Finished_perMonth[i]))*100)).ToString("") + "!";
+                    mstr_DCR_0400 = mstr_DCR_0400 + ((int)((Convert.ToDouble(count_0400_PO_OnTime_perMonth[i]) /
+                        Convert.ToDouble(count_0400_PO_Finished_perMonth[i])) * 100 + 0.5)).ToString("") + "!";
                 }                
             }
             return mstr_DCR_0400.Substring(0, mstr_DCR_0400.Length - 1);
@@ -116,8 +118,10 @@ public class Data2Trace
                 }
                 else
                 {
-                    mstr_DCR_0481 = mstr_DCR_0481 + Convert.ToInt16(((Convert.ToDouble(count_0481_PO_OnTime_perMonth[i]) /
-                        Convert.ToDouble(count_0481_PO_Finished_perMonth[i])) * 100)).ToString() + "!";
+                    //mstr_DCR_0481 = mstr_DCR_0481 + Convert.ToInt16(((Convert.ToDouble(count_0481_PO_OnTime_perMonth[i]) /
+                    //    Convert.ToDouble(count_0481_PO_Finished_perMonth[i])) * 100)).ToString() + "!";
+                    mstr_DCR_0481 = mstr_DCR_0481 + ((int)((Convert.ToDouble(count_0481_PO_OnTime_perMonth[i]) /
+                        Convert.ToDouble(count_0481_PO_Finished_perMonth[i])) * 100 + 0.5)).ToString() + "!";
                 }
             }
             return mstr_DCR_0481.Substring(0, mstr_DCR_0481.Length - 1);
@@ -137,8 +141,10 @@ public class Data2Trace
                 }
                 else
                 {
-                    mstr_DCR = mstr_DCR + Convert.ToInt16(((Convert.ToDouble(count_0400_PO_OnTime_perMonth[i] +
-                        count_0481_PO_OnTime_perMonth[i]) / Convert.ToDouble(count_PO_Finished_perMonth[i])) * 100)).ToString() + "!";
+                    //mstr_DCR = mstr_DCR + Convert.ToInt16(((Convert.ToDouble(count_0400_PO_OnTime_perMonth[i] +
+                    //    count_0481_PO_OnTime_perMonth[i]) / Convert.ToDouble(count_PO_Finished_perMonth[i])) * 100)).ToString() + "!";
+                    mstr_DCR = mstr_DCR + ((int)((Convert.ToDouble(count_0400_PO_OnTime_perMonth[i] +
+                        count_0481_PO_OnTime_perMonth[i]) / Convert.ToDouble(count_PO_Finished_perMonth[i])) * 100 + 0.5)).ToString() + "!";
                 }
             }
             return mstr_DCR.Substring(0, mstr_DCR.Length - 1);
@@ -407,9 +413,14 @@ public class Data2Trace
         get
         {
             //return str_DCR_inside + ";" + str_DCR_outside;
-            return str_DCR + "!" + Convert.ToInt16(((Convert.ToDouble(count_0481_PO_OnTime_YTD + count_0400_PO_OnTime_YTD) / Convert.ToDouble(count_PO_Finished_YTD)) * 100)).ToString() + ";"
-                + str_DCR_0400 + "!" + Convert.ToInt16(((Convert.ToDouble(count_0400_PO_OnTime_YTD) / Convert.ToDouble(count_0400_PO_Finished_YTD)) * 100)).ToString() + ";"
-                + str_DCR_0481 + "!" + Convert.ToInt16(((Convert.ToDouble(count_0481_PO_OnTime_YTD) / Convert.ToDouble(count_0481_PO_Finished_YTD)) * 100)).ToString();
+
+            //return str_DCR + "!" + Convert.ToInt16(((Convert.ToDouble(count_0481_PO_OnTime_YTD + count_0400_PO_OnTime_YTD) / Convert.ToDouble(count_PO_Finished_YTD)) * 100)).ToString() + ";"
+            //    + str_DCR_0400 + "!" + Convert.ToInt16(((Convert.ToDouble(count_0400_PO_OnTime_YTD) / Convert.ToDouble(count_0400_PO_Finished_YTD)) * 100)).ToString() + ";"
+            //    + str_DCR_0481 + "!" + Convert.ToInt16(((Convert.ToDouble(count_0481_PO_OnTime_YTD) / Convert.ToDouble(count_0481_PO_Finished_YTD)) * 100)).ToString();
+
+            return str_DCR + "!" + ((int)((Convert.ToDouble(count_0481_PO_OnTime_YTD + count_0400_PO_OnTime_YTD) / Convert.ToDouble(count_PO_Finished_YTD)) * 100 + 0.5)).ToString() + ";"
+                + str_DCR_0400 + "!" + ((int)((Convert.ToDouble(count_0400_PO_OnTime_YTD) / Convert.ToDouble(count_0400_PO_Finished_YTD)) * 100 + 0.5)).ToString() + ";"
+                + str_DCR_0481 + "!" + ((int)((Convert.ToDouble(count_0481_PO_OnTime_YTD) / Convert.ToDouble(count_0481_PO_Finished_YTD)) * 100 + 0.5)).ToString();
         }
     }
     //ECharts1_2:LT(Average Lead Time：CDS)
