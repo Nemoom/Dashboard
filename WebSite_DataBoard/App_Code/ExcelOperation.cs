@@ -101,7 +101,9 @@ public class ExcelOperation
     public string[] excelHeader = new string[40];
     public List<KeyValuePair<int, string>> excelHead = new List<KeyValuePair<int, string>>();
     public XSSFWorkbook wb;
-    XSSFWorkbook xssfworkbook;
+    XSSFWorkbook xssfworkbook;//用于写Excel
+    //create the format instance
+    IDataFormat format;
     private XSSFSheet sht;
     public int rowsCount, colsCount;
 
@@ -129,6 +131,17 @@ public class ExcelOperation
             }
         }
         return bool_ImportResult;
+    }
+
+    static void SetValueAndFormat(IWorkbook workbook, ICell cell, DateTime value, short formatId)
+    {
+        //set value for the cell
+        if (value != null)
+            cell.SetCellValue(value);
+
+        ICellStyle cellStyle = workbook.CreateCellStyle();
+        cellStyle.DataFormat = formatId;
+        cell.CellStyle = cellStyle;
     }
 
     public void TraceFromExcel()
@@ -197,15 +210,70 @@ public class ExcelOperation
             mylist_Gap_Ex_plant_0481_perMonth[i] = new List<int>();
         }
         #endregion
-        ISheet sheet = xssfworkbook.CreateSheet("Cell comments in POI HSSF");
+        ISheet sheet = xssfworkbook.CreateSheet("Temp value");//写Excel
         ICellStyle cellStyle = wb.CreateCellStyle();
-        
+        sheet.SetColumnWidth(0, 20*256);
+        sheet.SetColumnWidth(1, 20*256);
+        sheet.SetColumnWidth(2, 20*256);
+        sheet.SetColumnWidth(3, 20*256);
+        sheet.SetColumnWidth(4, 20*256);
+        sheet.SetColumnWidth(5, 20*256);
+        sheet.SetColumnWidth(6, 20*256);
+        sheet.SetColumnWidth(7, 20*256);
+        sheet.SetColumnWidth(8, 20*256);
+        sheet.SetColumnWidth(9, 20*256);
+        //写Excel表头
+        ICell mcell = sheet.CreateRow(0).CreateCell(0);
+        mcell.SetCellValue(excelHeader[6]);//PO
+        mcell = sheet.GetRow(0).CreateCell(1);
+        mcell.SetCellValue(excelHeader[7]);//Status
+        mcell = sheet.GetRow(0).CreateCell(2);
+        mcell.SetCellValue(excelHeader[4]);//DLV_plant
+        mcell = sheet.GetRow(0).CreateCell(3);
+        mcell.SetCellValue("Date_QuotationLT");
+        mcell = sheet.GetRow(0).CreateCell(4);
+        mcell.SetCellValue("LeadTime(CDS)");
+        mcell = sheet.GetRow(0).CreateCell(5);
+        mcell.SetCellValue("LeadTime_ToToday(CDS)");
+        mcell = sheet.GetRow(0).CreateCell(6);
+        mcell.SetCellValue("SO -> PO Creation(WD)");
+        mcell = sheet.GetRow(0).CreateCell(7);
+        mcell.SetCellValue("PO Creation -> PO Release(WD)");
+        mcell = sheet.GetRow(0).CreateCell(8);
+        mcell.SetCellValue("PO Release -> Actual Finish(WD)");
+        mcell = sheet.GetRow(0).CreateCell(9);
+        mcell.SetCellValue("Actual Finish -> Ex-plant(WD)");
         //逐行统计
         for (int i = 1; i < rowsCount; i++)
         {
             RowRecordProcess(i);
-            ICell cell1 = sheet.CreateRow(i).CreateCell(1);
-            cell1.SetCellValue(ProcessMonitor.Date_QuotationLT);
+            format = xssfworkbook.CreateDataFormat();
+            mcell = sheet.CreateRow(i).CreateCell(0);
+            mcell.SetCellValue(ProcessMonitor.mPO);
+            mcell = sheet.GetRow(i).CreateCell(1);
+            mcell.SetCellValue(ProcessMonitor.mPO_Status.ToString());
+            mcell = sheet.GetRow(i).CreateCell(2);
+            mcell.SetCellValue(ProcessMonitor.mDLV_Plant.ToString());
+            mcell = sheet.GetRow(i).CreateCell(3);
+            SetValueAndFormat(xssfworkbook, mcell, ProcessMonitor.Date_QuotationLT, format.GetFormat("yyyy年m月d日"));
+            mcell.SetCellValue(ProcessMonitor.Date_QuotationLT);
+            mcell = sheet.GetRow(i).CreateCell(4);
+            mcell.SetCellValue(ProcessMonitor.LT);
+            mcell = sheet.GetRow(i).CreateCell(5);
+            mcell.SetCellValue(ProcessMonitor.LT_Ongoing);
+            mcell = sheet.GetRow(i).CreateCell(6);
+            mcell.SetCellValue(ProcessMonitor.Gap_SO2PO);
+            mcell = sheet.GetRow(i).CreateCell(7);
+            mcell.SetCellValue(ProcessMonitor.Gap_PO2Release);
+            mcell = sheet.GetRow(i).CreateCell(8);
+            mcell.SetCellValue(ProcessMonitor.Gap_Release2Finish);
+            mcell = sheet.GetRow(i).CreateCell(9);
+            mcell.SetCellValue(ProcessMonitor.Gap_Finish2Shipment);
+            //ICell cell1 = sheet.GetRow(i).CreateCell(1);
+            //format = xssfworkbook.CreateDataFormat();
+            //SetValueAndFormat(xssfworkbook, cell1, ProcessMonitor.Date_QuotationLT, format.GetFormat("yyyy年m月d日"));
+            //cell1.SetCellValue(ProcessMonitor.Date_QuotationLT);
+            
         }
         WriteToFile();
         //ECharts3_1&ECharts1_2需要处理一下原始数据
@@ -454,7 +522,7 @@ public class ExcelOperation
     }
 
     private void WriteToFile()
-    {
+    {        
         //Write the stream data of workbook to the root directory
         FileStream file = new FileStream(@"F:\test.xlsx", FileMode.Create);
 
