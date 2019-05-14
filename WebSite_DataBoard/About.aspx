@@ -8,6 +8,6 @@
         About
     </h2>
     <p>
-        Put content here.
+        <asp:Label ID="list" runat="server"></asp:Label>
     </p>
 </asp:Content>

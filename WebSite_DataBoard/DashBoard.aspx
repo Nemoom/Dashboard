@@ -138,7 +138,8 @@
                         </td>
                     </tr>
                 </table>
-            </asp:Panel>            
+            </asp:Panel>
+            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>            
         </div>
         <div class="clear">
             Copyright © Festo AG & Co. KG
