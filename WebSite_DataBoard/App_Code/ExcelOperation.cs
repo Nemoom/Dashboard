@@ -222,6 +222,11 @@ public class ExcelOperation
         sheet.SetColumnWidth(7, 20*256);
         sheet.SetColumnWidth(8, 20*256);
         sheet.SetColumnWidth(9, 20*256);
+        sheet.SetColumnWidth(10, 20 * 256);
+        sheet.SetColumnWidth(11, 20 * 256);
+        sheet.SetColumnWidth(12, 20 * 256);
+        sheet.SetColumnWidth(13, 20 * 256);
+        sheet.SetColumnWidth(14, 20 * 256);
         //写Excel表头
         ICell mcell = sheet.CreateRow(0).CreateCell(0);
         mcell.SetCellValue(excelHeader[6]);//PO
@@ -243,6 +248,16 @@ public class ExcelOperation
         mcell.SetCellValue("PO Release -> Actual Finish(WD)");
         mcell = sheet.GetRow(0).CreateCell(9);
         mcell.SetCellValue("Actual Finish -> Ex-plant(WD)");
+        mcell = sheet.GetRow(0).CreateCell(10);
+        mcell.SetCellValue(excelHeader[25]);//SO
+        mcell = sheet.GetRow(0).CreateCell(11);
+        mcell.SetCellValue(excelHeader[26]);//PO Creation
+        mcell = sheet.GetRow(0).CreateCell(12);
+        mcell.SetCellValue(excelHeader[27]);//PO Release
+        mcell = sheet.GetRow(0).CreateCell(13);
+        mcell.SetCellValue(excelHeader[28]);//Actual Finish
+        mcell = sheet.GetRow(0).CreateCell(14);
+        mcell.SetCellValue(excelHeader[34]);//Ex-plant
         //逐行统计
         for (int i = 1; i < rowsCount; i++)
         {
@@ -269,6 +284,21 @@ public class ExcelOperation
             mcell.SetCellValue(ProcessMonitor.Gap_Release2Finish);
             mcell = sheet.GetRow(i).CreateCell(9);
             mcell.SetCellValue(ProcessMonitor.Gap_Finish2Shipment);
+            mcell = sheet.GetRow(i).CreateCell(10);
+            SetValueAndFormat(xssfworkbook, mcell, ProcessMonitor.mActualTime.Date_SO_CreatedOn, format.GetFormat("yyyy年m月d日"));
+            mcell.SetCellValue(ProcessMonitor.mActualTime.Date_SO_CreatedOn);
+            mcell = sheet.GetRow(i).CreateCell(11);
+            SetValueAndFormat(xssfworkbook, mcell, ProcessMonitor.mActualTime.Date_PO_CreatedOn, format.GetFormat("yyyy年m月d日"));
+            mcell.SetCellValue(ProcessMonitor.mActualTime.Date_PO_CreatedOn); 
+            mcell = sheet.GetRow(i).CreateCell(12);
+            SetValueAndFormat(xssfworkbook, mcell, ProcessMonitor.mActualTime.Date_ActualReleaseDate, format.GetFormat("yyyy年m月d日"));
+            mcell.SetCellValue(ProcessMonitor.mActualTime.Date_ActualReleaseDate);
+            mcell = sheet.GetRow(i).CreateCell(13);
+            SetValueAndFormat(xssfworkbook, mcell, ProcessMonitor.mActualTime.Date_ActualFinishDate, format.GetFormat("yyyy年m月d日"));
+            mcell.SetCellValue(ProcessMonitor.mActualTime.Date_ActualFinishDate);
+            mcell = sheet.GetRow(i).CreateCell(14);
+            SetValueAndFormat(xssfworkbook, mcell, ProcessMonitor.mActualTime.Date_ShipmentStartOn, format.GetFormat("yyyy年m月d日"));
+            mcell.SetCellValue(ProcessMonitor.mActualTime.Date_ShipmentStartOn); ;
             //ICell cell1 = sheet.GetRow(i).CreateCell(1);
             //format = xssfworkbook.CreateDataFormat();
             //SetValueAndFormat(xssfworkbook, cell1, ProcessMonitor.Date_QuotationLT, format.GetFormat("yyyy年m月d日"));
@@ -569,7 +599,6 @@ public class ExcelOperation
         {
             //提取关注的信息到监控类中并统计部分数据
             XSSFRow nRow = (XSSFRow)sht.GetRow(rowIndex);
-            XSSFCell mCell = (XSSFCell)nRow.CreateCell(55, NPOI.SS.UserModel.CellType.Numeric);
             if (((XSSFCell)nRow.GetCell(2)).CellType == NPOI.SS.UserModel.CellType.Blank)
             {
                 //销售订单号为空，以此判断此行为空
@@ -733,7 +762,6 @@ public class ExcelOperation
                     Console.WriteLine(ex.ToString());
                 } 
                 #endregion
-                mCell.SetCellValue(ProcessMonitor.Date_QuotationLT);
                 #region 统计
                 //For ECharts1_1:DCR(Delivery Class Reliablity)及时交付率 需要+1WD
                 #region For ECharts1_1:DCR(Delivery Class Reliablity)及时交付率
@@ -1126,22 +1154,22 @@ public class ExcelOperation
                         if (ProcessMonitor.mActualTime.Date_SO_CreatedOn.Year == DateTime.Today.Year)
                         {
                             //For ECharts3_1
-                            Data2Trace.count_PO_soCreated_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1]++;
+                            Data2Trace.count_PO_soCreated_perMonth[ProcessMonitor.mActualTime.Date_PO_CreatedOn.Month - 1]++;
                             Data2Trace.count_PO_soCreated_YTD++;
                             //For ECharts3_1：1个工作日未创建PO，Avoid system issue：Credit block
                             if (ProcessMonitor.Gap_SO2PO > 1)
                             {
-                                Data2Trace.count_CreatedDelay_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1]++;
+                                Data2Trace.count_CreatedDelay_perMonth[ProcessMonitor.mActualTime.Date_PO_CreatedOn.Month - 1]++;
                                 Data2Trace.count_CreatedDelay_YTD++;
                             }
                             if (ProcessMonitor.mDLV_Plant==DLV_Plant.P_0400)
                             {
-                                Data2Trace.count_PO_soCreated_0400_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1]++;
+                                Data2Trace.count_PO_soCreated_0400_perMonth[ProcessMonitor.mActualTime.Date_PO_CreatedOn.Month - 1]++;
                                 Data2Trace.count_PO_soCreated_0400_YTD++;
                                 //For ECharts3_1：1个工作日未创建PO，Avoid system issue：Credit block
                                 if (ProcessMonitor.Gap_SO2PO > 1)
                                 {
-                                    Data2Trace.count_CreatedDelay_0400_perMonth[ProcessMonitor.mActualTime.Date_SO_CreatedOn.Month - 1]++;
+                                    Data2Trace.count_CreatedDelay_0400_perMonth[ProcessMonitor.mActualTime.Date_PO_CreatedOn.Month - 1]++;
                                     Data2Trace.count_CreatedDelay_0400_YTD++;
                                 }
                             }

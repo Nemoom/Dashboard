@@ -10,4 +10,11 @@
     <p>
         <asp:Label ID="list" runat="server"></asp:Label>
     </p>
+    <script type="text/javascript">
+        var x = window.screen.height;
+        var y = window.screen.width;
+        var msg = "您屏幕分辨率：" + x + "x" + y + "像素";
+        alert(msg);
+    </script>
 </asp:Content>
+

@@ -226,7 +226,17 @@ public class HolidayHelper
 
         int workDayNum = 0;
         int addDay = date2.Date > currDate.Date ? 1 : -1;
-
+        if (date1 == date2)
+        {
+            if (isContainToday)
+            { 
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }            
+        }
         if (isContainToday)
         {
             currDate = currDate.AddDays(-addDay);

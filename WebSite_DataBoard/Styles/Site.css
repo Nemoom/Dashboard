@@ -102,11 +102,11 @@ first child of the left and right table columns */
     padding: 20px 0px 0px 0px;
     background: #4b6c9e;
     width: 100%;
-    background-image: url(/WebSite_DataBoard/img/FestoLogo.png); 
+    background-image: url("../img/FestoLogo.png"); 
     background-repeat: no-repeat; 
     background-color: #ebeef4; 
     background-position: left 20px top 19px;
-    background-size: auto 18px;
+    background-size: auto 20px;
 }
 
 .header h1
