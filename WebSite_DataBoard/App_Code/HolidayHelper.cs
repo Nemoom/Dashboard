@@ -218,15 +218,14 @@ public class HolidayHelper
     /// 根据传入的两个日期，计算两天间隔的工作日天数
     /// </summary>
     /// <param name="date">带计算的时间</param>
-    /// <param name="isContainToday">当天是否算工作日（默认：true）</param>
+    /// <param name="isContainToday">首日是否算工作日（默认：true）</param>
     /// <returns></returns>
-    public int GetWorkDayNum(DateTime date1,DateTime date2, bool isContainToday = true)
+    public int GetWorkDayNum(DateTime date_Start,DateTime date_End, bool isContainToday = true)
     {
-        var currDate = date1;
+        var currDate = date_Start;
 
         int workDayNum = 0;
-        int addDay = date2.Date > currDate.Date ? 1 : -1;
-        if (date1 == date2)
+        if (date_Start == date_End)
         {
             if (isContainToday)
             { 
@@ -237,6 +236,7 @@ public class HolidayHelper
                 return 0;
             }            
         }
+        int addDay = date_End.Date > currDate.Date ? 1 : -1;
         if (isContainToday)
         {
             currDate = currDate.AddDays(-addDay);
@@ -251,7 +251,7 @@ public class HolidayHelper
                 currDate = currDate.AddDays(addDay);
                 if (IsWorkDay(currDate, thisYearData))
                     workDayNum += addDay;
-                isEnd = addDay > 0 ? (date2.Date > currDate.Date) : (date2.Date < currDate.Date);
+                isEnd = addDay > 0 ? (date_End.Date > currDate.Date) : (date_End.Date < currDate.Date);
             } while (isEnd);
         }
         return workDayNum;

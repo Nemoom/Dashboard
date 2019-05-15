@@ -31,15 +31,15 @@ public class ProcessMonitor
     //依据报价承诺给客户多少个工作日交付计算出的具体交付日期
     public static DateTime Date_QuotationLT { get { return HolidayHelper.GetInstance().GetReckonDate(mActualTime.Date_SO_CreatedOn, mEstimatedTime.QuotationLT, true); } }
     //SO创建到PO创建的时间间隔(WD)
-    public static int Gap_SO2PO { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_PO_CreatedOn, mActualTime.Date_SO_CreatedOn, false)); } }
+    public static int Gap_SO2PO { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_SO_CreatedOn, mActualTime.Date_PO_CreatedOn, false)); } }
     //PO创建到PO释放的时间间隔(WD)
-    public static int Gap_PO2Release { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualReleaseDate, mActualTime.Date_PO_CreatedOn, false)); } }
+    public static int Gap_PO2Release { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_PO_CreatedOn, mActualTime.Date_ActualReleaseDate, false)); } }
     //PO释放到完成生产入库的时间间隔(WD)
-    public static int Gap_Release2Finish { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualFinishDate, mActualTime.Date_ActualReleaseDate, false)); } }
+    public static int Gap_Release2Finish { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualReleaseDate, mActualTime.Date_ActualFinishDate, false)); } }
     //完成生产入库到起运发货的时间间隔(WD)
-    public static int Gap_Finish2Shipment { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ShipmentStartOn, mActualTime.Date_ActualFinishDate, false)); } }
+    public static int Gap_Finish2Shipment { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualFinishDate, mActualTime.Date_ShipmentStartOn, false)); } }
     //以完成生产入库但未发货订单，完成生产入库至今的时间间隔(WD)
-    public static int Gap_Finish2Today { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(DateTime.Today, mActualTime.Date_ActualFinishDate, false)); } }
+    public static int Gap_Finish2Today { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualFinishDate, DateTime.Today, false)); } }
     //已完成订单Lead Time(CDS)
     public static int LT
     {

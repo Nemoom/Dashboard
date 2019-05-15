@@ -1151,11 +1151,12 @@ public class ExcelOperation
                     case PO_Status.PO_Finished:
                     case PO_Status.DLV:
                         //统计SO_CreatedOn为今年的订单                
-                        if (ProcessMonitor.mActualTime.Date_SO_CreatedOn.Year == DateTime.Today.Year)
+                        if (ProcessMonitor.mActualTime.Date_PO_CreatedOn.Year == DateTime.Today.Year)
                         {
                             //For ECharts3_1
                             Data2Trace.count_PO_soCreated_perMonth[ProcessMonitor.mActualTime.Date_PO_CreatedOn.Month - 1]++;
                             Data2Trace.count_PO_soCreated_YTD++;
+                            
                             //For ECharts3_1：1个工作日未创建PO，Avoid system issue：Credit block
                             if (ProcessMonitor.Gap_SO2PO > 1)
                             {

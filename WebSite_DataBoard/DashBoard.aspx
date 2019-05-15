@@ -153,6 +153,22 @@
     <script src="Scripts/FestoColor.js" type="text/javascript"></script>
     <script src="Scripts/FestoColor_6.js" type="text/javascript"></script>
     <script type="text/javascript">
+//        document.getElementById('divECharts1_1').style.height=window.screen.width/4;
+//        var x = document.getElementById('divECharts1_1').style.height;
+//        var y = window.screen.width/4;
+//        var msg = "divECharts1_1分辨率：" + x + "x" + y + "像素";
+//        alert(msg);
+//        document.getElementById('divECharts1_2').style.height=window.screen.width/4;
+//        document.getElementById('divECharts1_3').style.height=window.screen.width/4;
+//        document.getElementById('divECharts1_4').style.height=window.screen.width/4;
+//        document.getElementById('divECharts2_1').style.height=window.screen.width/4;
+//        document.getElementById('divECharts2_2').style.height=window.screen.width/4;
+//        document.getElementById('divECharts2_3').style.height=window.screen.width/4;
+//        document.getElementById('divECharts2_4').style.height=window.screen.width/4;
+//        document.getElementById('divECharts3_1').style.height=window.screen.width/4;
+//        document.getElementById('divECharts3_2').style.height=window.screen.width/4;
+//        document.getElementById('divECharts3_3').style.height=window.screen.width/4;
+//        document.getElementById('divECharts3_4').style.height=window.screen.width/4;
         // 基于准备好的dom，初始化echarts图表
         var myChart1_1 = echarts.init(document.getElementById('divECharts1_1'),'FestoColor_6');
         var myChart1_2 = echarts.init(document.getElementById('divECharts1_2'),'FestoColor_6');
@@ -207,24 +223,24 @@
     
         var count = 0;
         var time_count;
-        time_count = setInterval(function () {
-                count++;
-                if (count%3==0) {                    
-                    document.getElementById('Panel1').style.display="block";
-                    document.getElementById('Panel2').style.display="none";
-                    document.getElementById('Panel3').style.display="none";
-                } 
-                else if (count%3==1){
-                    document.getElementById('Panel1').style.display="none";
-                    document.getElementById('Panel2').style.display="block";
-                    document.getElementById('Panel3').style.display="none";
-                }   
-                else {
-                    document.getElementById('Panel1').style.display="none";
-                    document.getElementById('Panel2').style.display="none";
-                    document.getElementById('Panel3').style.display="block";
-                }                  
-            }, 30000);
+//        time_count = setInterval(function () {
+//                count++;
+//                if (count%3==0) {                    
+//                    document.getElementById('Panel1').style.display="block";
+//                    document.getElementById('Panel2').style.display="none";
+//                    document.getElementById('Panel3').style.display="none";
+//                } 
+//                else if (count%3==1){
+//                    document.getElementById('Panel1').style.display="none";
+//                    document.getElementById('Panel2').style.display="block";
+//                    document.getElementById('Panel3').style.display="none";
+//                }   
+//                else {
+//                    document.getElementById('Panel1').style.display="none";
+//                    document.getElementById('Panel2').style.display="none";
+//                    document.getElementById('Panel3').style.display="block";
+//                }                  
+//            }, 30000);
     </script>
     <script type="text/javascript">
         function setECharts2(values_ECharts1_1,values_ECharts1_2,values_ECharts1_3,values_ECharts1_4,values_ECharts2_1,values_ECharts2_2,values_ECharts2_3,values_ECharts2_4,values_ECharts3_1,values_ECharts3_2,values_ECharts3_3,values_ECharts3_4) {    
@@ -613,6 +629,14 @@
 //                            trigger: 'item',
                             formatter: "{a} <br/>{b} : {c} ({d}%)"
                         },
+                        toolbox: {
+                            feature: {
+                                dataView: {show: true, readOnly: false},
+                                magicType: {show: false},
+                                restore: {show: true},
+                                saveAsImage: {show: true}
+                            }
+                        },
                         legend: {
                             bottom: 10,
                             left: 'center',
@@ -721,6 +745,14 @@
                             orient: 'vertical',
                             x: 'left',
                             data:  ['<=40 CDS','40-50 CDS','>50 CDS']
+                        },
+                        toolbox: {
+                            feature: {
+                                dataView: {show: true, readOnly: false},
+                                magicType: {show: false},
+                                restore: {show: true},
+                                saveAsImage: {show: true}
+                            }
                         },
                         series: [
                             {                                

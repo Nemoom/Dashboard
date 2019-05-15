@@ -672,17 +672,8 @@ public class Data2Trace
 
     public static void CleanCounter()
     {
-        //ECharts1:PO Create Monitor
-        count_PO_soCreated_perMonth = new int[12];
-        count_CreatedDelay_perMonth = new int[12];
-        count_PO_soCreated_YTD = 0;
-        count_CreatedDelay_YTD = 0;
-        //ECharts2:PO Release Monitor
-        count_PO_poCreated_perMonth = new int[12];
-        count_ReleaseDelay_perMonth = new int[12];
-        count_PO_poCreated_YTD = 0;
-        count_ReleaseDelay_YTD = 0;
-        //ECharts3:DCR(Delivery Class Reliablity)
+        #region Panel1
+        //ECharts1-1:DCR(Delivery Class Reliablity)及时交付率【0400+0481】
         count_0400_PO_DLV = 0;
         count_0400_PO_DLV_OnTime = 0;
         count_0400_PO_DLV_Delay = 0;
@@ -691,10 +682,10 @@ public class Data2Trace
         count_0400_PO_noDLV_Warning = 0;
         count_0400_PO_noDLV_OK = 0;
         count_0400_PO_LastFailed = 0;//昨天刚刚超期的订单数
+        count_0400_PO_OnTime_perMonth = new int[12];
+        count_0400_PO_OnTime_YTD = 0;
         count_0400_PO_Finished_perMonth = new int[12];
-        count_0400_PO_OnTime_perMonth = new int[12];//DC achieved
         count_0400_PO_Finished_YTD = 0;
-        count_0400_PO_OnTime_YTD = 0;//DC achieved
 
         count_0481_PO_DLV = 0;
         count_0481_PO_DLV_OnTime = 0;
@@ -704,38 +695,122 @@ public class Data2Trace
         count_0481_PO_noDLV_Warning = 0;
         count_0481_PO_noDLV_OK = 0;
         count_0481_PO_LastFailed = 0;//昨天刚刚超期的订单数
+        count_0481_PO_OnTime_perMonth = new int[12];
+        count_0481_PO_OnTime_YTD = 0;
         count_0481_PO_Finished_perMonth = new int[12];
-        count_0481_PO_OnTime_perMonth = new int[12];//DC achieved
         count_0481_PO_Finished_YTD = 0;
-        count_0481_PO_OnTime_YTD = 0;//DC achieved
-        //ECharts4:Finish POs
-        count_PO_Finished_perMonth = new int[12];
-        NetValue_PO_Finished_perMonth = new double[12];
-        count_PO_ForecastFinished_perMonth = new int[12];
-        count_PO_Finished_YTD = 0;
-        NetValue_PO_Finished_YTD = 0;
-        count_PO_ForecastFinished_YTD = 0;
-        //ECharts5:SO Create perMonth
-        count_SO_soCreated_perMonth = new int[12];
-        NetValue_SO_soCreated_perMonth = new double[12];
-        count_SO_soCreated_YTD = 0;
-        NetValue_SO_soCreated_YTD = 0;
-        //ECharts6:LT(Lead Time)
+        //ECharts1-2:LT(Average Lead Time：CDS)平均交货时间【0400】
         LT_perMonth = new double[12];
         LT_perWeek = new double[4];
         LT_YTD = 0;
-        //ECharts7:Reminders for 3Weeks&2Weeks
-        count_Reminder3Weeks_ConfirmedDt = 0;
-        count_Reminder2Weeks_ConfirmedDt = 0;
+
+        LT_0400_perMonth = new double[12];
+        LT_0400_perWeek = new double[4];
+        LT_0400_YTD = 0;
+
+        LT_0481_perMonth = new double[12];
+        LT_0481_perWeek = new double[4];
+        LT_0481_YTD = 0;
+        //ECharts1-3:DCR ALERT【0400】Reminders for 3Weeks&2Weeks & Last Failed Order
         count_Reminder3Weeks_LT = 0;
         count_Reminder2Weeks_LT = 0;
-        count_FailedMonitor_DC = 0;
+        count_Reminder3Weeks_ConfirmedDt = 0;
+        count_Reminder2Weeks_ConfirmedDt = 0;
+        count_FailedMonitor_DC = 0;//昨天为止失败的订单
         count_FailedMonitor_Req = 0;
-        //ECharts8:Repertory Monitor
+        //ECharts1-4:Ongoing Pro. Order【0400】
+        count_Ongoing_40 = 0;
+        count_Ongoing_40_50 = 0;
+        count_Ongoing_50 = 0;
+        #endregion
+
+        #region Panel2
+        //ECharts2-1:Monthly SO Input【0400+0481】
+        count_SO_soCreated_perMonth = new int[12];//需要查重，从List<string>中处理一下
+        count_SO_soCreated_YTD = 0;//需要查重，从List<string>中处理一下
+        NetValue_SO_soCreated_perMonth = new double[12];
+        NetValue_SO_soCreated_YTD = 0;
+
+        count_SO_soCreated_0400_perMonth = new int[12];//需要查重，从List<string>中处理一下
+        count_SO_soCreated_0400_YTD = 0;//需要查重，从List<string>中处理一下
+        NetValue_SO_soCreated_0400_perMonth = new double[12];
+        NetValue_SO_soCreated_0400_YTD = 0;
+
+        count_SO_soCreated_0481_perMonth = new int[12];//需要查重，从List<string>中处理一下
+        count_SO_soCreated_0481_YTD = 0;//需要查重，从List<string>中处理一下
+        NetValue_SO_soCreated_0481_perMonth = new double[12];
+        NetValue_SO_soCreated_0481_YTD = 0;
+        //ECharts2-2:Monthly Finished Pro. Order【0400+0481】
+        count_PO_Finished_perMonth = new int[12];
+        count_PO_Finished_YTD = 0;
+        NetValue_PO_Finished_perMonth = new double[12];
+        NetValue_PO_Finished_YTD = 0;
+        count_PO_ForecastFinished_perMonth = new int[12];
+        count_PO_ForecastFinished_YTD = 0;
+
+        count_PO_Finished_0400_perMonth = new int[12];
+        count_PO_Finished_0400_YTD = 0;
+        NetValue_PO_Finished_0400_perMonth = new double[12];
+        NetValue_PO_Finished_0400_YTD = 0;
+        count_PO_ForecastFinished_0400_perMonth = new int[12];
+        count_PO_ForecastFinished_0400_YTD = 0;
+
+        count_PO_Finished_0481_perMonth = new int[12];
+        count_PO_Finished_0481_YTD = 0;
+        NetValue_PO_Finished_0481_perMonth = new double[12];
+        NetValue_PO_Finished_0481_YTD = 0;
+        count_PO_ForecastFinished_0481_perMonth = new int[12];
+        count_PO_ForecastFinished_0481_YTD = 0;
+        //ECharts2-3:CS Shipment Statistic【YTD 0400+0481】
         count_Stored_5 = 0;
         count_Stored_5_10 = 0;
         count_Stored_10_20 = 0;
         count_Stored_20 = 0;
-        count_Stored = 0;
+        count_Stored = 0;//已完成无ShipmentStartOn 
+        //ECharts2-4:Ready fot Shipment Monitoring【YTD 0400+0481】
+        count_Ready4Shipment_10 = 0;
+        count_Ready4Shipment_10_20 = 0;
+        count_Ready4Shipment_20_30 = 0;
+        count_Ready4Shipment_30 = 0;
+        #endregion
+
+        #region Panel3 【0400】E2E Process Monitoring
+        //ECharts3-1:SO->PO Creation Monitoring(1WD)
+        count_PO_soCreated_perMonth = new int[12];
+        count_CreatedDelay_perMonth = new int[12];
+        count_PO_soCreated_YTD = 0;
+        count_CreatedDelay_YTD = 0;
+
+        count_PO_soCreated_0400_perMonth = new int[12];
+        count_CreatedDelay_0400_perMonth = new int[12];
+        count_PO_soCreated_0400_YTD = 0;
+        count_CreatedDelay_0400_YTD = 0;
+        //ECharts3-2:PO Creation->PO Release Monitoring(5WD)
+        count_PO_poCreated_perMonth = new int[12];
+        count_ReleaseDelay_perMonth = new int[12];
+        count_PO_poCreated_YTD = 0;
+        count_ReleaseDelay_YTD = 0;
+
+        count_PO_poCreated_0400_perMonth = new int[12];
+        count_ReleaseDelay_0400_perMonth = new int[12];
+        count_PO_poCreated_0400_YTD = 0;
+        count_ReleaseDelay_0400_YTD = 0;
+        //ECharts3-3:PO Release->Actual finish Monitoring(23WD)【Average】
+        averageTime_POFinish_perMonth = new double[12];
+        averageTime_POFinish_YTD = 0;
+        averageTime_POFinish_0400_perMonth = new double[12];
+        averageTime_POFinish_0400_YTD = 0;
+        averageTime_POFinish_0481_perMonth = new double[12];
+        averageTime_POFinish_0481_YTD = 0;
+        //ECharts3-4:Actual finish->Ex-plant Monitoring(2WD)【Average】
+        averageTime_Ex_plant_perMonth = new double[12];
+        averageTime_Ex_plant_YTD = 0;
+        averageTime_Ex_plant_0400_perMonth = new double[12];
+        averageTime_Ex_plant_0400_YTD = 0;
+        averageTime_Ex_plant_0481_perMonth = new double[12];
+        averageTime_Ex_plant_0481_YTD = 0;
+        #endregion
+
+
     }
 }
