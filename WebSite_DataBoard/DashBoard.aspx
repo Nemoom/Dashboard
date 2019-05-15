@@ -88,12 +88,15 @@
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts2_1" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts2_1" style="background-position: center center; height: 500px; border: 1px solid #ccc; 
+                                padding: 10px; background-size: 80% 70%; background-image: url('./img/in.png'); background-repeat: no-repeat;">
+                            <%--<div id="divECharts2_1" style="height: 500px; border: 1px solid #ccc; padding: 10px;">--%>
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts2_2" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts2_2" style="background-position: center center; height: 500px; border: 1px solid #ccc; 
+                                padding: 10px; background-size: 80% 70%; background-image: url('./img/out.png'); background-repeat: no-repeat;">
                             </div>
                         </td>
                     </tr>
@@ -339,29 +342,12 @@
                             }
                         }
                     },
-                    itemStyle:{
-                        normal: {
-                            //每根柱子颜色设置
-                            borderColor: function(params) {
-                                var colorList = [
-                                    "#0091dc",
-                                    "#0091dc",
-                                    "#0091dc",
-                                    "#0091dc",
-                                    "#0091dc",
-                                    "#0091dc",
-                                    "#0091dc",
-                                    "#0091dc",
-                                    "#0091dc",
-                                    "#0091dc",
-                                    "#0091dc",
-                                    "#0091dc",                                    
-                                    "blue"
-                                ];
-                                return colorList[params.dataIndex];
-                            }
-                        }
-                    },
+//                    itemStyle:{
+//                        normal: {
+//                            //每根柱子颜色设置
+//                            borderColor: "blue"
+//                        }
+//                    },
 //                    markPoint : {
 //                         data : [
 //                            {
@@ -394,29 +380,29 @@
                             }
                         }
                     },
-                    itemStyle:{
-                        normal: {
-                            //每根柱子颜色设置
-                            borderColor: function(params) {
-                                var colorList = [
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",                                    
-                                    "gray"
-                                ];
-                                return colorList[params.dataIndex];
-                            }
-                        }
-                    },
+//                    itemStyle:{
+//                        normal: {
+//                            //每根柱子颜色设置
+//                            color: function(params) {
+//                                var colorList = [
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",                                    
+//                                    "gray"
+//                                ];
+//                                return colorList[params.dataIndex];
+//                            }
+//                        }
+//                    },
 //                    markPoint : {
 //                         data : [
 //                            {
@@ -449,31 +435,7 @@
                                 }
                             }
                         }
-                    },
-                    itemStyle:{
-                        normal: {
-                            //每根柱子颜色设置
-                            borderWidth: 5,
-                            borderColor: function(params) {
-                                var colorList = [
-                                    "#72c4ef",
-                                    "#72c4ef",
-                                    "#72c4ef",
-                                    "#72c4ef",
-                                    "#72c4ef",
-                                    "#72c4ef",
-                                    "#72c4ef",
-                                    "#72c4ef",
-                                    "#72c4ef",
-                                    "#72c4ef",
-                                    "#72c4ef",
-                                    "#72c4ef",                                    
-                                    "green"
-                                ];
-                                return colorList[params.dataIndex];
-                            }
-                        }
-                    },
+                    },                    
 //                    markPoint : {
 //                         data : [
 //                            {
@@ -492,7 +454,6 @@
                 },
             ]
         }     
-       
         myChart1_1.hideLoading();    //隐藏加载动画
         myChart1_1.setOption(option1_1);
         //*****************************************************************************************************************************
@@ -929,9 +890,77 @@
                 bottom: 10,
                 left: 'center',
                 data:['0400新进订单量','0481新进订单量','订单金额']
-            },
+            },   
+//            graphic: [
+//                {
+//                    type: 'image',
+//                    id: 'logo',
+//                    right: 20,
+//                    top: 20,
+////                    z: -10,
+//                    bounding: 'raw',
+//                    origin: [75, 75],
+//                    style: {
+//                        image: 'image:///WebSite_DataBoard/img/FestoLogo.png',
+//                        width: 150,
+//                        height: 150
+////                        opacity: 0.4
+//                    }
+//                }
+            graphic: [
+//                {
+//                    type: 'image',
+//                    id: 'logo',
+//                    right: 20,
+//                    top: 20,
+//                    z: -10,
+//                    bounding: 'raw',
+//                    origin: [75, 75],
+//                    style: {
+//                        image: 'http://echarts.baidu.com/images/favicon.png',
+//                        width: 150,
+//                        height: 150,
+//                        opacity: 0.4
+//                    }
+//                },
+                {
+                    type: 'group',
+                    rotation: Math.PI / 4,
+                    bounding: 'raw',
+                    right: 110,
+                    bottom: 110,
+                    z: 100,
+                    children: [
+                        {
+                            type: 'rect',
+                            left: 'center',
+                            top: 'center',
+                            z: 100,
+                            shape: {
+                                width: 400,
+                                height: 50
+                            },
+                            style: {
+                                fill: 'rgba(0,0,0,0.3)'
+                            }
+                        },
+                        {
+                            type: 'text',
+                            left: 'center',
+                            top: 'center',
+                            z: 100,
+                            style: {
+                                fill: '#fff',
+                                text: 'Sale Order Input',
+                                font: 'bold 26px Microsoft YaHei'
+                            }
+                        }
+                    ]
+                }
+            ],         
             xAxis: [
                 {
+                    splitLine:{show: false},//去除网格线
                     type: 'category',
                     data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
                     axisPointer: {
@@ -941,6 +970,7 @@
             ],
             yAxis: [
                 {
+                    splitLine:{show: false},//去除网格线
                     type: 'value',
                     name: '订单量',
 //                    min: 0,
@@ -1081,6 +1111,42 @@
                 },
                 data:['0400订单完成量','0481订单完成量','预计完成量','订单金额']
             },
+            graphic: [
+                {
+                    type: 'group',
+                    rotation: Math.PI / 4,
+                    bounding: 'raw',
+                    right: 110,
+                    bottom: 110,
+                    z: 100,
+                    children: [
+                        {
+                            type: 'rect',
+                            left: 'center',
+                            top: 'center',
+                            z: 100,
+                            shape: {
+                                width: 400,
+                                height: 50
+                            },
+                            style: {
+                                fill: 'rgba(0,0,0,0.3)'
+                            }
+                        },
+                        {
+                            type: 'text',
+                            left: 'center',
+                            top: 'center',
+                            z: 100,
+                            style: {
+                                fill: '#fff',
+                                text: 'Finished Pro. Order',
+                                font: 'bold 26px Microsoft YaHei'
+                            }
+                        }
+                    ]
+                }
+            ], 
             xAxis: [
                 {
                     type: 'category',
