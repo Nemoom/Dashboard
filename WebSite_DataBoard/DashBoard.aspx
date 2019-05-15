@@ -20,7 +20,7 @@
         <div class="header">
             <div class="title">
                 <h1>
-                    Transparency kit
+                    GCN CS Transparency kit
                 </h1>
             </div>
             <div class="loginDisplay">
@@ -60,12 +60,12 @@
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts1_1" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts1_1" style="height: 500px; border: 1px solid #ccc; padding: 10px; background-color: #E0E0E0;">
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts1_2" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts1_2" style="height: 500px; border: 1px solid #ccc; padding: 10px; background-color: #E0E0E0;">
                             </div>
                         </td>
                     </tr>
@@ -339,6 +339,29 @@
                             }
                         }
                     },
+                    itemStyle:{
+                        normal: {
+                            //每根柱子颜色设置
+                            borderColor: function(params) {
+                                var colorList = [
+                                    "#0091dc",
+                                    "#0091dc",
+                                    "#0091dc",
+                                    "#0091dc",
+                                    "#0091dc",
+                                    "#0091dc",
+                                    "#0091dc",
+                                    "#0091dc",
+                                    "#0091dc",
+                                    "#0091dc",
+                                    "#0091dc",
+                                    "#0091dc",                                    
+                                    "blue"
+                                ];
+                                return colorList[params.dataIndex];
+                            }
+                        }
+                    },
 //                    markPoint : {
 //                         data : [
 //                            {
@@ -368,6 +391,29 @@
                                 } else {
                                     return '';
                                 }
+                            }
+                        }
+                    },
+                    itemStyle:{
+                        normal: {
+                            //每根柱子颜色设置
+                            borderColor: function(params) {
+                                var colorList = [
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",                                    
+                                    "gray"
+                                ];
+                                return colorList[params.dataIndex];
                             }
                         }
                     },
@@ -401,6 +447,30 @@
                                 } else {
                                     return '';
                                 }
+                            }
+                        }
+                    },
+                    itemStyle:{
+                        normal: {
+                            //每根柱子颜色设置
+                            borderWidth: 5,
+                            borderColor: function(params) {
+                                var colorList = [
+                                    "#72c4ef",
+                                    "#72c4ef",
+                                    "#72c4ef",
+                                    "#72c4ef",
+                                    "#72c4ef",
+                                    "#72c4ef",
+                                    "#72c4ef",
+                                    "#72c4ef",
+                                    "#72c4ef",
+                                    "#72c4ef",
+                                    "#72c4ef",
+                                    "#72c4ef",                                    
+                                    "green"
+                                ];
+                                return colorList[params.dataIndex];
                             }
                         }
                     },
@@ -453,7 +523,15 @@
                         color: '#999'
                     }
                 }
-            },         
+            },  
+            toolbox: {
+                feature: {
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },       
             legend: {
                 bottom: 10,
                 left: 'center',
