@@ -55,47 +55,47 @@
             <input id="Text1" name="text" type="text" runat="server" style="display:none;"
             value="demo.XLSX"/>
             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-            <asp:Panel ID="Panel1" runat="server" Height="1050">
+            <asp:Panel ID="Panel1" runat="server" Height="900">
                 <table style="width: 100%;">
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts1_1" style="height: 500px; border: 1px solid #ccc; padding: 10px; background-color: #E0E0E0;">
+                            <div id="divECharts1_1" style="height: 425px; border: 1px solid #ccc; padding: 10px; background-color: #E0E0E0;">
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts1_2" style="height: 500px; border: 1px solid #ccc; padding: 10px; background-color: #E0E0E0;">
+                            <div id="divECharts1_2" style="height: 425px; border: 1px solid #ccc; padding: 10px; background-color: #E0E0E0;">
                             </div>
                         </td>
                     </tr>
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts1_3" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts1_3" style="height: 425px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts1_4" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts1_4" style="height: 425px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                     </tr>
                 </table>
             </asp:Panel>
-            <asp:Panel ID="Panel2" runat="server" Height="1050">
+            <asp:Panel ID="Panel2" runat="server" Height="900">
                 <table style="width: 100%;">
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts2_1" style="background-position: center center; height: 500px; border: 1px solid #ccc; 
+                            <div id="divECharts2_1" style="background-position: center center; height: 425px; border: 1px solid #ccc; 
                                 padding: 10px; background-size: 80% 70%; background-image: url('./img/in.png'); background-repeat: no-repeat;">
                             <%--<div id="divECharts2_1" style="height: 500px; border: 1px solid #ccc; padding: 10px;">--%>
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts2_2" style="background-position: center center; height: 500px; border: 1px solid #ccc; 
+                            <div id="divECharts2_2" style="background-position: center center; height: 425px; border: 1px solid #ccc; 
                                 padding: 10px; background-size: 80% 70%; background-image: url('./img/out.png'); background-repeat: no-repeat;">
                             </div>
                         </td>
@@ -103,40 +103,40 @@
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts2_3" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts2_3" style="height: 425px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts2_4" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts2_4" style="height: 425px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                     </tr>
                 </table>
             </asp:Panel>   
-            <asp:Panel ID="Panel3" runat="server" Height="1050">
+            <asp:Panel ID="Panel3" runat="server" Height="900">
                 <table style="width: 100%;">
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts3_1" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts3_1" style="height: 425px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts3_2" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts3_2" style="height: 425px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                     </tr>
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts3_3" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts3_3" style="height: 425px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts3_4" style="height: 500px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts3_4" style="height: 425px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                     </tr>
@@ -226,24 +226,24 @@
     
         var count = 0;
         var time_count;
-//        time_count = setInterval(function () {
-//                count++;
-//                if (count%3==0) {                    
-//                    document.getElementById('Panel1').style.display="block";
-//                    document.getElementById('Panel2').style.display="none";
-//                    document.getElementById('Panel3').style.display="none";
-//                } 
-//                else if (count%3==1){
-//                    document.getElementById('Panel1').style.display="none";
-//                    document.getElementById('Panel2').style.display="block";
-//                    document.getElementById('Panel3').style.display="none";
-//                }   
-//                else {
-//                    document.getElementById('Panel1').style.display="none";
-//                    document.getElementById('Panel2').style.display="none";
-//                    document.getElementById('Panel3').style.display="block";
-//                }                  
-//            }, 30000);
+        time_count = setInterval(function () {
+                count++;
+                if (count%3==0) {                    
+                    document.getElementById('Panel1').style.display="block";
+                    document.getElementById('Panel2').style.display="none";
+                    document.getElementById('Panel3').style.display="none";
+                } 
+                else if (count%3==1){
+                    document.getElementById('Panel1').style.display="none";
+                    document.getElementById('Panel2').style.display="block";
+                    document.getElementById('Panel3').style.display="none";
+                }   
+                else {
+                    document.getElementById('Panel1').style.display="none";
+                    document.getElementById('Panel2').style.display="none";
+                    document.getElementById('Panel3').style.display="block";
+                }                  
+            }, 20000);
     </script>
     <script type="text/javascript">
         function setECharts2(values_ECharts1_1,values_ECharts1_2,values_ECharts1_3,values_ECharts1_4,values_ECharts2_1,values_ECharts2_2,values_ECharts2_3,values_ECharts2_4,values_ECharts3_1,values_ECharts3_2,values_ECharts3_3,values_ECharts3_4) {    
@@ -278,7 +278,7 @@
         var option1_1 = {
             title: {
                         text: 'DCR(Delivery Class Reliablity)', 
-                        subtext: 'According to Quotation LT',
+//                        subtext: 'According to Quotation LT',
                         x: 'center'
                     },
             tooltip: {
@@ -641,16 +641,16 @@
         var values_Reminder_Monitor_LT = []; 
         var values_Failed_Monitor = []; 
         
-        values_Reminder_Monitor_LT.push({ "value": var_Reminder_Monitor_LT[0], "name": '生产物料计划提醒' });
-        values_Reminder_Monitor_LT.push({ "value": var_Reminder_Monitor_LT[1], "name": '生产计划提醒' }); 
-        values_Failed_Monitor.push({ "value": var_Failed_Monitor[0], "name": 'DC Failed' });
-        values_Failed_Monitor.push({ "value": var_Failed_Monitor[1], "name": 'Request Failed' }); 
+        values_Reminder_Monitor_LT.push({ "value": var_Reminder_Monitor_LT[0], "name": 'Material Planning Alert' });
+        values_Reminder_Monitor_LT.push({ "value": var_Reminder_Monitor_LT[1], "name": 'Production Planning Alert' }); 
+        values_Failed_Monitor.push({ "value": var_Failed_Monitor[0], "name": 'DC Failed & Match Req' });
+        values_Failed_Monitor.push({ "value": var_Failed_Monitor[1], "name": 'DC Failed & Req Failed' }); 
 
         // 图表使用-------------------
         var option1_3 = {
                         title: [{
                               text: 'DCR ALERT',
-                              subtext:'0400',
+                              subtext:'0400 当月',
                               x: 'center'
 //                            text: 'Reminder Monitor',
 //                            subtext: 'According to Quotation LT',       
@@ -679,7 +679,7 @@
                         legend: {
                             bottom: 10,
                             left: 'center',
-                            data:  ['生产物料计划提醒','生产计划提醒','DC Failed','Request Failed']
+                            data:  ['Material Planning Alert','Production Planning Alert','DC Failed & Match Req','DC Failed & Req Failed']
                         },
                         
                         series: [
@@ -773,7 +773,7 @@
         var option1_4 = {
                         title: {
                             text: 'Ongoing Pro. Order Monitoring',
-                            subtext: '0400',    
+                            subtext: '0400 YTD',    
                             x: 'center'
                         },
                         tooltip: {
@@ -889,7 +889,10 @@
             legend: {
                 bottom: 10,
                 left: 'center',
-                data:['0400新进订单量','0481新进订单量','订单金额']
+                data:['0400新进订单量','0481新进订单量','订单金额'],
+                selected: {
+                '订单金额': false
+                }
             },   
 //            graphic: [
 //                {
@@ -923,40 +926,40 @@
 //                        opacity: 0.4
 //                    }
 //                },
-                {
-                    type: 'group',
-                    rotation: Math.PI / 4,
-                    bounding: 'raw',
-                    right: 110,
-                    bottom: 110,
-                    z: 100,
-                    children: [
-                        {
-                            type: 'rect',
-                            left: 'center',
-                            top: 'center',
-                            z: 100,
-                            shape: {
-                                width: 400,
-                                height: 50
-                            },
-                            style: {
-                                fill: 'rgba(0,0,0,0.3)'
-                            }
-                        },
-                        {
-                            type: 'text',
-                            left: 'center',
-                            top: 'center',
-                            z: 100,
-                            style: {
-                                fill: '#fff',
-                                text: 'Sale Order Input',
-                                font: 'bold 26px Microsoft YaHei'
-                            }
-                        }
-                    ]
-                }
+//                {
+//                    type: 'group',
+//                    rotation: Math.PI / 4,
+//                    bounding: 'raw',
+//                    right: 110,
+//                    bottom: 110,
+//                    z: 100,
+//                    children: [
+//                        {
+//                            type: 'rect',
+//                            left: 'center',
+//                            top: 'center',
+//                            z: 100,
+//                            shape: {
+//                                width: 400,
+//                                height: 50
+//                            },
+//                            style: {
+//                                fill: 'rgba(0,0,0,0.3)'
+//                            }
+//                        },
+//                        {
+//                            type: 'text',
+//                            left: 'center',
+//                            top: 'center',
+//                            z: 100,
+//                            style: {
+//                                fill: '#fff',
+//                                text: 'Sale Order Input',
+//                                font: 'bold 26px Microsoft YaHei'
+//                            }
+//                        }
+//                    ]
+//                }
             ],         
             xAxis: [
                 {
@@ -983,6 +986,7 @@
                 {
                     type: 'value',
                     name: '金额',
+                    visiable: false,
 //                    min: 0,
 //                    max: 50000000,
 //                    interval: 5000,
@@ -1107,49 +1111,50 @@
                 bottom: 10,
                 left: 'center',
                 selected: {
-                '预计完成量': false
+                '预计完成量': false,'订单金额':false
                 },
                 data:['0400订单完成量','0481订单完成量','预计完成量','订单金额']
             },
-            graphic: [
-                {
-                    type: 'group',
-                    rotation: Math.PI / 4,
-                    bounding: 'raw',
-                    right: 110,
-                    bottom: 110,
-                    z: 100,
-                    children: [
-                        {
-                            type: 'rect',
-                            left: 'center',
-                            top: 'center',
-                            z: 100,
-                            shape: {
-                                width: 400,
-                                height: 50
-                            },
-                            style: {
-                                fill: 'rgba(0,0,0,0.3)'
-                            }
-                        },
-                        {
-                            type: 'text',
-                            left: 'center',
-                            top: 'center',
-                            z: 100,
-                            style: {
-                                fill: '#fff',
-                                text: 'Finished Pro. Order',
-                                font: 'bold 26px Microsoft YaHei'
-                            }
-                        }
-                    ]
-                }
-            ], 
+//            graphic: [
+//                {
+//                    type: 'group',
+//                    rotation: Math.PI / 4,
+//                    bounding: 'raw',
+//                    right: 110,
+//                    bottom: 110,
+//                    z: 100,
+//                    children: [
+//                        {
+//                            type: 'rect',
+//                            left: 'center',
+//                            top: 'center',
+//                            z: 100,
+//                            shape: {
+//                                width: 400,
+//                                height: 50
+//                            },
+//                            style: {
+//                                fill: 'rgba(0,0,0,0.3)'
+//                            }
+//                        },
+//                        {
+//                            type: 'text',
+//                            left: 'center',
+//                            top: 'center',
+//                            z: 100,
+//                            style: {
+//                                fill: '#fff',
+//                                text: 'Finished Pro. Order',
+//                                font: 'bold 26px Microsoft YaHei'
+//                            }
+//                        }
+//                    ]
+//                }
+//            ], 
             xAxis: [
                 {
                     type: 'category',
+                    splitLine:{show: false},//去除网格线
                     data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
                     axisPointer: {
                         type: 'shadow'
@@ -1159,6 +1164,7 @@
             yAxis: [
                 {
                     type: 'value',
+                    splitLine:{show: false},//去除网格线
                     name: '订单量',
 //                    min: 0,
 //                    max: 1000,
@@ -1170,6 +1176,7 @@
                 {
                     type: 'value',
                     name: '金额',
+                    visiable: false,
 //                    min: 0,
 //                    max: 50000000,
 //                    interval: 5000,
@@ -1268,13 +1275,13 @@
         values_Overstocked_Monitor.push({ "value": var_Echarts2_3[1], "name": '5-10 WD' }); 
         values_Overstocked_Monitor.push({ "value": var_Echarts2_3[2], "name": '10-20 WD' });
         values_Overstocked_Monitor.push({ "value": var_Echarts2_3[3], "name": '>20 WD' }); 
-        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[4], "name": '未发货' });
+        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[4], "name": 'Undelivered' });
 
         // 图表使用-------------------
         var option2_3 = {
                         title: {
                             text: 'CS Shipment Statistic',
-                            subtext:'0400+0481',
+                            subtext:'0400+0481 YTD',
                             x: 'center'
                         },
                         tooltip: {
@@ -1284,7 +1291,7 @@
                         legend: {
                             orient: 'vertical',
                             x: 'left',
-                            data:  ['<=5 WD','5-10 WD','10-20 WD','>20 WD','未发货']
+                            data:  ['<=5 WD','5-10 WD','10-20 WD','>20 WD','Undelivered']
                         },
                         series: [
                             {                                
@@ -1359,7 +1366,7 @@
         // 图表使用-------------------
         var option2_4 = {
                         title: {
-                            text: 'Ready for Shipment Monitoring',
+                            text: 'Undelivered Monitoring',
                             subtext:'0400+0481',
                             x: 'center'
                         },
@@ -1381,11 +1388,24 @@
                                 center: ['50%', '60%'],
                                 label: {
                                     normal: {
-                                        formatter: '{b|{b}：{c}} \n {per|{d}%}  ',                                        
-                                        position:'inside',
-                                        rich: {                                            
+                                        formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                                        backgroundColor: '#eee',
+                                        borderColor: '#aaa',
+                                        borderWidth: 1,
+                                        borderRadius: 4,
+                                        rich: {
+                                            a: {
+                                                color: '#999',
+                                                lineHeight: 22,
+                                                align: 'center'
+                                            },
+                                            hr: {
+                                                borderColor: '#aaa',
+                                                width: '100%',
+                                                borderWidth: 0.5,
+                                                height: 0
+                                            },
                                             b: {
-                                                color: '#eee',
                                                 fontSize: 16,
                                                 lineHeight: 33
                                             },
@@ -1402,7 +1422,7 @@
                                     normal: {
                                         length1: 30
                                     }
-                                },                    
+                                },                     
                                 data: values_Ready4Shipment_Monitor
                             },                          
                             ]
@@ -1432,8 +1452,8 @@
         // 图表使用-------------------
         var option3_1 = {
                         title: {
-                            text: 'SO → PO Creation',  
-                            subtext: 'LT > 0.5(WD)',
+                            text: '0400 SO → PO Creation',  
+                            subtext: 'Target：LT < 1(WD)',
                             x: 'center'                           
                         },
                         tooltip : {
@@ -1454,7 +1474,7 @@
                         legend: {
                             bottom: 10,
                             left: 'center',
-                            data:['创建PO数','延期创建PO数','正常创建PO数(YTD)','延期创建PO数(YTD)']
+                            data:['总创建PO数','其中延期创建PO数']
                             
                         },
                         xAxis : [
@@ -1472,7 +1492,7 @@
                         ],
                         series : [
                             {
-                                name:'创建PO数',
+                                name:'总创建PO数',
                                 type:'bar',
                                 label: {
                                     normal: {
@@ -1490,7 +1510,7 @@
                                 data:count_PO_soCreated_perMonth
                             },
                             {
-                                name:'延期创建PO数',
+                                name:'其中延期创建PO数',
                                 type:'bar',
                                 label: {
                                     normal: {
@@ -1585,8 +1605,8 @@
         // 图表使用-------------------
         var option3_2 = {
                         title: {
-                            text: 'PO Creation → PO Release', 
-                            subtext: 'LT > 5(WD)',
+                            text: '0400 PO Creation → PO Release', 
+                            subtext: 'Target：LT <= 5(WD)',
                             x: 'center'
                         },
                         tooltip : {
@@ -1607,7 +1627,7 @@
                         legend: {
                             bottom: 10,
                             left: 'center',
-                            data:['创建PO数','延期释放PO数','按时释放PO数(YTD)','延期释放PO数(YTD)']
+                            data:['总释放PO数','其中延期释放PO数']
                         },
                         xAxis : [
                             {
@@ -1625,7 +1645,7 @@
                         ],
                         series : [
                             {
-                                name:'创建PO数',
+                                name:'总释放PO数',
                                 type:'bar',
                                 label: {
                                     normal: {
@@ -1643,7 +1663,7 @@
                                 data:count_PO_poCreated_perMonth
                             },
                             {
-                                name:'延期释放PO数',
+                                name:'其中延期释放PO数',
                                 type:'bar',    
                                 label: {
                                     normal: {
@@ -1734,8 +1754,8 @@
         var var_POFinish_0481 = var_Echarts3_3[2].split('!');
         var option3_3 = {
             title: {
-                        text: 'PO Release → Actual finish', 
-                        subtext:'23WD',
+                        text: '0400 PO Release → Actual finish', 
+                        subtext:'Target：23WD',
                         x: 'center'
                     },
             tooltip: {
@@ -1894,8 +1914,8 @@
         var var_Ex_plant_0481 = var_Echarts3_4[2].split('!');
         var option3_4 = {
             title: {
-                        text: 'Actual finish → Ex-plant', 
-                        subtext:'2WD',
+                        text: '0400 Actual finish → Ex-plant', 
+                        subtext:'Target：2WD',
                         x: 'center'
                     },
             tooltip: {

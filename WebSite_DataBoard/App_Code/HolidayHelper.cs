@@ -239,7 +239,8 @@ public class HolidayHelper
         int addDay = date_End.Date > currDate.Date ? 1 : -1;
         if (isContainToday)
         {
-            currDate = currDate.AddDays(-addDay);
+            //currDate = currDate.AddDays(-addDay);
+            workDayNum = 1;
         }
 
         DateModel thisYearData = GetConfigDataByYear(currDate.Year);

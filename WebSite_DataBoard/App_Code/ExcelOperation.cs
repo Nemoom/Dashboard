@@ -227,6 +227,7 @@ public class ExcelOperation
         sheet.SetColumnWidth(12, 20 * 256);
         sheet.SetColumnWidth(13, 20 * 256);
         sheet.SetColumnWidth(14, 20 * 256);
+        sheet.SetColumnWidth(15, 20 * 256);
         //写Excel表头
         ICell mcell = sheet.CreateRow(0).CreateCell(0);
         mcell.SetCellValue(excelHeader[6]);//PO
@@ -258,6 +259,8 @@ public class ExcelOperation
         mcell.SetCellValue(excelHeader[28]);//Actual Finish
         mcell = sheet.GetRow(0).CreateCell(14);
         mcell.SetCellValue(excelHeader[34]);//Ex-plant
+        mcell = sheet.GetRow(0).CreateCell(15);
+        mcell.SetCellValue("DCR Time");//DCR Time
         //逐行统计
         for (int i = 1; i < rowsCount; i++)
         {
@@ -298,7 +301,9 @@ public class ExcelOperation
             mcell.SetCellValue(ProcessMonitor.mActualTime.Date_ActualFinishDate);
             mcell = sheet.GetRow(i).CreateCell(14);
             SetValueAndFormat(xssfworkbook, mcell, ProcessMonitor.mActualTime.Date_ShipmentStartOn, format.GetFormat("yyyy年m月d日"));
-            mcell.SetCellValue(ProcessMonitor.mActualTime.Date_ShipmentStartOn); ;
+            mcell.SetCellValue(ProcessMonitor.mActualTime.Date_ShipmentStartOn);
+            mcell = sheet.GetRow(i).CreateCell(15);
+            mcell.SetCellValue(HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, true) + 1);
             //ICell cell1 = sheet.GetRow(i).CreateCell(1);
             //format = xssfworkbook.CreateDataFormat();
             //SetValueAndFormat(xssfworkbook, cell1, ProcessMonitor.Date_QuotationLT, format.GetFormat("yyyy年m月d日"));
@@ -307,7 +312,7 @@ public class ExcelOperation
         }
         //*****************************************************************************************************************************************
         //*********************************************************写EXCEL 禁用********************************************************************
-        //WriteToFile();
+        WriteToFile();
         //*****************************************************************************************************************************************
         //*****************************************************************************************************************************************
         //ECharts3_1&ECharts1_2需要处理一下原始数据
@@ -987,27 +992,24 @@ public class ExcelOperation
                         #endregion
                     }
                     else
-                    {
-                        //0400已完成的订单
-                        if (ProcessMonitor.mEstimatedTime.Date_RequestDate > ProcessMonitor.Date_QuotationLT)
+                    {                       
+                        //需要加1个工作日,将FinishDate转换成ReadyToShipDate
+                        //if (ProcessMonitor.mActualTime.Date_ActualFinishDate > ProcessMonitor.Date_QuotationLT)
+                        if (HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, true) + 1 > ProcessMonitor.mEstimatedTime.QuotationLT)
                         {
-                            //Date_RequestDate为准
-                            if (ProcessMonitor.mActualTime.Date_ActualFinishDate > ProcessMonitor.mEstimatedTime.Date_RequestDate)
+                            //DC Failed                            
+                            if ((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - 3 >= 0)
                             {
-                                Data2Trace.count_FailedMonitor_Req++;
+                                Data2Trace.count_FailedMonitor_DC++;//仅DC Failed
                             }
-                        }
-                        else
-                        {
-                            //Date_QuotationLT为准
-                            if (ProcessMonitor.mActualTime.Date_ActualFinishDate > ProcessMonitor.Date_QuotationLT)
+                            else
                             {
-                                Data2Trace.count_FailedMonitor_DC++;
+                                Data2Trace.count_FailedMonitor_Req++;//Both Failed
                             }
-                        }
+                        }                        
+                        
                     }
                 }
-
                 //根据Date_QuotationLT和Date_RequestDate的比较判断以哪个做基准
                 else if ((DateTime.Today.AddDays(-1)) == ProcessMonitor.mEstimatedTime.Date_RequestDate && (ProcessMonitor.mPO_Status != PO_Status.DLV || ProcessMonitor.mPO_Status != PO_Status.PO_Finished))
                 {
