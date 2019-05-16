@@ -89,14 +89,14 @@
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
                             <div id="divECharts2_1" style="background-position: center center; height: 425px; border: 1px solid #ccc; 
-                                padding: 10px; background-size: 80% 70%; background-image: url('./img/in.png'); background-repeat: no-repeat;">
+                                padding: 10px; background-size: 80% 70%; background-image: url('./img/in1.png'); background-repeat: no-repeat;">
                             <%--<div id="divECharts2_1" style="height: 500px; border: 1px solid #ccc; padding: 10px;">--%>
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
                             <div id="divECharts2_2" style="background-position: center center; height: 425px; border: 1px solid #ccc; 
-                                padding: 10px; background-size: 80% 70%; background-image: url('./img/out.png'); background-repeat: no-repeat;">
+                                padding: 10px; background-size: 80% 70%; background-image: url('./img/out1.png'); background-repeat: no-repeat;">
                             </div>
                         </td>
                     </tr>
@@ -263,6 +263,7 @@
         var var_DCR = var_Echarts1_1[0].split('!');  
         var var_DCR_0400 = var_Echarts1_1[1].split('!'); 
         var var_DCR_0481 = var_Echarts1_1[2].split('!');
+        var hh=parseFloat(var_DCR_0400[12])+6;     
           
 ////        var values_DCR_inside = []; 
 ////        var values_DCR_outside = [];    
@@ -342,6 +343,21 @@
                             }
                         }
                     },
+                    markPoint: { // markLine 也是同理
+                        data: [
+                            {coord: [12, hh]}
+                        ],
+                        symbol:'arrow',
+                        symbolSize:[15, 30],
+                        label:[
+                            {
+                                show:true,
+                                formatter:'{b}',
+                                backgroundColor:'white',
+                                color:'#000'
+                            }
+                        ]
+                    },
 //                    itemStyle:{
 //                        normal: {
 //                            //每根柱子颜色设置
@@ -380,29 +396,29 @@
                             }
                         }
                     },
-//                    itemStyle:{
-//                        normal: {
-//                            //每根柱子颜色设置
-//                            color: function(params) {
-//                                var colorList = [
-//                                    "#b6c0c6",
-//                                    "#b6c0c6",
-//                                    "#b6c0c6",
-//                                    "#b6c0c6",
-//                                    "#b6c0c6",
-//                                    "#b6c0c6",
-//                                    "#b6c0c6",
-//                                    "#b6c0c6",
-//                                    "#b6c0c6",
-//                                    "#b6c0c6",
-//                                    "#b6c0c6",
-//                                    "#b6c0c6",                                    
-//                                    "gray"
-//                                ];
-//                                return colorList[params.dataIndex];
-//                            }
-//                        }
-//                    },
+                    itemStyle:{
+                        normal: {
+                            //每根柱子颜色设置
+                            color: function(params) {
+                                var colorList = [
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",
+                                    "#b6c0c6",                                    
+                                    "gray"
+                                ];
+                                return colorList[params.dataIndex];
+                            }
+                        }
+                    },
 //                    markPoint : {
 //                         data : [
 //                            {
