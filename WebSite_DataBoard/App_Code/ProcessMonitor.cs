@@ -37,7 +37,7 @@ public class ProcessMonitor
     //PO释放到完成生产入库的时间间隔(WD)
     public static int Gap_Release2Finish { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualReleaseDate, mActualTime.Date_ActualFinishDate, false)); } }
     //完成生产入库到起运发货的时间间隔(WD)
-    public static int Gap_Finish2Shipment { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualFinishDate, mActualTime.Date_ShipmentStartOn, false)); } }
+    public static int Gap_Finish2Shipment { get { return HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualFinishDate, mActualTime.Date_ShipmentStartOn, false); } }
     //以完成生产入库但未发货订单，完成生产入库至今的时间间隔(WD)
     public static int Gap_Finish2Today { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualFinishDate, DateTime.Today, false)); } }
     //已完成订单Lead Time(CDS)

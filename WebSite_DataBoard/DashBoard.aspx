@@ -263,17 +263,28 @@
         var var_DCR = var_Echarts1_1[0].split('!');  
         var var_DCR_0400 = var_Echarts1_1[1].split('!'); 
         var var_DCR_0481 = var_Echarts1_1[2].split('!');
-        var hh=parseFloat(var_DCR_0400[12])+6;     
-          
-////        var values_DCR_inside = []; 
-////        var values_DCR_outside = [];    
-////        values_DCR_inside.push({ "value": str_DCR_inside[0], "name": '已完成' });
-////        values_DCR_inside.push({ "value": str_DCR_inside[1], "name": '未完成' }); 
-////        values_DCR_outside.push({ "value": str_DCR_outside[0], "name": '及时交付' });
-////        values_DCR_outside.push({ "value": str_DCR_outside[1], "name": '延期交付' }); 
-////        values_DCR_outside.push({ "value": str_DCR_outside[2], "name": '已超期' });
-////        values_DCR_outside.push({ "value": str_DCR_outside[3], "name": '预计超期' }); 
-////        values_DCR_outside.push({ "value": str_DCR_outside[4], "name": '正常' });
+
+//        var hh=parseFloat(var_DCR_0400[12])+6;    
+
+//        var mybarBorderRadius=new Array(5,5,0,0);
+//        var itemstyle_YTD=[];
+//        var itemstyle_YTD_normal=[];
+//        itemstyle_YTD_normal.push({ "borderColor": 'yellow', "borderWidth": 3 });
+//        itemstyle_YTD.push({"normal":itemstyle_YTD_normal});
+//        var_DCR_0400_s=[];
+//        var_DCR_0400_s.push({ "value":var_DCR_0400[0],"itemStyle": itemstyle_YTD});
+//        var_DCR_0400_s.push({ "value":var_DCR_0400[1],"itemStyle": itemstyle_YTD});
+//        var_DCR_0400_s.push({ "value":var_DCR_0400[2],"itemStyle": itemstyle_YTD});
+//        var_DCR_0400_s.push({ "value":var_DCR_0400[3],"itemStyle": itemstyle_YTD});
+//        var_DCR_0400_s.push({ "value":var_DCR_0400[4],"itemStyle": itemstyle_YTD});
+//        var_DCR_0400_s.push({ "value":var_DCR_0400[5],"itemStyle": itemstyle_YTD});
+//        var_DCR_0400_s.push({ "value":var_DCR_0400[6],"itemStyle": itemstyle_YTD});
+//        var_DCR_0400_s.push({ "value":var_DCR_0400[7],"itemStyle": itemstyle_YTD});
+//        var_DCR_0400_s.push({ "value":var_DCR_0400[8],"itemStyle": itemstyle_YTD});
+//        var_DCR_0400_s.push({ "value":var_DCR_0400[9],"itemStyle": itemstyle_YTD});
+//        var_DCR_0400_s.push({ "value":var_DCR_0400[10],"itemStyle": itemstyle_YTD});
+//        var_DCR_0400_s.push({ "value":var_DCR_0400[11],"itemStyle": itemstyle_YTD});
+//        var_DCR_0400_s.push({ "value":var_DCR_0400[12],"itemStyle": itemstyle_YTD});
 
         // 图表使用-------------------
         var option1_1 = {
@@ -308,7 +319,24 @@
             xAxis: [
                 {
                     type: 'category',
-                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月','YTD'],
+                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月',
+                     {
+                        value:'YTD',
+                        textStyle: {
+                            color: 'white',
+                            //fontSize: 20,
+                            fontStyle: 'normal',
+                            fontWeight: 'bold',
+                            padding:[3, 4, 1, 4],
+//                            verticalAlign:'middle',
+                            borderColor:'blue',
+                            backgroundColor:'blue',
+                            borderWidth:5,
+                            borderRadius:2,
+                            textShadowBlur:2
+                        }
+                    }
+                    ],
                     axisPointer: {
                         type: 'shadow'
                     }
@@ -336,28 +364,28 @@
                             position: 'top',
                             formatter: function(params){
                                 if (params.value > 0) {
-                                    return params.value;
+                                    return params.value+"%";
                                 } else {
                                     return '';
                                 }
                             }
                         }
                     },
-                    markPoint: { // markLine 也是同理
-                        data: [
-                            {coord: [12, hh]}
-                        ],
-                        symbol:'arrow',
-                        symbolSize:[15, 30],
-                        label:[
-                            {
-                                show:true,
-                                formatter:'{b}',
-                                backgroundColor:'white',
-                                color:'#000'
-                            }
-                        ]
-                    },
+//                    markPoint: { // markLine 也是同理
+//                        data: [
+//                            {coord: [12, hh]}
+//                        ],
+//                        symbol:'arrow',
+//                        symbolSize:[15, 30],
+//                        label:[
+//                            {
+//                                show:true,
+//                                formatter:'{b}',
+//                                backgroundColor:'white',
+//                                color:'#000'
+//                            }
+//                        ]
+//                    },
 //                    itemStyle:{
 //                        normal: {
 //                            //每根柱子颜色设置
@@ -378,7 +406,7 @@
                             {name: 'Target',yAxis: 78}
                         ]
                     },
-                    data:var_DCR_0400       
+                    data:var_DCR_0400      
                 },
                 {
                     name:'0481 DCR',
@@ -389,36 +417,36 @@
                             position: 'top',
                             formatter: function(params){
                                 if (params.value > 0) {
-                                    return params.value;
+                                    return params.value+"%";
                                 } else {
                                     return '';
                                 }
                             }
                         }
                     },
-                    itemStyle:{
-                        normal: {
-                            //每根柱子颜色设置
-                            color: function(params) {
-                                var colorList = [
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",
-                                    "#b6c0c6",                                    
-                                    "gray"
-                                ];
-                                return colorList[params.dataIndex];
-                            }
-                        }
-                    },
+//                    itemStyle:{
+//                        normal: {
+//                            //每根柱子颜色设置
+//                            color: function(params) {
+//                                var colorList = [
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",
+//                                    "#b6c0c6",                                    
+//                                    "gray"
+//                                ];
+//                                return colorList[params.dataIndex];
+//                            }
+//                        }
+//                    },
 //                    markPoint : {
 //                         data : [
 //                            {
@@ -445,7 +473,7 @@
                             position: 'top',
                             formatter: function(params){
                                 if (params.value > 0) {
-                                    return params.value;
+                                    return params.value+"%";
                                 } else {
                                     return '';
                                 }
@@ -468,6 +496,7 @@
                     },
                     data:var_DCR
                 },
+                
             ]
         }     
         myChart1_1.hideLoading();    //隐藏加载动画
@@ -520,7 +549,24 @@
             xAxis: [
                 {
                     type: 'category',
-                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月','YTD'],
+                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月',
+                    {
+                        value:'YTD',
+                        textStyle: {
+                            color: 'white',
+                            //fontSize: 20,
+                            fontStyle: 'normal',
+                            fontWeight: 'bold',
+                            padding:[3, 4, 1, 4],
+//                            verticalAlign:'middle',
+                            borderColor:'blue',
+                            backgroundColor:'blue',
+                            borderWidth:5,
+                            borderRadius:2,
+                            textShadowBlur:2
+                        }
+                    }
+                    ],
                     axisPointer: {
                         type: 'shadow'
                     }
@@ -662,11 +708,14 @@
         values_Failed_Monitor.push({ "value": var_Failed_Monitor[0], "name": 'DC Failed & Match Req' });
         values_Failed_Monitor.push({ "value": var_Failed_Monitor[1], "name": 'DC Failed & Req Failed' }); 
 
+        var myDate = new Date();
+        var msubtext="0400 "+myDate.toString().split(" ")[1];
+
         // 图表使用-------------------
         var option1_3 = {
                         title: [{
                               text: 'DCR ALERT',
-                              subtext:'0400 当月',
+                              subtext:msubtext,
                               x: 'center'
 //                            text: 'Reminder Monitor',
 //                            subtext: 'According to Quotation LT',       
@@ -879,10 +928,40 @@
         var count_SO_soCreated_0400_perMonth1=count_SO_soCreated_0400_perMonth.splice(0,count_SO_soCreated_0400_perMonth.length-1);
         var count_SO_soCreated_0481_perMonth1=count_SO_soCreated_0481_perMonth.splice(0,count_SO_soCreated_0481_perMonth.length-1);
         var NetValue_SO_soCreated_perMonth1 = NetValue_SO_soCreated_perMonth.splice(0,NetValue_SO_soCreated_perMonth.length-1);  
+
+        var count_SO_soCreated_0400_perMonth_s=[];
+        for (var i = 0; i < count_SO_soCreated_0400_perMonth1.length; i++) {
+            if (count_SO_soCreated_0400_perMonth1[i]=="0") {
+                count_SO_soCreated_0400_perMonth_s.push("-");
+            }
+            else {
+                count_SO_soCreated_0400_perMonth_s.push(count_SO_soCreated_0400_perMonth1[i]);
+            }
+        }    
+        
+        var count_SO_soCreated_0481_perMonth_s=[];
+        for (var i = 0; i < count_SO_soCreated_0481_perMonth1.length; i++) {
+            if (count_SO_soCreated_0481_perMonth1[i]=="0") {
+                count_SO_soCreated_0481_perMonth_s.push("-");
+            }
+            else {
+                count_SO_soCreated_0481_perMonth_s.push(count_SO_soCreated_0481_perMonth1[i]);
+            }
+        }   
+        
+        var NetValue_SO_soCreated_perMonth_s=[];
+        for (var i = 0; i < NetValue_SO_soCreated_perMonth1.length; i++) {
+            if (NetValue_SO_soCreated_perMonth[i]=="0") {
+                NetValue_SO_soCreated_perMonth_s.push("-");
+            }
+            else {
+                NetValue_SO_soCreated_perMonth_s.push(NetValue_SO_soCreated_perMonth1[i]);
+            }
+        }  
        
         var option2_1 = {
             title: {
-                        text: 'Monthly SO Input', 
+                        text: 'Monthly SO Income', 
                         x: 'center'
                     },
             tooltip: {
@@ -989,7 +1068,7 @@
             ],
             yAxis: [
                 {
-                    splitLine:{show: false},//去除网格线
+                    //splitLine:{show: false},//去除网格线
                     type: 'value',
                     name: '订单量',
 //                    min: 0,
@@ -1002,7 +1081,7 @@
                 {
                     type: 'value',
                     name: '金额',
-                    visiable: false,
+                    show: false,
 //                    min: 0,
 //                    max: 50000000,
 //                    interval: 5000,
@@ -1022,7 +1101,7 @@
                             position: 'insideTop'
                         }
                     },
-                    data:count_SO_soCreated_0400_perMonth1
+                    data:count_SO_soCreated_0400_perMonth_s
                 },   
                 {
                     name:'0481新进订单量',
@@ -1034,13 +1113,13 @@
                             position: 'insideTop'
                         }
                     },
-                    data:count_SO_soCreated_0481_perMonth1
+                    data:count_SO_soCreated_0481_perMonth_s
                 },              
                 {
                     name:'订单金额',
                     type:'line',
                     yAxisIndex: 1,
-                    data:NetValue_SO_soCreated_perMonth1
+                    data:NetValue_SO_soCreated_perMonth_s
         
                 },
                 {
@@ -1100,6 +1179,46 @@
         var count_PO_ForecastFinished_perMonth1=count_PO_ForecastFinished_perMonth.splice(0,count_PO_ForecastFinished_perMonth.length-1);
         var NetValue_PO_Finished_perMonth1 = NetValue_PO_Finished_perMonth.splice(0,NetValue_PO_Finished_perMonth.length-1);
         var count_PO_Finished_perMonth1=count_PO_Finished_perMonth.splice(0,count_PO_Finished_perMonth.length-1);
+
+        var count_PO_Finished_0400_perMonth_s=[];
+        for (var i = 0; i < count_PO_Finished_0400_perMonth1.length; i++) {
+            if (count_PO_Finished_0400_perMonth1[i]=="0") {
+                count_PO_Finished_0400_perMonth_s.push("-");
+            }
+            else {
+                count_PO_Finished_0400_perMonth_s.push(count_PO_Finished_0400_perMonth1[i]);
+            }
+        } 
+        
+        var count_PO_Finished_0481_perMonth_s=[];
+        for (var i = 0; i < count_PO_Finished_0481_perMonth1.length; i++) {
+            if (count_PO_Finished_0481_perMonth1[i]=="0") {
+                count_PO_Finished_0481_perMonth_s.push("-");
+            }
+            else {
+                count_PO_Finished_0481_perMonth_s.push(count_PO_Finished_0481_perMonth1[i]);
+            }
+        }  
+
+        var count_PO_ForecastFinished_perMonth_s=[];
+        for (var i = 0; i < count_PO_ForecastFinished_perMonth1.length; i++) {
+            if (count_PO_ForecastFinished_perMonth1[i]=="0") {
+                count_PO_ForecastFinished_perMonth_s.push("-");
+            }
+            else {
+                count_PO_ForecastFinished_perMonth_s.push(count_PO_ForecastFinished_perMonth1[i]);
+            }
+        }  
+
+        var NetValue_PO_Finished_perMonth_s=[];
+        for (var i = 0; i < NetValue_PO_Finished_perMonth1.length; i++) {
+            if (NetValue_PO_Finished_perMonth1[i]=="0") {
+                NetValue_PO_Finished_perMonth_s.push("-");
+            }
+            else {
+                NetValue_PO_Finished_perMonth_s.push(NetValue_PO_Finished_perMonth1[i]);
+            }
+        } 
 
         var option2_2 = {
             title: {
@@ -1180,7 +1299,7 @@
             yAxis: [
                 {
                     type: 'value',
-                    splitLine:{show: false},//去除网格线
+                    //splitLine:{show: false},//去除网格线
                     name: '订单量',
 //                    min: 0,
 //                    max: 1000,
@@ -1192,7 +1311,7 @@
                 {
                     type: 'value',
                     name: '金额',
-                    visiable: false,
+                    show: false,
 //                    min: 0,
 //                    max: 50000000,
 //                    interval: 5000,
@@ -1212,7 +1331,7 @@
                             position: 'insideTop'
                         }
                     },
-                    data:count_PO_Finished_0400_perMonth1
+                    data:count_PO_Finished_0400_perMonth_s
                 },
                 {
                     name:'0481订单完成量',
@@ -1224,18 +1343,18 @@
                             position: 'insideTop'
                         }
                     },
-                    data:count_PO_Finished_0481_perMonth1
+                    data:count_PO_Finished_0481_perMonth_s
                 },
                 {
                     name:'预计完成量',
                     type:'bar',
-                    data:count_PO_ForecastFinished_perMonth1       
+                    data:count_PO_ForecastFinished_perMonth_s       
                 },
                 {
                     name:'订单金额',
                     type:'line',
                     yAxisIndex: 1,
-                    data:NetValue_PO_Finished_perMonth1
+                    data:NetValue_PO_Finished_perMonth_s
         
                 },
                 {
@@ -1291,7 +1410,7 @@
         values_Overstocked_Monitor.push({ "value": var_Echarts2_3[1], "name": '5-10 WD' }); 
         values_Overstocked_Monitor.push({ "value": var_Echarts2_3[2], "name": '10-20 WD' });
         values_Overstocked_Monitor.push({ "value": var_Echarts2_3[3], "name": '>20 WD' }); 
-        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[4], "name": 'Undelivered' });
+        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[4], "name": 'Non-delivery' });
 
         // 图表使用-------------------
         var option2_3 = {
@@ -1307,7 +1426,7 @@
                         legend: {
                             orient: 'vertical',
                             x: 'left',
-                            data:  ['<=5 WD','5-10 WD','10-20 WD','>20 WD','Undelivered']
+                            data:  ['<=5 WD','5-10 WD','10-20 WD','>20 WD','Non-delivery']
                         },
                         series: [
                             {                                
@@ -1382,7 +1501,7 @@
         // 图表使用-------------------
         var option2_4 = {
                         title: {
-                            text: 'Undelivered Monitoring',
+                            text: 'Non-delivery Monitoring',
                             subtext:'0400+0481',
                             x: 'center'
                         },
@@ -1468,7 +1587,7 @@
         // 图表使用-------------------
         var option3_1 = {
                         title: {
-                            text: '0400 SO → PO Creation',  
+                            text: '【0400】 SO → PO Creation',  
                             subtext: 'Target：LT < 1(WD)',
                             x: 'center'                           
                         },
@@ -1771,7 +1890,7 @@
         var option3_3 = {
             title: {
                         text: '0400 PO Release → Actual finish', 
-                        subtext:'Target：23WD',
+                        subtext:'Target：Average <= 23(WD)',
                         x: 'center'
                     },
             tooltip: {
@@ -1931,7 +2050,7 @@
         var option3_4 = {
             title: {
                         text: '0400 Actual finish → Ex-plant', 
-                        subtext:'Target：2WD',
+                        subtext:'Target：Average <= 2WD',
                         x: 'center'
                     },
             tooltip: {

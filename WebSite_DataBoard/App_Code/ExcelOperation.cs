@@ -261,6 +261,8 @@ public class ExcelOperation
         mcell.SetCellValue(excelHeader[34]);//Ex-plant
         mcell = sheet.GetRow(0).CreateCell(15);
         mcell.SetCellValue("DCR Time");//DCR Time
+        mcell = sheet.GetRow(0).CreateCell(16);
+        mcell.SetCellValue("Req-Act-3");//DCR Time
         //逐行统计
         for (int i = 1; i < rowsCount; i++)
         {
@@ -304,6 +306,9 @@ public class ExcelOperation
             mcell.SetCellValue(ProcessMonitor.mActualTime.Date_ShipmentStartOn);
             mcell = sheet.GetRow(i).CreateCell(15);
             mcell.SetCellValue(HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, true) + 1);
+            mcell = sheet.GetRow(i).CreateCell(16);
+            mcell.SetCellValue((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - 3);
+
             //ICell cell1 = sheet.GetRow(i).CreateCell(1);
             //format = xssfworkbook.CreateDataFormat();
             //SetValueAndFormat(xssfworkbook, cell1, ProcessMonitor.Date_QuotationLT, format.GetFormat("yyyy年m月d日"));
@@ -995,19 +1000,21 @@ public class ExcelOperation
                     {                       
                         //需要加1个工作日,将FinishDate转换成ReadyToShipDate
                         //if (ProcessMonitor.mActualTime.Date_ActualFinishDate > ProcessMonitor.Date_QuotationLT)
-                        if (HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, true) + 1 > ProcessMonitor.mEstimatedTime.QuotationLT)
+                        if (ProcessMonitor.mActualTime.Date_ActualFinishDate.Month == DateTime.Now.Month && ProcessMonitor.mActualTime.Date_ActualFinishDate.Year == DateTime.Now.Year)
                         {
-                            //DC Failed                            
-                            if ((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - 3 >= 0)
+                            if (HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, true) + 1 > ProcessMonitor.mEstimatedTime.QuotationLT)
                             {
-                                Data2Trace.count_FailedMonitor_DC++;//仅DC Failed
-                            }
-                            else
-                            {
-                                Data2Trace.count_FailedMonitor_Req++;//Both Failed
-                            }
-                        }                        
-                        
+                                //DC Failed                            
+                                if ((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - 3 >= 0)
+                                {
+                                    Data2Trace.count_FailedMonitor_DC++;//仅DC Failed
+                                }
+                                else
+                                {
+                                    Data2Trace.count_FailedMonitor_Req++;//Both Failed
+                                }
+                            } 
+                        }
                     }
                 }
                 //根据Date_QuotationLT和Date_RequestDate的比较判断以哪个做基准
