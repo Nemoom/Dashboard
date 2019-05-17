@@ -143,7 +143,7 @@ public class ExcelOperation
         cellStyle.DataFormat = formatId;
         cell.CellStyle = cellStyle;
     }
-
+    int ttt;
     public void TraceFromExcel()
     {
         //Clean last count and array init
@@ -308,7 +308,8 @@ public class ExcelOperation
             mcell.SetCellValue(HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, true) + 1);
             mcell = sheet.GetRow(i).CreateCell(16);
             mcell.SetCellValue((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - 3);
-
+            mcell = sheet.GetRow(i).CreateCell(17);
+            mcell.SetCellValue(ttt);
             //ICell cell1 = sheet.GetRow(i).CreateCell(1);
             //format = xssfworkbook.CreateDataFormat();
             //SetValueAndFormat(xssfworkbook, cell1, ProcessMonitor.Date_QuotationLT, format.GetFormat("yyyy年m月d日"));
@@ -317,7 +318,7 @@ public class ExcelOperation
         }
         //*****************************************************************************************************************************************
         //*********************************************************写EXCEL 禁用********************************************************************
-        WriteToFile();
+        //WriteToFile();
         //*****************************************************************************************************************************************
         //*****************************************************************************************************************************************
         //ECharts3_1&ECharts1_2需要处理一下原始数据
@@ -955,6 +956,7 @@ public class ExcelOperation
                 //public static int count_Reminder2Weeks_ConfirmedDt;
                 //public static int count_Reminder_Monitor_LastFailed_DC;
                 //public static int count_Reminder_Monitor_LastFailed_Req;
+                ttt = 0;
                 if (ProcessMonitor.mDLV_Plant == DLV_Plant.P_0400)
                 {
                     //0400订单
@@ -1008,10 +1010,12 @@ public class ExcelOperation
                                 if ((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - 3 >= 0)
                                 {
                                     Data2Trace.count_FailedMonitor_DC++;//仅DC Failed
+                                    ttt = 1;
                                 }
                                 else
                                 {
                                     Data2Trace.count_FailedMonitor_Req++;//Both Failed
+                                    ttt = 2;
                                 }
                             } 
                         }

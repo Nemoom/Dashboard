@@ -443,7 +443,7 @@ public class Data2Trace
         {
             //return count_Reminder3Weeks_LT + "!" + count_Reminder2Weeks_LT ;
             return count_Reminder3Weeks_LT + "!" + count_Reminder2Weeks_LT + ";"
-               + count_Reminder3Weeks_ConfirmedDt + "!" + count_Reminder2Weeks_ConfirmedDt;
+               + count_FailedMonitor_DC + "!" + count_FailedMonitor_Req;
         }
     }
     //ECharts1_4:Ongoing Pro. Order Monitoring
