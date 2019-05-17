@@ -319,7 +319,7 @@
             xAxis: [
                 {
                     type: 'category',
-                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月',
+                    data: ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec',
                      {
                         value:'YTD',
                         textStyle: {
@@ -549,7 +549,7 @@
             xAxis: [
                 {
                     type: 'category',
-                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月',
+                    data: ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec',
                     {
                         value:'YTD',
                         textStyle: {
@@ -1060,7 +1060,7 @@
                 {
                     splitLine:{show: false},//去除网格线
                     type: 'category',
-                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+                    data: ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'],
                     axisPointer: {
                         type: 'shadow'
                     }
@@ -1290,7 +1290,7 @@
                 {
                     type: 'category',
                     splitLine:{show: false},//去除网格线
-                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+                    data: ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'],
                     axisPointer: {
                         type: 'shadow'
                     }
@@ -1616,7 +1616,7 @@
                             {
                                 type : 'category',
                                 splitLine : {show : false},
-                                data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                                data : ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec']
                             }
                         ],
                         yAxis : [
@@ -1768,7 +1768,7 @@
                             {
                                 type : 'category',
                                 splitLine : {show : false},
-                                data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                                data : ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec']
                             }
                         ],
                         yAxis : [
@@ -1913,7 +1913,7 @@
             xAxis: [
                 {
                     type: 'category',
-                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月','YTD'],
+                    data: ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec','YTD'],
                     axisPointer: {
                         type: 'shadow'
                     }
@@ -2073,7 +2073,7 @@
             xAxis: [
                 {
                     type: 'category',
-                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月','YTD'],
+                    data: ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec','YTD'],
                     axisPointer: {
                         type: 'shadow'
                     }
