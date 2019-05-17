@@ -1740,7 +1740,7 @@
         // 图表使用-------------------
         var option3_2 = {
                         title: {
-                            text: '0400 PO Creation → PO Release', 
+                            text: '【0400】 PO Creation → PO Release', 
                             subtext: 'Target：LT <= 5(WD)',
                             x: 'center'
                         },
@@ -1889,7 +1889,7 @@
         var var_POFinish_0481 = var_Echarts3_3[2].split('!');
         var option3_3 = {
             title: {
-                        text: '0400 PO Release → Actual finish', 
+                        text: '【0400】 PO Release → Actual finish', 
                         subtext:'Target：Average <= 23(WD)',
                         x: 'center'
                     },
@@ -2049,8 +2049,8 @@
         var var_Ex_plant_0481 = var_Echarts3_4[2].split('!');
         var option3_4 = {
             title: {
-                        text: '0400 Actual finish → Ex-plant', 
-                        subtext:'Target：Average <= 2WD',
+                        text: '【0400】 Actual finish → Ex-plant', 
+                        subtext:'Target：Average <= 2(WD)',
                         x: 'center'
                     },
             tooltip: {
