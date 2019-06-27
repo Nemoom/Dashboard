@@ -24,20 +24,7 @@
                 </h1>
             </div>
             <div class="loginDisplay">
-                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
-                    <AnonymousTemplate>
-                        [ <a href="~/Account/Login.aspx" id="HeadLoginStatus" runat="server">Log In</a>
-                        ]
-                    </AnonymousTemplate>
-                    <LoggedInTemplate>
-                        Welcome <span class="bold">
-                            <asp:LoginName ID="HeadLoginName" runat="server" />
-                        </span>! [
-                        <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out"
-                            LogoutPageUrl="~/" />
-                        ]
-                    </LoggedInTemplate>
-                </asp:LoginView>
+                <asp:Label ID="lbl_DateInfo" runat="server" Text=""></asp:Label>
             </div>
             <div class="clear hideSkiplink">
                 <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false"
@@ -54,7 +41,16 @@
         <div class="main">
             <input id="Text1" name="text" type="text" runat="server" style="display:none;"
             value="demo.XLSX"/>
+            <asp:DropDownList ID="DropDownList1" runat="server" 
+                onselectedindexchanged="DropDownList1_SelectedIndexChanged" 
+                Visible="False">
+                <asp:ListItem> </asp:ListItem>
+                <asp:ListItem>FKA</asp:ListItem>
+                <asp:ListItem>SKA</asp:ListItem>
+            </asp:DropDownList>
             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+            <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Button" 
+                Visible="False" />
             <asp:Panel ID="Panel1" runat="server" Height="900">
                 <table style="width: 100%;">
                     <tr style="height: 50%;">
@@ -314,7 +310,7 @@
                 bottom: 10,
                 left: 'center',
                 data:['0400 DCR','0481 DCR','0400+0481 DCR'],
-                selected:{'0400 DCR': false ,'0481 DCR': false}
+                selected:{'0481 DCR': false}
             },
             xAxis: [
                 {
@@ -1402,21 +1398,55 @@
             text: '正在努力的读取数据中...',    //loading话术
         });
 
-        var var_Echarts2_3=values_ECharts2_3.split('!');
+        var var_Echarts2_3=values_ECharts2_3.split(';');
+
+        var var_Overstocked_Monitor = var_Echarts2_3[0].split('!'); 
+        var var_Overstocked_Monitor_0400 = var_Echarts2_3[1].split('!'); 
+        var var_Overstocked_Monitor_0481 = var_Echarts2_3[2].split('!'); 
           
-        var values_Overstocked_Monitor = []; 
+        var values_Overstocked_Monitor = [];   
+        var values_Overstocked_Monitor_0400 = [];   
+        var values_Overstocked_Monitor_0481 = []; 
         
-        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[0], "name": '<=5 WD' });
-        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[1], "name": '5-10 WD' }); 
-        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[2], "name": '10-20 WD' });
-        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[3], "name": '>20 WD' }); 
-        values_Overstocked_Monitor.push({ "value": var_Echarts2_3[4], "name": 'Non-delivery' });
+        values_Overstocked_Monitor.push({ "value": var_Overstocked_Monitor[0], "name": '<=5 WD' });
+        values_Overstocked_Monitor.push({ "value": var_Overstocked_Monitor[1], "name": '5-10 WD' }); 
+        values_Overstocked_Monitor.push({ "value": var_Overstocked_Monitor[2], "name": '10-20 WD' });
+        values_Overstocked_Monitor.push({ "value": var_Overstocked_Monitor[3], "name": '>20 WD' }); 
+        values_Overstocked_Monitor.push({ "value": var_Overstocked_Monitor[4], "name": 'Non-delivery' });
+
+        values_Overstocked_Monitor_0400.push({ "value": var_Overstocked_Monitor_0400[0], "name": '<=5 WD' });
+        values_Overstocked_Monitor_0400.push({ "value": var_Overstocked_Monitor_0400[1], "name": '5-10 WD' }); 
+        values_Overstocked_Monitor_0400.push({ "value": var_Overstocked_Monitor_0400[2], "name": '10-20 WD' });
+        values_Overstocked_Monitor_0400.push({ "value": var_Overstocked_Monitor_0400[3], "name": '>20 WD' }); 
+        values_Overstocked_Monitor_0400.push({ "value": var_Overstocked_Monitor_0400[4], "name": 'Non-delivery' });
+
+        values_Overstocked_Monitor_0481.push({ "value": var_Overstocked_Monitor_0481[0], "name": '<=5 WD' });
+        values_Overstocked_Monitor_0481.push({ "value": var_Overstocked_Monitor_0481[1], "name": '5-10 WD' }); 
+        values_Overstocked_Monitor_0481.push({ "value": var_Overstocked_Monitor_0481[2], "name": '10-20 WD' });
+        values_Overstocked_Monitor_0481.push({ "value": var_Overstocked_Monitor_0481[3], "name": '>20 WD' }); 
+        values_Overstocked_Monitor_0481.push({ "value": var_Overstocked_Monitor_0481[4], "name": 'Non-delivery' });
 
         // 图表使用-------------------
         var option2_3 = {
+                baseOption: {
+                        timeline: {
+                            // y: 0,
+                            axisType: 'category',
+                            // realtime: false,
+                            // loop: false,
+                            autoPlay: false,
+                            currentIndex: 1,
+                            playInterval: 1000,
+                            // controlStyle: {
+                            //     position: 'left'
+                            // },
+                            data: [
+                                '0400+0481','0400','0481'
+                            ]
+                        },
                         title: {
                             text: 'CS Shipment Statistic',
-                            subtext:'0400+0481 YTD',
+                            //subtext:'0400+0481 YTD',
                             x: 'center'
                         },
                         tooltip: {
@@ -1434,7 +1464,7 @@
                                 clockWise:false,
                                 type: 'pie',
                                 radius: '65%',
-                                center: ['50%', '60%'],
+                                center: ['50%', '55%'],
                                 label: {
                                     normal: {
                                         formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
@@ -1471,11 +1501,26 @@
                                     normal: {
                                         length1: 30
                                     }
-                                },                    
-                                data: values_Overstocked_Monitor
+                                }                    
+                                //data: values_Overstocked_Monitor
                             },                          
-                            ]
-                    };         
+                            ]//series
+                        },//baseOption
+                        options: [
+                            {
+                                title: {subtext:'0400+0481 YTD'},
+                                series: [{data: values_Overstocked_Monitor}]
+                            },
+                            {
+                                title: {subtext:'0400 YTD'},
+                                series: [{data: values_Overstocked_Monitor_0400}]
+                            },
+                            {
+                                title: {subtext:'0481 YTD'},
+                                series: [{data: values_Overstocked_Monitor_0481}]
+                            }
+                        ]//options
+                    };//         
        
         myChart2_3.hideLoading();    //隐藏加载动画
         myChart2_3.setOption(option2_3);
@@ -1488,21 +1533,52 @@
         myChart2_4.showLoading({
             text: '正在努力的读取数据中...',    //loading话术
         });
-
-        var var_Echarts2_4=values_ECharts2_4.split('!');
-          
-        var values_Ready4Shipment_Monitor = []; 
         
-        values_Ready4Shipment_Monitor.push({ "value": var_Echarts2_4[0], "name": '<=10 WD' });
-        values_Ready4Shipment_Monitor.push({ "value": var_Echarts2_4[1], "name": '10-20 WD' }); 
-        values_Ready4Shipment_Monitor.push({ "value": var_Echarts2_4[2], "name": '20-30 WD' });
-        values_Ready4Shipment_Monitor.push({ "value": var_Echarts2_4[3], "name": '>30 WD' }); 
+        var var_Echarts2_4=values_ECharts2_4.split(';');
+
+        var var_Ready4Shipment_Monitor = var_Echarts2_4[0].split('!'); 
+        var var_Ready4Shipment_Monitor_0400 = var_Echarts2_4[1].split('!'); 
+        var var_Ready4Shipment_Monitor_0481 = var_Echarts2_4[2].split('!'); 
+          
+        var values_Ready4Shipment_Monitor = [];   
+        var values_Ready4Shipment_Monitor_0400 = [];   
+        var values_Ready4Shipment_Monitor_0481 = []; 
+        values_Ready4Shipment_Monitor.push({ "value": var_Ready4Shipment_Monitor[0], "name": '<=10 WD' });
+        values_Ready4Shipment_Monitor.push({ "value": var_Ready4Shipment_Monitor[1], "name": '10-20 WD' }); 
+        values_Ready4Shipment_Monitor.push({ "value": var_Ready4Shipment_Monitor[2], "name": '20-30 WD' });
+        values_Ready4Shipment_Monitor.push({ "value": var_Ready4Shipment_Monitor[3], "name": '>30 WD' }); 
+
+        values_Ready4Shipment_Monitor_0400.push({ "value": var_Ready4Shipment_Monitor_0400[0], "name": '<=10 WD' });
+        values_Ready4Shipment_Monitor_0400.push({ "value": var_Ready4Shipment_Monitor_0400[1], "name": '10-20 WD' }); 
+        values_Ready4Shipment_Monitor_0400.push({ "value": var_Ready4Shipment_Monitor_0400[2], "name": '20-30 WD' });
+        values_Ready4Shipment_Monitor_0400.push({ "value": var_Ready4Shipment_Monitor_0400[3], "name": '>30 WD' }); 
+
+        values_Ready4Shipment_Monitor_0481.push({ "value": var_Ready4Shipment_Monitor_0481[0], "name": '<=10 WD' });
+        values_Ready4Shipment_Monitor_0481.push({ "value": var_Ready4Shipment_Monitor_0481[1], "name": '10-20 WD' }); 
+        values_Ready4Shipment_Monitor_0481.push({ "value": var_Ready4Shipment_Monitor_0481[2], "name": '20-30 WD' });
+        values_Ready4Shipment_Monitor_0481.push({ "value": var_Ready4Shipment_Monitor_0481[3], "name": '>30 WD' }); 
 
         // 图表使用-------------------
         var option2_4 = {
+                baseOption: {
+                        timeline: {
+                            // y: 0,
+                            axisType: 'category',
+                            // realtime: false,
+                            // loop: false,
+                            autoPlay: false,
+                            currentIndex: 1,
+                            playInterval: 1000,
+                            // controlStyle: {
+                            //     position: 'left'
+                            // },
+                            data: [
+                                '0400+0481','0400','0481'
+                            ]
+                        },
                         title: {
                             text: 'Non-delivery Monitoring',
-                            subtext:'0400+0481',
+                            //subtext:'0400+0481',
                             x: 'center'
                         },
                         tooltip: {
@@ -1520,7 +1596,7 @@
                                 clockWise:false,
                                 type: 'pie',
                                 radius: '65%',
-                                center: ['50%', '60%'],
+                                center: ['50%', '55%'],
                                 label: {
                                     normal: {
                                         formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
@@ -1557,10 +1633,25 @@
                                     normal: {
                                         length1: 30
                                     }
-                                },                     
-                                data: values_Ready4Shipment_Monitor
+                                }                    
+                                //data: values_Ready4Shipment_Monitor
                             },                          
                             ]
+                        },//baseOption
+                        options: [
+                            {
+                                title: {subtext:'0400+0481'},
+                                series: [{data: values_Ready4Shipment_Monitor}]
+                            },
+                            {
+                                title: {subtext:'0400'},
+                                series: [{data: values_Ready4Shipment_Monitor_0400}]
+                            },
+                            {
+                                title: {subtext:'0481'},
+                                series: [{data: values_Ready4Shipment_Monitor_0481}]
+                            }
+                        ]//options
                     };         
        
         myChart2_4.hideLoading();    //隐藏加载动画

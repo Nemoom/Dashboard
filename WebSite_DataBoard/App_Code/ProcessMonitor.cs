@@ -17,6 +17,10 @@ public class ProcessMonitor
 
     public static string mPO;
     public static string mSO;
+    //SKA/FKA
+    public static string mSKA_FKA;
+    //KA Name
+    public static string mKA_Name;
     //订单交付工厂代号
     public static DLV_Plant mDLV_Plant;
     //该订单的净值

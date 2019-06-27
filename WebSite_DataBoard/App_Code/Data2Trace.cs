@@ -481,7 +481,9 @@ public class Data2Trace
     {
         get
         {
-            return count_Stored_5 + "!" + count_Stored_5_10 + "!" + count_Stored_10_20 + "!" + count_Stored_20 + "!" + count_Stored;
+            return count_Stored_5 + "!" + count_Stored_5_10 + "!" + count_Stored_10_20 + "!" + count_Stored_20 + "!" + count_Stored + ";"
+                + count_Stored_5_0400 + "!" + count_Stored_5_10_0400 + "!" + count_Stored_10_20_0400 + "!" + count_Stored_20_0400 + "!" + count_Stored_0400 + ";"
+                + count_Stored_5_0481 + "!" + count_Stored_5_10_0481 + "!" + count_Stored_10_20_0481 + "!" + count_Stored_20_0481 + "!" + count_Stored_0481;
         }
     }
     //ECharts2_4:Ready for Shipment Monitoring
@@ -489,7 +491,9 @@ public class Data2Trace
     {
         get
         {
-            return count_Ready4Shipment_10 + "!" + count_Ready4Shipment_10_20 + "!" + count_Ready4Shipment_20_30 + "!" + count_Ready4Shipment_30;
+            return count_Ready4Shipment_10 + "!" + count_Ready4Shipment_10_20 + "!" + count_Ready4Shipment_20_30 + "!" + count_Ready4Shipment_30 + ";"
+                + count_Ready4Shipment_10_0400 + "!" + count_Ready4Shipment_10_20_0400 + "!" + count_Ready4Shipment_20_30_0400 + "!" + count_Ready4Shipment_30_0400 + ";"
+                + count_Ready4Shipment_10_0481 + "!" + count_Ready4Shipment_10_20_0481 + "!" + count_Ready4Shipment_20_30_0481 + "!" + count_Ready4Shipment_30_0481;
         }
     }
     //ECharts3_1:PO Create Monitor
@@ -626,11 +630,33 @@ public class Data2Trace
     public static int count_Stored_10_20;
     public static int count_Stored_20;
     public static int count_Stored;//已完成无ShipmentStartOn 
+
+    public static int count_Stored_5_0400;
+    public static int count_Stored_5_10_0400;
+    public static int count_Stored_10_20_0400;
+    public static int count_Stored_20_0400;
+    public static int count_Stored_0400;//已完成无ShipmentStartOn 
+
+    public static int count_Stored_5_0481;
+    public static int count_Stored_5_10_0481;
+    public static int count_Stored_10_20_0481;
+    public static int count_Stored_20_0481;
+    public static int count_Stored_0481;//已完成无ShipmentStartOn 
     //ECharts2-4:Ready fot Shipment Monitoring【YTD 0400+0481】
     public static int count_Ready4Shipment_10;
     public static int count_Ready4Shipment_10_20;
     public static int count_Ready4Shipment_20_30;
     public static int count_Ready4Shipment_30;
+
+    public static int count_Ready4Shipment_10_0400;
+    public static int count_Ready4Shipment_10_20_0400;
+    public static int count_Ready4Shipment_20_30_0400;
+    public static int count_Ready4Shipment_30_0400;
+
+    public static int count_Ready4Shipment_10_0481;
+    public static int count_Ready4Shipment_10_20_0481;
+    public static int count_Ready4Shipment_20_30_0481;
+    public static int count_Ready4Shipment_30_0481;
     #endregion
 
     #region Panel3 【0400】E2E Process Monitoring
@@ -767,11 +793,29 @@ public class Data2Trace
         count_Stored_10_20 = 0;
         count_Stored_20 = 0;
         count_Stored = 0;//已完成无ShipmentStartOn 
+        count_Stored_5_0400 = 0;
+        count_Stored_5_10_0400 = 0;
+        count_Stored_10_20_0400 = 0;
+        count_Stored_20_0400 = 0;
+        count_Stored_0400 = 0;//已完成无ShipmentStartOn 
+        count_Stored_5_0481 = 0;
+        count_Stored_5_10_0481 = 0;
+        count_Stored_10_20_0481 = 0;
+        count_Stored_20_0481 = 0;
+        count_Stored_0481 = 0;//已完成无ShipmentStartOn 
         //ECharts2-4:Ready fot Shipment Monitoring【YTD 0400+0481】
         count_Ready4Shipment_10 = 0;
         count_Ready4Shipment_10_20 = 0;
         count_Ready4Shipment_20_30 = 0;
         count_Ready4Shipment_30 = 0;
+        count_Ready4Shipment_10_0400 = 0;
+        count_Ready4Shipment_10_20_0400 = 0;
+        count_Ready4Shipment_20_30_0400 = 0;
+        count_Ready4Shipment_30_0400 = 0;
+        count_Ready4Shipment_10_0481 = 0;
+        count_Ready4Shipment_10_20_0481 = 0;
+        count_Ready4Shipment_20_30_0481 = 0;
+        count_Ready4Shipment_30_0481 = 0;
         #endregion
 
         #region Panel3 【0400】E2E Process Monitoring

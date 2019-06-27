@@ -23,8 +23,18 @@ public partial class DashBoard : System.Web.UI.Page
         ExcelOperation mExcelOperation = new ExcelOperation();
         bool bool_ExcelImpoert = mExcelOperation.ExcelImportWithLayoutCheck(this.Application["filePath"].ToString(), "Sheet1");
         if (bool_ExcelImpoert)
-        {
+        {           
             mExcelOperation.TraceFromExcel();
+            if (this.Application["filePath"].ToString().Substring(this.Application["filePath"].ToString().Length-8,3)=="SKA"||this.Application["filePath"].ToString().Substring(this.Application["filePath"].ToString().Length-8,3)=="FKA")
+            {
+                lbl_DateInfo.Text = this.Application["filePath"].ToString().Substring(this.Application["filePath"].ToString().Length-8,3)+this.Application["filePath"].ToString().Substring(0,8);
+
+            }
+            else
+            {
+                lbl_DateInfo.Text = this.Application["filePath"].ToString().Substring(0, 8);
+
+            }
         }
         this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" + 
             Data2Trace.values_ECharts1_1 + "','" 
@@ -286,5 +296,57 @@ public partial class DashBoard : System.Web.UI.Page
                 isByRowMerged = true;
             }
         }
+    }
+    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        ExcelOperation mExcelOperation = new ExcelOperation();
+        bool bool_ExcelImpoert = mExcelOperation.ExcelImportWithLayoutCheck(this.Application["filePath"].ToString(), "Sheet1");
+        if (bool_ExcelImpoert)
+        {
+            mExcelOperation.TraceFromExcel(DropDownList1.SelectedItem.Value);
+            lbl_DateInfo.Text = this.Application["filePath"].ToString().Substring(0, 8);
+        }
+        this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" +
+            Data2Trace.values_ECharts1_1 + "','"
+            + Data2Trace.values_ECharts1_2 + "','"
+            + Data2Trace.values_ECharts1_3 + "','"
+            + Data2Trace.values_ECharts1_4 + "','"
+            + Data2Trace.values_ECharts2_1 + "','"
+            + Data2Trace.values_ECharts2_2 + "','"
+            + Data2Trace.values_ECharts2_3 + "','"
+            + Data2Trace.values_ECharts2_4 + "','"
+            + Data2Trace.values_ECharts3_1 + "','"
+            + Data2Trace.values_ECharts3_2 + "','"
+            + Data2Trace.values_ECharts3_3 + "','"
+            + Data2Trace.values_ECharts3_4 + "')", true);
+        Label1.Text = this.Application["filePath"].ToString()+DropDownList1.SelectedItem.Value;
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        ExcelOperation mExcelOperation = new ExcelOperation();
+        if (mExcelOperation.colsCount==42)
+        {
+            bool bool_ExcelImpoert = mExcelOperation.ExcelImportWithLayoutCheck(this.Application["filePath"].ToString(), "Sheet1");
+            if (bool_ExcelImpoert)
+            {
+                mExcelOperation.TraceFromExcel(DropDownList1.SelectedItem.Value);
+                lbl_DateInfo.Text = this.Application["filePath"].ToString().Substring(0, 8);
+            }
+            this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" +
+                Data2Trace.values_ECharts1_1 + "','"
+                + Data2Trace.values_ECharts1_2 + "','"
+                + Data2Trace.values_ECharts1_3 + "','"
+                + Data2Trace.values_ECharts1_4 + "','"
+                + Data2Trace.values_ECharts2_1 + "','"
+                + Data2Trace.values_ECharts2_2 + "','"
+                + Data2Trace.values_ECharts2_3 + "','"
+                + Data2Trace.values_ECharts2_4 + "','"
+                + Data2Trace.values_ECharts3_1 + "','"
+                + Data2Trace.values_ECharts3_2 + "','"
+                + Data2Trace.values_ECharts3_3 + "','"
+                + Data2Trace.values_ECharts3_4 + "')", true);
+            Label1.Text = this.Application["filePath"].ToString() + DropDownList1.SelectedItem.Value;
+        }
+        
     }
 }
