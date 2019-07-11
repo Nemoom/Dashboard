@@ -101,17 +101,17 @@ public class ExcelOperation
     public string[] excelHeader = new string[40];
     public List<KeyValuePair<int, string>> excelHead = new List<KeyValuePair<int, string>>();
     public XSSFWorkbook wb;
-    XSSFWorkbook xssfworkbook;//用于写Excel
     //create the format instance
     IDataFormat format;
     private XSSFSheet sht;
     public int rowsCount, colsCount;
+    public string filename_edited;
 
     public bool ExcelImportWithLayoutCheck(string filename, string sheetName = "Sheet1")
     {
-        xssfworkbook = new XSSFWorkbook();
         bool bool_ImportResult = true;
         wb = new XSSFWorkbook(File.OpenRead(@"C:\Users\Public\Music\" + filename));
+        filename_edited = filename.Substring(0, filename.Length - 5) + "_edited.xlsx";
         //wb = new XSSFWorkbook(File.OpenRead(@"F:\" + filename));
         sht = (XSSFSheet)wb.GetSheet(sheetName);
         if (sht==null)
@@ -143,7 +143,7 @@ public class ExcelOperation
         cellStyle.DataFormat = formatId;
         cell.CellStyle = cellStyle;
     }
-    int ttt;
+    string ttt;
     public void TraceFromExcel(string FilterName = "")
     {
         //Clean last count and array init
@@ -210,59 +210,43 @@ public class ExcelOperation
             mylist_Gap_Ex_plant_0481_perMonth[i] = new List<int>();
         }
         #endregion
-        ISheet sheet = xssfworkbook.CreateSheet("Temp value");//写Excel
-        ICellStyle cellStyle = wb.CreateCellStyle();
-        sheet.SetColumnWidth(0, 20*256);
-        sheet.SetColumnWidth(1, 20*256);
-        sheet.SetColumnWidth(2, 20*256);
-        sheet.SetColumnWidth(3, 20*256);
-        sheet.SetColumnWidth(4, 20*256);
-        sheet.SetColumnWidth(5, 20*256);
-        sheet.SetColumnWidth(6, 20*256);
-        sheet.SetColumnWidth(7, 20*256);
-        sheet.SetColumnWidth(8, 20*256);
-        sheet.SetColumnWidth(9, 20*256);
-        sheet.SetColumnWidth(10, 20 * 256);
-        sheet.SetColumnWidth(11, 20 * 256);
-        sheet.SetColumnWidth(12, 20 * 256);
-        sheet.SetColumnWidth(13, 20 * 256);
-        sheet.SetColumnWidth(14, 20 * 256);
-        sheet.SetColumnWidth(15, 20 * 256);
+        
+        sht.SetColumnWidth(colsCount + 0, 20 * 256);
+        sht.SetColumnWidth(colsCount + 1, 20 * 256);
+        sht.SetColumnWidth(colsCount + 2, 20 * 256);
+        sht.SetColumnWidth(colsCount + 3, 20 * 256);
+        sht.SetColumnWidth(colsCount + 4, 20 * 256);
+        sht.SetColumnWidth(colsCount + 5, 20 * 256);
+        sht.SetColumnWidth(colsCount + 6, 20 * 256);
+        sht.SetColumnWidth(colsCount + 7, 20 * 256);
+        sht.SetColumnWidth(colsCount + 8, 20 * 256);
+        sht.SetColumnWidth(colsCount + 9, 20 * 256);
+        sht.SetColumnWidth(colsCount + 10, 20 * 256);
+        
         //写Excel表头
-        ICell mcell = sheet.CreateRow(0).CreateCell(0);
-        mcell.SetCellValue(excelHeader[6]);//PO
-        mcell = sheet.GetRow(0).CreateCell(1);
-        mcell.SetCellValue(excelHeader[7]);//Status
-        mcell = sheet.GetRow(0).CreateCell(2);
-        mcell.SetCellValue(excelHeader[4]);//DLV_plant
-        mcell = sheet.GetRow(0).CreateCell(3);
+        ICell mcell = sht.GetRow(0).CreateCell(colsCount + 0);
+        mcell.SetCellValue("Status_Program");//Status
+        mcell = sht.GetRow(0).CreateCell(colsCount + 1);
         mcell.SetCellValue("Date_QuotationLT");
-        mcell = sheet.GetRow(0).CreateCell(4);
+        mcell = sht.GetRow(0).CreateCell(colsCount + 2);
         mcell.SetCellValue("LeadTime(CDS)");
-        mcell = sheet.GetRow(0).CreateCell(5);
+        mcell = sht.GetRow(0).CreateCell(colsCount + 3);
         mcell.SetCellValue("LeadTime_ToToday(CDS)");
-        mcell = sheet.GetRow(0).CreateCell(6);
+        mcell = sht.GetRow(0).CreateCell(colsCount + 4);
         mcell.SetCellValue("SO -> PO Creation(WD)");
-        mcell = sheet.GetRow(0).CreateCell(7);
+        mcell = sht.GetRow(0).CreateCell(colsCount + 5);
         mcell.SetCellValue("PO Creation -> PO Release(WD)");
-        mcell = sheet.GetRow(0).CreateCell(8);
+        mcell = sht.GetRow(0).CreateCell(colsCount + 6);
         mcell.SetCellValue("PO Release -> Actual Finish(WD)");
-        mcell = sheet.GetRow(0).CreateCell(9);
+        mcell = sht.GetRow(0).CreateCell(colsCount + 7);
         mcell.SetCellValue("Actual Finish -> Ex-plant(WD)");
-        mcell = sheet.GetRow(0).CreateCell(10);
-        mcell.SetCellValue(excelHeader[25]);//SO
-        mcell = sheet.GetRow(0).CreateCell(11);
-        mcell.SetCellValue(excelHeader[26]);//PO Creation
-        mcell = sheet.GetRow(0).CreateCell(12);
-        mcell.SetCellValue(excelHeader[27]);//PO Release
-        mcell = sheet.GetRow(0).CreateCell(13);
-        mcell.SetCellValue(excelHeader[28]);//Actual Finish
-        mcell = sheet.GetRow(0).CreateCell(14);
-        mcell.SetCellValue(excelHeader[34]);//Ex-plant
-        mcell = sheet.GetRow(0).CreateCell(15);
+        mcell = sht.GetRow(0).CreateCell(colsCount + 8);
         mcell.SetCellValue("DCR Time");//DCR Time
-        mcell = sheet.GetRow(0).CreateCell(16);
-        mcell.SetCellValue("Req-Act-3");//DCR Time
+        mcell = sht.GetRow(0).CreateCell(colsCount + 9);
+        mcell.SetCellValue("Req-Act-3");//Req-Act-3
+        mcell = sht.GetRow(0).CreateCell(colsCount + 10);
+        mcell.SetCellValue("Real Failed");//Real Failed
+        
         //逐行统计
         for (int i = 1; i < rowsCount; i++)
         {
@@ -274,49 +258,31 @@ public class ExcelOperation
             {
                 RowRecordProcess(i);
             }
-            format = xssfworkbook.CreateDataFormat();
-            mcell = sheet.CreateRow(i).CreateCell(0);
-            mcell.SetCellValue(ProcessMonitor.mPO);
-            mcell = sheet.GetRow(i).CreateCell(1);
+            format = wb.CreateDataFormat();
+            mcell = sht.GetRow(i).CreateCell(colsCount + 0);
             mcell.SetCellValue(ProcessMonitor.mPO_Status.ToString());
-            mcell = sheet.GetRow(i).CreateCell(2);
-            mcell.SetCellValue(ProcessMonitor.mDLV_Plant.ToString());
-            mcell = sheet.GetRow(i).CreateCell(3);
-            SetValueAndFormat(xssfworkbook, mcell, ProcessMonitor.Date_QuotationLT, format.GetFormat("yyyy年m月d日"));
+            mcell = sht.GetRow(i).CreateCell(colsCount + 1);
+            SetValueAndFormat(wb, mcell, ProcessMonitor.Date_QuotationLT, format.GetFormat("yyyy年m月d日"));
             mcell.SetCellValue(ProcessMonitor.Date_QuotationLT);
-            mcell = sheet.GetRow(i).CreateCell(4);
+            mcell = sht.GetRow(i).CreateCell(colsCount + 2);
             mcell.SetCellValue(ProcessMonitor.LT);
-            mcell = sheet.GetRow(i).CreateCell(5);
+            mcell = sht.GetRow(i).CreateCell(colsCount + 3);
             mcell.SetCellValue(ProcessMonitor.LT_Ongoing);
-            mcell = sheet.GetRow(i).CreateCell(6);
+            mcell = sht.GetRow(i).CreateCell(colsCount + 4);
             mcell.SetCellValue(ProcessMonitor.Gap_SO2PO);
-            mcell = sheet.GetRow(i).CreateCell(7);
+            mcell = sht.GetRow(i).CreateCell(colsCount + 5);
             mcell.SetCellValue(ProcessMonitor.Gap_PO2Release);
-            mcell = sheet.GetRow(i).CreateCell(8);
+            mcell = sht.GetRow(i).CreateCell(colsCount + 6);
             mcell.SetCellValue(ProcessMonitor.Gap_Release2Finish);
-            mcell = sheet.GetRow(i).CreateCell(9);
+            mcell = sht.GetRow(i).CreateCell(colsCount + 7);
             mcell.SetCellValue(ProcessMonitor.Gap_Finish2Shipment);
-            mcell = sheet.GetRow(i).CreateCell(10);
-            SetValueAndFormat(xssfworkbook, mcell, ProcessMonitor.mActualTime.Date_SO_CreatedOn, format.GetFormat("yyyy年m月d日"));
-            mcell.SetCellValue(ProcessMonitor.mActualTime.Date_SO_CreatedOn);
-            mcell = sheet.GetRow(i).CreateCell(11);
-            SetValueAndFormat(xssfworkbook, mcell, ProcessMonitor.mActualTime.Date_PO_CreatedOn, format.GetFormat("yyyy年m月d日"));
-            mcell.SetCellValue(ProcessMonitor.mActualTime.Date_PO_CreatedOn); 
-            mcell = sheet.GetRow(i).CreateCell(12);
-            SetValueAndFormat(xssfworkbook, mcell, ProcessMonitor.mActualTime.Date_ActualReleaseDate, format.GetFormat("yyyy年m月d日"));
-            mcell.SetCellValue(ProcessMonitor.mActualTime.Date_ActualReleaseDate);
-            mcell = sheet.GetRow(i).CreateCell(13);
-            SetValueAndFormat(xssfworkbook, mcell, ProcessMonitor.mActualTime.Date_ActualFinishDate, format.GetFormat("yyyy年m月d日"));
-            mcell.SetCellValue(ProcessMonitor.mActualTime.Date_ActualFinishDate);
-            mcell = sheet.GetRow(i).CreateCell(14);
-            SetValueAndFormat(xssfworkbook, mcell, ProcessMonitor.mActualTime.Date_ShipmentStartOn, format.GetFormat("yyyy年m月d日"));
-            mcell.SetCellValue(ProcessMonitor.mActualTime.Date_ShipmentStartOn);
-            mcell = sheet.GetRow(i).CreateCell(15);
+            mcell = sht.GetRow(i).CreateCell(colsCount + 8);
             mcell.SetCellValue(HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, true) + 1);
-            mcell = sheet.GetRow(i).CreateCell(16);
+            mcell = sht.GetRow(i).CreateCell(colsCount + 9);
             mcell.SetCellValue((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - 3);
-            mcell = sheet.GetRow(i).CreateCell(17);
-            mcell.SetCellValue(ttt);
+            mcell = sht.GetRow(i).CreateCell(colsCount + 10);
+            mcell.SetCellValue(ttt);            
+            
             //ICell cell1 = sheet.GetRow(i).CreateCell(1);
             //format = xssfworkbook.CreateDataFormat();
             //SetValueAndFormat(xssfworkbook, cell1, ProcessMonitor.Date_QuotationLT, format.GetFormat("yyyy年m月d日"));
@@ -325,7 +291,7 @@ public class ExcelOperation
         }
         //*****************************************************************************************************************************************
         //*********************************************************写EXCEL 禁用********************************************************************
-        //WriteToFile();
+        WriteToFile();
         //*****************************************************************************************************************************************
         //*****************************************************************************************************************************************
         //ECharts3_1&ECharts1_2需要处理一下原始数据
@@ -574,12 +540,15 @@ public class ExcelOperation
     }
 
     private void WriteToFile()
-    {        
-        //Write the stream data of workbook to the root directory
-        FileStream file = new FileStream(@"F:\test.xlsx", FileMode.Create);
-
-        xssfworkbook.Write(file);
-        file.Close();
+    {
+        if (filename_edited.Split('_').Length==2)
+        {
+            //Write the stream data of workbook to the root directory
+            FileStream file = new FileStream(@"C:\Users\Public\Music\" + filename_edited, FileMode.Create);
+            wb.Write(file);
+            file.Close();
+        }
+        
     }
 
     List<string>[] mylist_SO_perMonth = new List<string>[12];
@@ -975,7 +944,7 @@ public class ExcelOperation
                     //public static int count_Reminder2Weeks_ConfirmedDt;
                     //public static int count_Reminder_Monitor_LastFailed_DC;
                     //public static int count_Reminder_Monitor_LastFailed_Req;
-                    ttt = 0;
+                    ttt = "";
                     if (ProcessMonitor.mDLV_Plant == DLV_Plant.P_0400)
                     {
                         //0400订单
@@ -1029,12 +998,12 @@ public class ExcelOperation
                                     if ((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - 3 >= 0)
                                     {
                                         Data2Trace.count_FailedMonitor_DC++;//仅DC Failed
-                                        ttt = 1;
+                                        ttt = "DC Failed";
                                     }
                                     else
                                     {
                                         Data2Trace.count_FailedMonitor_Req++;//Both Failed
-                                        ttt = 2;
+                                        ttt = "Real Failed";
                                     }
                                 }
                             }

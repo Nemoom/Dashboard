@@ -61,6 +61,7 @@ public partial class Data : System.Web.UI.Page
         #endregion
         GlobalParas.GlobalParas.mDataSet = ExcelToDataSet(this.Application["filePath"].ToString(), "Sheet1");
         //GlobalParas.GlobalParas.mDataSet = ExcelToDataSet(this.Application["filePath"].ToString());
+        #region 下拉选择菜单内容绑定
         string[] arrayFieldName = new string[GlobalParas.GlobalParas.mDataSet.Tables[0].Columns.Count];
         for (int i = 0; i < GlobalParas.GlobalParas.mDataSet.Tables[0].Columns.Count; i++)
         {
@@ -88,7 +89,8 @@ public partial class Data : System.Web.UI.Page
         DList_Sales.DataBind();
         DataTable dt_Status = GlobalParas.GlobalParas.mDataSet.Tables[0].DefaultView.ToTable(true, "Status");
         DList_Status.DataSource = ItemList2StringArray(dt_Status);
-        DList_Status.DataBind();
+        DList_Status.DataBind(); 
+        #endregion
         GlobalParas.GlobalParas.mDataSet.Dispose();
         this.GridViewDiv.Visible = true;
     }

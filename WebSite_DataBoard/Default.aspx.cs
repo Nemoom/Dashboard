@@ -21,6 +21,12 @@ public partial class _Default : System.Web.UI.Page
         File1.PostedFile.SaveAs(@"C:\Users\Public\Music\" + FileName);
         this.Application["filePath"] = FileName;
         lbl_FilePath.Text = this.Application["filePath"].ToString();
+        ExcelOperation mExcelOperation = new ExcelOperation();
+        bool bool_ExcelImpoert = mExcelOperation.ExcelImportWithLayoutCheck(this.Application["filePath"].ToString(), "Sheet1");
+        if (bool_ExcelImpoert)
+        { 
+        
+        }
     }
     public class FileTimeInfo
     {

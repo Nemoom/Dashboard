@@ -701,8 +701,8 @@
         
         values_Reminder_Monitor_LT.push({ "value": var_Reminder_Monitor_LT[0], "name": 'Material Planning Alert' });
         values_Reminder_Monitor_LT.push({ "value": var_Reminder_Monitor_LT[1], "name": 'Production Planning Alert' }); 
-        values_Failed_Monitor.push({ "value": var_Failed_Monitor[0], "name": 'DC Failed & Match Req' });
-        values_Failed_Monitor.push({ "value": var_Failed_Monitor[1], "name": 'DC Failed & Req Failed' }); 
+        values_Failed_Monitor.push({ "value": var_Failed_Monitor[0], "name": 'DC Failed and Match Req' });
+        values_Failed_Monitor.push({ "value": var_Failed_Monitor[1], "name": 'DC Failed and Req Failed' }); 
 
         var myDate = new Date();
         var msubtext="0400 "+myDate.toString().split(" ")[1];
@@ -740,7 +740,7 @@
                         legend: {
                             bottom: 10,
                             left: 'center',
-                            data:  ['Material Planning Alert','Production Planning Alert','DC Failed & Match Req','DC Failed & Req Failed']
+                            data:  ['Material Planning Alert','Production Planning Alert','DC Failed and Match Req','DC Failed and Req Failed']
                         },
                         
                         series: [
@@ -811,7 +811,12 @@
                     };         
        
         myChart1_3.hideLoading();    //隐藏加载动画
-        myChart1_3.setOption(option1_3);        
+        myChart1_3.setOption(option1_3); 
+        myChart1_3.on('dblclick', function (params) {
+            //// 控制台打印数据的名称
+            //console.log(params.name+" "+params.seriesIndex+" "+params.dataIndex+" "+params.value);
+            window.open('Details.aspx?Info=1_3;'+params.name+";"+params.seriesIndex+";"+params.dataIndex+";"+params.value, 'newwindow', 'top=0,left=0, width=1500, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no,z-look=yes,depended=yes,alwaysRaised=yes');
+        });       
         //*****************************************************************************************************************************
         //**                                                      myChart1_4                                                         **
         //*****************************************************************************************************************************
@@ -905,6 +910,9 @@
        
         myChart1_4.hideLoading();    //隐藏加载动画
         myChart1_4.setOption(option1_4);
+        myChart1_4.on('dblclick', function (params) {
+            window.open('Details.aspx?Info=1_4;'+params.name+";"+params.seriesIndex+";"+params.dataIndex+";"+params.value, 'newwindow', 'top=0,left=0, width=1500, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no,z-look=yes,depended=yes,alwaysRaised=yes');
+        });
         //*****************************************************************************************************************************
         //**                                                      myChart2_1                                                         **
         //*****************************************************************************************************************************
@@ -1152,6 +1160,9 @@
         series2_1[series2_1.length-1]["label"]["normal"]["formatter"] = fun2_1
         myChart2_1.hideLoading();    //隐藏加载动画
         myChart2_1.setOption(option2_1);  
+        myChart2_1.on('dblclick', function (params) {
+            window.open('Details.aspx?Info=2_1;'+params.name+";"+params.seriesIndex+";"+params.dataIndex+";"+params.value, 'newwindow', 'top=0,left=0, width=1500, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no,z-look=yes,depended=yes,alwaysRaised=yes');
+        });
         //*****************************************************************************************************************************
         //**                                                      myChart2_2                                                         **
         //*****************************************************************************************************************************
@@ -1387,7 +1398,10 @@
         //加载页面时候替换最后一个series的formatter
         series[series.length-1]["label"]["normal"]["formatter"] = fun
         myChart2_2.hideLoading();    //隐藏加载动画
-        myChart2_2.setOption(option2_2);      
+        myChart2_2.setOption(option2_2);  
+        myChart2_2.on('dblclick', function (params) {
+            window.open('Details.aspx?Info=2_2;'+params.name+";"+params.seriesIndex+";"+params.dataIndex+";"+params.value, 'newwindow', 'top=0,left=0, width=1500, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no,z-look=yes,depended=yes,alwaysRaised=yes');
+        });    
         //*****************************************************************************************************************************
         //**                                                      myChart2_3                                                         **
         //*****************************************************************************************************************************
@@ -1524,6 +1538,9 @@
        
         myChart2_3.hideLoading();    //隐藏加载动画
         myChart2_3.setOption(option2_3);
+        myChart2_3.on('dblclick', function (params) {
+            window.open('Details.aspx?Info=2_3;'+params.name+";"+params.seriesIndex+";"+params.dataIndex+";"+params.value, 'newwindow', 'top=0,left=0, width=1500, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no,z-look=yes,depended=yes,alwaysRaised=yes');
+        });
         //*****************************************************************************************************************************
         //**                                                      myChart2_4                                                         **
         //*****************************************************************************************************************************
@@ -1656,6 +1673,9 @@
        
         myChart2_4.hideLoading();    //隐藏加载动画
         myChart2_4.setOption(option2_4);
+        myChart2_4.on('dblclick', function (params) {
+            window.open('Details.aspx?Info=2_4;'+params.name+";"+params.seriesIndex+";"+params.dataIndex+";"+params.value, 'newwindow', 'top=0,left=0, width=1500, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no,z-look=yes,depended=yes,alwaysRaised=yes');
+        });
         //*****************************************************************************************************************************
         //**                                                      myChart3_1                                                         **
         //*****************************************************************************************************************************
@@ -1809,6 +1829,9 @@
        
         myChart3_1.hideLoading();    //隐藏加载动画
         myChart3_1.setOption(option3_1);
+        myChart3_1.on('dblclick', function (params) {
+            window.open('Details.aspx?Info=3_1;'+params.name+";"+params.seriesIndex+";"+params.dataIndex+";"+params.value, 'newwindow', 'top=0,left=0, width=1500, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no,z-look=yes,depended=yes,alwaysRaised=yes');
+        });
         //*****************************************************************************************************************************
         //**                                                      myChart3_2                                                         **
         //*****************************************************************************************************************************
@@ -1963,6 +1986,9 @@
        
         myChart3_2.hideLoading();    //隐藏加载动画
         myChart3_2.setOption(option3_2);
+        myChart3_2.on('dblclick', function (params) {
+            window.open('Details.aspx?Info=3_2;'+params.name+";"+params.seriesIndex+";"+params.dataIndex+";"+params.value, 'newwindow', 'top=0,left=0, width=1500, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no,z-look=yes,depended=yes,alwaysRaised=yes');
+        });
         //*****************************************************************************************************************************
         //**                                                      myChart3_3                                                         **
         //*****************************************************************************************************************************
@@ -2123,6 +2149,10 @@
         }
         myChart3_3.hideLoading();    //隐藏加载动画
         myChart3_3.setOption(option3_3);
+        myChart3_3.on('dblclick', function (params) {
+            window.open('Details.aspx?Info=3_3;'+params.name+";"+params.seriesIndex+";"+params.dataIndex+";"+params.value, 'newwindow', 'top=0,left=0, width=1500, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no,z-look=yes,depended=yes,alwaysRaised=yes');
+
+        });
         //*****************************************************************************************************************************
         //**                                                      myChart3_4                                                         **
         //*****************************************************************************************************************************
@@ -2283,6 +2313,9 @@
         }
         myChart3_4.hideLoading();    //隐藏加载动画
         myChart3_4.setOption(option3_4);
+        myChart3_4.on('dblclick', function (params) {
+            window.open('Details.aspx?Info=3_4;'+params.name+";"+params.seriesIndex+";"+params.dataIndex+";"+params.value, 'newwindow', 'top=0,left=0, width=1500, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no,z-look=yes,depended=yes,alwaysRaised=yes');
+        });
         //*****************************************************************************************************************************
          /*窗口自适应，关键代码*/
         //*****************************************************************************************************************************

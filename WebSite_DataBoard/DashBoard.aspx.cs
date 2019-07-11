@@ -10,6 +10,7 @@ using NPOI.Util;
 using NPOI.XSSF.UserModel;
 using System.Text;
 using System.IO;
+using System.Diagnostics;
 
 public partial class DashBoard : System.Web.UI.Page
 {
@@ -35,10 +36,9 @@ public partial class DashBoard : System.Web.UI.Page
                 lbl_DateInfo.Text = this.Application["filePath"].ToString().Substring(0, 8);
 
             }
-        }
-        this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" + 
-            Data2Trace.values_ECharts1_1 + "','" 
-            + Data2Trace.values_ECharts1_2 + "','" 
+            this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" +
+            Data2Trace.values_ECharts1_1 + "','"
+            + Data2Trace.values_ECharts1_2 + "','"
             + Data2Trace.values_ECharts1_3 + "','"
             + Data2Trace.values_ECharts1_4 + "','"
             + Data2Trace.values_ECharts2_1 + "','"
@@ -49,16 +49,14 @@ public partial class DashBoard : System.Web.UI.Page
             + Data2Trace.values_ECharts3_2 + "','"
             + Data2Trace.values_ECharts3_3 + "','"
             + Data2Trace.values_ECharts3_4 + "')", true);
-        Label1.Text = this.Application["filePath"].ToString();
-        //this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts8", "setECharts8('" +
-        //    Data2Trace.values_ECharts1 + "','"
-        //    + Data2Trace.values_ECharts2 + "','"
-        //    + Data2Trace.values_ECharts1 + "','"
-        //    + Data2Trace.values_ECharts2 + "','"
-        //    + Data2Trace.values_ECharts1 + "','"
-        //    + Data2Trace.values_ECharts2 + "','"
-        //    + Data2Trace.values_ECharts1 + "','"
-        //    + Data2Trace.values_ECharts2 + "')", true);
+            Label1.Text = this.Application["filePath"].ToString();
+
+        }
+        else
+        {
+            Response.Write("Failed to read table data. Server may be unavailable or table may have a wrong data format.");
+        }       
+       
     }
 
     private XSSFSheet sht;
