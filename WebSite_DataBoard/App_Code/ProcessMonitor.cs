@@ -42,7 +42,14 @@ public class ProcessMonitor
     public static int Gap_Release2Finish { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualReleaseDate, mActualTime.Date_ActualFinishDate, false)); } }
     //完成生产入库到起运发货的时间间隔(WD)
     public static int Gap_Finish2Shipment { get { return HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualFinishDate, mActualTime.Date_ShipmentStartOn, false); } }
-    //以完成生产入库但未发货订单，完成生产入库至今的时间间隔(WD)
+    
+    //SO已创建到今天的时间间隔(WD)
+    public static int Gap_SO2Today { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_SO_CreatedOn, DateTime.Today, false)); } }
+    //PO已创建到今天的时间间隔(WD)
+    public static int Gap_PO2Today { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_PO_CreatedOn, DateTime.Today, false)); } }
+    //PO已释放到今天的时间间隔(WD)
+    public static int Gap_Release2Today { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualReleaseDate, DateTime.Today, false)); } }
+    //已完成生产入库但未发货订单，完成生产入库至今的时间间隔(WD)
     public static int Gap_Finish2Today { get { return Math.Abs(HolidayHelper.GetInstance().GetWorkDayNum(mActualTime.Date_ActualFinishDate, DateTime.Today, false)); } }
     //已完成订单Lead Time(CDS)
     public static int LT

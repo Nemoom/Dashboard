@@ -8,8 +8,10 @@ using System.IO;
 
 public partial class _Default : System.Web.UI.Page
 {
+    ExcelOperation mExcelOperation;
     protected void Page_Load(object sender, EventArgs e)
     {
+        mExcelOperation = new ExcelOperation();
         FileTimeInfo mFileTimeInfo = GetLatestFileTimeInfo(@"C:\Users\Public\Music\", ".xlsx");
         this.Application["filePath"] = mFileTimeInfo.FileName;
         lbl_FilePath.Text = mFileTimeInfo.FileName;
@@ -21,11 +23,11 @@ public partial class _Default : System.Web.UI.Page
         File1.PostedFile.SaveAs(@"C:\Users\Public\Music\" + FileName);
         this.Application["filePath"] = FileName;
         lbl_FilePath.Text = this.Application["filePath"].ToString();
-        ExcelOperation mExcelOperation = new ExcelOperation();
+        
         bool bool_ExcelImpoert = mExcelOperation.ExcelImportWithLayoutCheck(this.Application["filePath"].ToString(), "Sheet1");
         if (bool_ExcelImpoert)
-        { 
-        
+        {
+            mExcelOperation.TraceFromExcel();
         }
     }
     public class FileTimeInfo
@@ -56,4 +58,22 @@ public partial class _Default : System.Web.UI.Page
     }
 
 
+    protected void btn_Download_Click(object sender, EventArgs e)
+    {
+        bool bool_ExcelImpoert = mExcelOperation.ExcelImportWithLayoutCheck(this.Application["filePath"].ToString(), "Sheet1");
+        if (bool_ExcelImpoert)
+        {
+            mExcelOperation.TraceFromExcel();
+        }
+        
+        //For download
+        FileStream fs = new FileStream(@"C:\Users\Public\Documents\" + mExcelOperation.filename_AlertList, FileMode.Open);
+        byte[] file_download = new byte[fs.Length];
+        fs.Read(file_download, 0, file_download.Length);
+        fs.Close();
+        Response.Clear();
+        Response.AddHeader("content-disposition", "attachment; filename=" + mExcelOperation.filename_AlertList);//以二进制流模式，强制下载 
+        Response.ContentType = "application/octet-stream";
+        Response.BinaryWrite(file_download);
+    }
 }

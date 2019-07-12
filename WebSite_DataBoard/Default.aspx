@@ -12,5 +12,6 @@
     <input id="File1" type="file"  runat="server"/>
     <asp:Button ID="btn_Upload" runat="server" Text="Upload" 
         onclick="btn_Upload_Click"/>
-    
+    <asp:Button ID="btn_Download" runat="server" Text="Download" 
+        onclick="btn_Download_Click" />
 </asp:Content>

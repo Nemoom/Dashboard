@@ -95,29 +95,92 @@ public class ExcelOperation
         excelHeader[36] = "Route";
         excelHeader[37] = "TransitTime";
         excelHeader[38] = "Delivery Number";
-        excelHeader[39] = "Shipment Number"; 
+        excelHeader[39] = "Shipment Number";
+
+        ColIndex_DateTime.Add(25);
+        ColIndex_DateTime.Add(26);
+        ColIndex_DateTime.Add(27);
+        ColIndex_DateTime.Add(28);
+        ColIndex_DateTime.Add(29);
+        ColIndex_DateTime.Add(31);
+        ColIndex_DateTime.Add(32);
+        ColIndex_DateTime.Add(33);
+        ColIndex_DateTime.Add(34);
+
+        #region SO->PO Creation关心的列号
+        ColIndex_SO2PO.Add(2);
+        ColIndex_SO2PO.Add(3);
+        ColIndex_SO2PO.Add(4);
+        ColIndex_SO2PO.Add(8);
+        ColIndex_SO2PO.Add(9);
+        ColIndex_SO2PO.Add(10);
+        ColIndex_SO2PO.Add(11);
+        ColIndex_SO2PO.Add(12);
+        ColIndex_SO2PO.Add(13);
+        ColIndex_SO2PO.Add(14);
+        ColIndex_SO2PO.Add(15);
+        ColIndex_SO2PO.Add(16);
+        ColIndex_SO2PO.Add(17);
+        ColIndex_SO2PO.Add(18);
+        ColIndex_SO2PO.Add(19);
+        ColIndex_SO2PO.Add(20);
+        ColIndex_SO2PO.Add(21);
+        ColIndex_SO2PO.Add(22);
+        ColIndex_SO2PO.Add(23);
+        ColIndex_SO2PO.Add(24);
+        ColIndex_SO2PO.Add(25);
+        ColIndex_SO2PO.Add(30);
+        ColIndex_SO2PO.Add(32); 
+        #endregion
+        
         #endregion
 	}
     public string[] excelHeader = new string[40];
     public List<KeyValuePair<int, string>> excelHead = new List<KeyValuePair<int, string>>();
-    public XSSFWorkbook wb;
+    public XSSFWorkbook wb, wb_AlertList;
     //create the format instance
     IDataFormat format;
-    private XSSFSheet sht;
+    private XSSFSheet sht, sht_SO2PO, sht_PO2PORelease, sht_PORelease2ActualFinish, sht_ActualFinish2ExPlant,sht_MaterialPlan,sht_ProductionPlan;
     public int rowsCount, colsCount;
     public string filename_edited;
+    public string filename_AlertList;
+
+    public List<int> ColIndex_DateTime = new List<int>();
+
+    public List<int> ColIndex_SO2PO = new List<int>();
+    public List<int> ColIndex_PO2PORelease = new List<int>();
+    public List<int> ColIndex_PORelease2ActualFinish = new List<int>();
+    public List<int> ColIndex_ActualFinish2ExPlant = new List<int>();
+    public List<int> ColIndex_MaterialPlan = new List<int>();
+    public List<int> ColIndex_ProductionPlan = new List<int>();
 
     public bool ExcelImportWithLayoutCheck(string filename, string sheetName = "Sheet1")
     {
         bool bool_ImportResult = true;
         wb = new XSSFWorkbook(File.OpenRead(@"C:\Users\Public\Music\" + filename));
         filename_edited = filename.Substring(0, filename.Length - 5) + "_edited.xlsx";
+        filename_AlertList = filename.Substring(0, 16) + "AlertList.xlsx";
+        wb_AlertList = new XSSFWorkbook();
+        sht_SO2PO = (XSSFSheet)wb_AlertList.CreateSheet("SO->PO Creation");
+        sht_PO2PORelease = (XSSFSheet)wb_AlertList.CreateSheet("PO Creation->PO Release");
+        sht_PORelease2ActualFinish = (XSSFSheet)wb_AlertList.CreateSheet("PO Release->Actual finish");
+        sht_ActualFinish2ExPlant = (XSSFSheet)wb_AlertList.CreateSheet("Actual finish->Ex-plant");
+        sht_MaterialPlan = (XSSFSheet)wb_AlertList.CreateSheet("Material Planning");
+        sht_ProductionPlan = (XSSFSheet)wb_AlertList.CreateSheet("Production Planning");
+
+        sht_SO2PO.CreateRow(0);
+        for (int Col_SO2PO = 0; Col_SO2PO < ColIndex_SO2PO.Count; Col_SO2PO++)
+        {
+            sht_SO2PO.GetRow(0).CreateCell(Col_SO2PO).SetCellValue(excelHeader[ColIndex_SO2PO[Col_SO2PO]]);
+        }
+        
         //wb = new XSSFWorkbook(File.OpenRead(@"F:\" + filename));
         sht = (XSSFSheet)wb.GetSheet(sheetName);
         if (sht==null)
         {
             sht = (XSSFSheet)wb.GetSheetAt(0);
         }
+
         //取行Excel的最大行数
         rowsCount = sht.PhysicalNumberOfRows;
         //取所有行中的最大列数
@@ -128,6 +191,18 @@ public class ExcelOperation
             { 
                 bool_ImportResult = false;
                 break;
+            }
+        }
+
+        if (bool_ImportResult)
+        {
+            //设置AlertList的表头格式和列宽，copy sht
+            for (int Col_SO2PO = 0; Col_SO2PO < ColIndex_SO2PO.Count; Col_SO2PO++)
+            {
+                sht_SO2PO.SetColumnWidth(Col_SO2PO, sht.GetColumnWidth(ColIndex_SO2PO[Col_SO2PO]));
+                ICellStyle mCellStyle = wb_AlertList.CreateCellStyle();
+                mCellStyle.CloneStyleFrom(sht.GetRow(0).GetCell(ColIndex_SO2PO[Col_SO2PO]).CellStyle);
+                sht_SO2PO.GetRow(0).GetCell(Col_SO2PO).CellStyle = mCellStyle;
             }
         }
         return bool_ImportResult;
@@ -210,7 +285,9 @@ public class ExcelOperation
             mylist_Gap_Ex_plant_0481_perMonth[i] = new List<int>();
         }
         #endregion
-        
+
+        #region 在上传的文档中增加计算的过程变量
+        //设置增加信息列的列宽
         sht.SetColumnWidth(colsCount + 0, 20 * 256);
         sht.SetColumnWidth(colsCount + 1, 20 * 256);
         sht.SetColumnWidth(colsCount + 2, 20 * 256);
@@ -222,7 +299,7 @@ public class ExcelOperation
         sht.SetColumnWidth(colsCount + 8, 20 * 256);
         sht.SetColumnWidth(colsCount + 9, 20 * 256);
         sht.SetColumnWidth(colsCount + 10, 20 * 256);
-        
+
         //写Excel表头
         ICell mcell = sht.GetRow(0).CreateCell(colsCount + 0);
         mcell.SetCellValue("Status_Program");//Status
@@ -245,7 +322,8 @@ public class ExcelOperation
         mcell = sht.GetRow(0).CreateCell(colsCount + 9);
         mcell.SetCellValue("Req-Act-3");//Req-Act-3
         mcell = sht.GetRow(0).CreateCell(colsCount + 10);
-        mcell.SetCellValue("Real Failed");//Real Failed
+        mcell.SetCellValue("Real Failed");//Real Failed 
+        #endregion
         
         //逐行统计
         for (int i = 1; i < rowsCount; i++)
@@ -258,11 +336,12 @@ public class ExcelOperation
             {
                 RowRecordProcess(i);
             }
+            #region 在上传的文档中增加计算的过程变量
             format = wb.CreateDataFormat();
             mcell = sht.GetRow(i).CreateCell(colsCount + 0);
             mcell.SetCellValue(ProcessMonitor.mPO_Status.ToString());
             mcell = sht.GetRow(i).CreateCell(colsCount + 1);
-            SetValueAndFormat(wb, mcell, ProcessMonitor.Date_QuotationLT, format.GetFormat("yyyy年m月d日"));
+            SetValueAndFormat(wb, mcell, ProcessMonitor.Date_QuotationLT, format.GetFormat("yyyy/m/d"));
             mcell.SetCellValue(ProcessMonitor.Date_QuotationLT);
             mcell = sht.GetRow(i).CreateCell(colsCount + 2);
             mcell.SetCellValue(ProcessMonitor.LT);
@@ -281,12 +360,8 @@ public class ExcelOperation
             mcell = sht.GetRow(i).CreateCell(colsCount + 9);
             mcell.SetCellValue((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - 3);
             mcell = sht.GetRow(i).CreateCell(colsCount + 10);
-            mcell.SetCellValue(ttt);            
-            
-            //ICell cell1 = sheet.GetRow(i).CreateCell(1);
-            //format = xssfworkbook.CreateDataFormat();
-            //SetValueAndFormat(xssfworkbook, cell1, ProcessMonitor.Date_QuotationLT, format.GetFormat("yyyy年m月d日"));
-            //cell1.SetCellValue(ProcessMonitor.Date_QuotationLT);
+            mcell.SetCellValue(ttt);      
+            #endregion       
             
         }
         //*****************************************************************************************************************************************
@@ -548,6 +623,10 @@ public class ExcelOperation
             wb.Write(file);
             file.Close();
         }
+     
+        FileStream file_AlertList = new FileStream(@"C:\Users\Public\Documents\" + filename_AlertList, FileMode.Create);
+        wb_AlertList.Write(file_AlertList);
+        file_AlertList.Close();       
         
     }
 
@@ -1228,6 +1307,48 @@ public class ExcelOperation
                     switch (ProcessMonitor.mPO_Status)
                     {
                         case PO_Status.SO_Created:
+                            if (ProcessMonitor.mDLV_Plant==DLV_Plant.P_0400 && ProcessMonitor.Gap_SO2Today > 1)
+                            { 
+                                //SO已创建到今天的时间间隔(WD)
+                                sht_SO2PO.CreateRow(sht_SO2PO.LastRowNum + 1);
+                                for (int Col_SO2PO = 0; Col_SO2PO < ColIndex_SO2PO.Count; Col_SO2PO++)
+                                {
+                                    sht_SO2PO.GetRow(sht_SO2PO.LastRowNum).CreateCell(Col_SO2PO).SetCellType(nRow.GetCell(ColIndex_SO2PO[Col_SO2PO]).CellType);
+                                    switch (nRow.GetCell(ColIndex_SO2PO[Col_SO2PO]).CellType)
+                                    {
+                                        case CellType.Blank:
+                                            break;
+                                        case CellType.Boolean:
+                                            sht_SO2PO.GetRow(sht_SO2PO.LastRowNum).GetCell(Col_SO2PO).SetCellValue(nRow.GetCell(ColIndex_SO2PO[Col_SO2PO]).BooleanCellValue);
+                                            break;
+                                        case CellType.Error:
+                                            sht_SO2PO.GetRow(sht_SO2PO.LastRowNum).GetCell(Col_SO2PO).SetCellValue(nRow.GetCell(ColIndex_SO2PO[Col_SO2PO]).ErrorCellValue);
+                                            break;
+                                        case CellType.Formula:
+                                            sht_SO2PO.GetRow(sht_SO2PO.LastRowNum).GetCell(Col_SO2PO).SetCellValue(nRow.GetCell(ColIndex_SO2PO[Col_SO2PO]).CellFormula);
+                                            break;
+                                        case CellType.Numeric:
+                                            if (ColIndex_DateTime.Contains(ColIndex_SO2PO[Col_SO2PO]))
+                                            {
+                                                sht_SO2PO.GetRow(sht_SO2PO.LastRowNum).GetCell(Col_SO2PO).SetCellValue(nRow.GetCell(ColIndex_SO2PO[Col_SO2PO]).DateCellValue.ToShortDateString().ToString());
+
+                                            }
+                                            else
+                                            {
+                                                sht_SO2PO.GetRow(sht_SO2PO.LastRowNum).GetCell(Col_SO2PO).SetCellValue(nRow.GetCell(ColIndex_SO2PO[Col_SO2PO]).NumericCellValue);
+
+                                            }
+                                            break;
+                                        case CellType.String:
+                                            sht_SO2PO.GetRow(sht_SO2PO.LastRowNum).GetCell(Col_SO2PO).SetCellValue(nRow.GetCell(ColIndex_SO2PO[Col_SO2PO]).StringCellValue);
+                                            break;
+                                        case CellType.Unknown:
+                                            break;
+                                        default:
+                                            break;
+                                    }                                    
+                                }
+                            }
                             break;
                         case PO_Status.PO_Created:
                         case PO_Status.PO_Released:

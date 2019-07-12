@@ -50,7 +50,7 @@ public partial class DashBoard : System.Web.UI.Page
             + Data2Trace.values_ECharts3_3 + "','"
             + Data2Trace.values_ECharts3_4 + "')", true);
             Label1.Text = this.Application["filePath"].ToString();
-
+           
         }
         else
         {
