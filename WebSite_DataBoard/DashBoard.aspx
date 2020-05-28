@@ -68,12 +68,15 @@
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts1_3" style="height: 425px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts2_1" style="background-position: center center; height: 425px; border: 1px solid #ccc; 
+                                padding: 10px; background-size: 80% 70%; background-image: url('./img/in1.png'); background-repeat: no-repeat;">
+                            <%--<div id="divECharts2_1" style="height: 500px; border: 1px solid #ccc; padding: 10px;">--%>
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts1_4" style="height: 425px; border: 1px solid #ccc; padding: 10px;">
+                            <div id="divECharts2_2" style="background-position: center center; height: 425px; border: 1px solid #ccc; 
+                                padding: 10px; background-size: 80% 70%; background-image: url('./img/out1.png'); background-repeat: no-repeat;">
                             </div>
                         </td>
                     </tr>
@@ -84,15 +87,12 @@
                     <tr style="height: 50%;">
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts2_1" style="background-position: center center; height: 425px; border: 1px solid #ccc; 
-                                padding: 10px; background-size: 80% 70%; background-image: url('./img/in1.png'); background-repeat: no-repeat;">
-                            <%--<div id="divECharts2_1" style="height: 500px; border: 1px solid #ccc; padding: 10px;">--%>
+                            <div id="divECharts1_3" style="height: 425px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                         <td style="width: 50%;">
                             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <div id="divECharts2_2" style="background-position: center center; height: 425px; border: 1px solid #ccc; 
-                                padding: 10px; background-size: 80% 70%; background-image: url('./img/out1.png'); background-repeat: no-repeat;">
+                            <div id="divECharts1_4" style="height: 425px; border: 1px solid #ccc; padding: 10px;">
                             </div>
                         </td>
                     </tr>
@@ -224,16 +224,16 @@
         var time_count;
         time_count = setInterval(function () {
                 count++;
-                if (count%3==0) {                    
+                if (count%2==0) {                    
                     document.getElementById('Panel1').style.display="block";
                     document.getElementById('Panel2').style.display="none";
                     document.getElementById('Panel3').style.display="none";
                 } 
-                else if (count%3==1){
-                    document.getElementById('Panel1').style.display="none";
-                    document.getElementById('Panel2').style.display="block";
-                    document.getElementById('Panel3').style.display="none";
-                }   
+//                else if (count%2==1){
+////                    document.getElementById('Panel1').style.display="none";
+////                    document.getElementById('Panel2').style.display="block";
+////                    document.getElementById('Panel3').style.display="none";
+//                }   
                 else {
                     document.getElementById('Panel1').style.display="none";
                     document.getElementById('Panel2').style.display="none";
@@ -1698,7 +1698,7 @@
         // 图表使用-------------------
         var option3_1 = {
                         title: {
-                            text: '【0400】 SO → PO Creation',  
+                            text: 'SO → PO Creation',  
                             subtext: 'Target：LT < 1(WD)',
                             x: 'center'                           
                         },
@@ -1854,7 +1854,7 @@
         // 图表使用-------------------
         var option3_2 = {
                         title: {
-                            text: '【0400】 PO Creation → PO Release', 
+                            text: 'PO Creation → PO Release', 
                             subtext: 'Target：LT <= 5(WD)',
                             x: 'center'
                         },
@@ -2006,7 +2006,7 @@
         var var_POFinish_0481 = var_Echarts3_3[2].split('!');
         var option3_3 = {
             title: {
-                        text: '【0400】 PO Release → Actual finish', 
+                        text: 'PO Release → Actual finish', 
                         subtext:'Target：Average <= 23(WD)',
                         x: 'center'
                     },
@@ -2022,10 +2022,10 @@
             legend: {
                 bottom: 10,
                 left: 'center',
-                data:['0400','0481','0400+0481'],
-                selected: {
-                '0481': false, '0400+0481': false
-                }
+                data:['0400','0481','0400+0481']
+//                selected: {
+//                '0481': false, '0400+0481': false
+//                }
             },
             xAxis: [
                 {
@@ -2170,7 +2170,7 @@
         var var_Ex_plant_0481 = var_Echarts3_4[2].split('!');
         var option3_4 = {
             title: {
-                        text: '【0400】 Actual finish → Ex-plant', 
+                        text: 'Actual finish → Ex-plant', 
                         subtext:'Target：Average <= 2(WD)',
                         x: 'center'
                     },
@@ -2186,10 +2186,10 @@
             legend: {
                 bottom: 10,
                 left: 'center',
-                data:['0400','0481','0400+0481'],
-                selected: {
-                '0481': false, '0400+0481': false
-                }
+                data:['0400','0481','0400+0481']
+//                selected: {
+//                '0481': false, '0400+0481': false
+//                }
             },
             xAxis: [
                 {

@@ -25,7 +25,7 @@ public partial class _Default : System.Web.UI.Page
         lbl_FilePath.Text = this.Application["filePath"].ToString();
         
         bool bool_ExcelImpoert = mExcelOperation.ExcelImportWithLayoutCheck(this.Application["filePath"].ToString(), "Sheet1");
-        if (bool_ExcelImpoert)
+        if (bool_ExcelImpoert)//判断导入Excel格式是否符合要求
         {
             mExcelOperation.TraceFromExcel();
         }
@@ -36,13 +36,13 @@ public partial class _Default : System.Web.UI.Page
         public DateTime FileCreateTime; //创建时间
     }
 
-    static FileTimeInfo GetLatestFileTimeInfo(string dir, string ext)
+    static FileTimeInfo GetLatestFileTimeInfo(string dir, string ext, string type = "CS E2E")
     {
         List<FileTimeInfo> list = new List<FileTimeInfo>();
         DirectoryInfo d = new DirectoryInfo(dir);
         foreach (FileInfo file in d.GetFiles())
         {
-            if (file.Extension.ToUpper() == ext.ToUpper())
+            if (file.Extension.ToUpper() == ext.ToUpper() && file.Name.Contains(type))
             {
                 list.Add(new FileTimeInfo()
                 {
@@ -52,8 +52,8 @@ public partial class _Default : System.Web.UI.Page
             }
         }
         var f = from x in list
-                    orderby x.FileCreateTime
-                    select x;
+                orderby x.FileCreateTime
+                select x;
         return f.LastOrDefault();
     }
 
@@ -77,5 +77,21 @@ public partial class _Default : System.Web.UI.Page
         Response.AddHeader("content-disposition", "attachment; filename=" + mExcelOperation.filename_AlertList);//以二进制流模式，强制下载 
         Response.ContentType = "application/octet-stream";
         Response.BinaryWrite(file_download);
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        //case by case
+        string FileName = File2.PostedFile.FileName;
+        string DirectoryName = Path.GetFullPath(File2.PostedFile.FileName); //获取文件所在目录
+        File2.PostedFile.SaveAs(@"C:\Users\Public\Music\CbyC" + Path.GetExtension(FileName));
+        //this.Application["filePath_CbyC"] = FileName;        
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        //match customer request
+        string FileName = File3.PostedFile.FileName;
+        string DirectoryName = Path.GetFullPath(File3.PostedFile.FileName); //获取文件所在目录
+        File3.PostedFile.SaveAs(@"C:\Users\Public\Music\MatchReq" + Path.GetExtension(FileName));
+        //this.Application["filePath_MatchReq"] = FileName;       
     }
 }
