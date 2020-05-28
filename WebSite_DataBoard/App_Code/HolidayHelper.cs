@@ -162,6 +162,10 @@ public class HolidayHelper
     /// <returns></returns>
     public DateTime GetReckonDate(DateTime date, int day, bool isContainToday = true)
     {
+        if (date==new DateTime(2019,10,24))
+        {
+            
+        }
         DateTime currDate = date;
         int addDay = day >= 0 ? 1 : -1;
 

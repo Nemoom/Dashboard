@@ -67,7 +67,9 @@ public partial class _Default : System.Web.UI.Page
         }
         
         //For download
-        FileStream fs = new FileStream(@"C:\Users\Public\Documents\" + mExcelOperation.filename_AlertList, FileMode.Open);
+        //FileStream fs = new FileStream(@"C:\Users\Public\Documents\" + mExcelOperation.filename_AlertList, FileMode.Open);
+        string DownloadFileName = mExcelOperation.filename_edited.Split('_')[0] + "_edited.xlsx";
+        FileStream fs = new FileStream(@"C:\Users\Public\Music\" + DownloadFileName, FileMode.Open);
         byte[] file_download = new byte[fs.Length];
         fs.Read(file_download, 0, file_download.Length);
         fs.Close();
