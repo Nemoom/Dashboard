@@ -22,6 +22,30 @@ public partial class DashBoard : System.Web.UI.Page
         ////this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2('" + this.Application["filePath"].ToString() + "','" + excelResult_POnum + "','" + excelResult_Finishnum + "','" + excelResult_NetValue + "')", true);
         //////this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "setECharts2", "setECharts2()", true);
         ExcelOperation mExcelOperation = new ExcelOperation();
+        if (File.Exists(@"C:\Users\Public\Music\" + this.Application["filePath_CbyC"].ToString()))
+        {
+            try
+            {
+                mExcelOperation.GetCbyCList(this.Application["filePath_CbyC"].ToString());
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+        if (File.Exists(@"C:\Users\Public\Music\" + this.Application["filePath_MatchReq"].ToString()))
+        {
+            try
+            {
+                mExcelOperation.GetMatchReqList(this.Application["filePath_MatchReq"].ToString());
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         bool bool_ExcelImpoert = mExcelOperation.ExcelImportWithLayoutCheck(this.Application["filePath"].ToString(), "Sheet1");
         if (bool_ExcelImpoert)
         {           

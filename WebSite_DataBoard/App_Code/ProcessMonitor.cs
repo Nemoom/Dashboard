@@ -14,7 +14,10 @@ public class ProcessMonitor
 		//TODO: 在此处添加构造函数逻辑
 		//
 	}
-
+    public static bool b_VCC68;
+    public static bool b_Delete_CbyC;
+    public static bool b_MatchReq;
+    public static bool b_ST;
     public static string mPO;
     public static string mSO;
     //SKA/FKA
@@ -91,6 +94,7 @@ public class ProcessMonitor
         public DateTime Date_ActualFinishDate;
         public DateTime Date_1stGRforPO;
         public DateTime Date_ShipmentStartOn;
+        public int TransitTime;
     }
     public struct EstimatedTime 
     {
