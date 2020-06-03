@@ -162,7 +162,7 @@ public class ExcelOperation
         POList_CbyC = new List<string>();
         XSSFWorkbook wb_CbyC = new XSSFWorkbook(File.OpenRead(@"C:\Users\Public\Music\" + filename));
         XSSFSheet sht_CbyC = (XSSFSheet)wb_CbyC.GetSheetAt(0);
-        for (int i = 1; i < sht_CbyC.GetRow(0).PhysicalNumberOfCells; i++)
+        for (int i = 1; i < sht_CbyC.PhysicalNumberOfRows; i++)
         {
             if (sht_CbyC.GetRow(i)!=null)
             {
@@ -176,7 +176,7 @@ public class ExcelOperation
         POList_MatchReq = new List<string>();
         XSSFWorkbook wb_MatchReq = new XSSFWorkbook(File.OpenRead(@"C:\Users\Public\Music\" + filename));
         XSSFSheet sht_MatchReq = (XSSFSheet)wb_MatchReq.GetSheetAt(0);
-        for (int i = 1; i < sht_MatchReq.GetRow(0).PhysicalNumberOfCells; i++)
+        for (int i = 1; i < sht_MatchReq.PhysicalNumberOfRows; i++)
         {
             if (sht_MatchReq.GetRow(i) != null)
             {
@@ -1172,92 +1172,92 @@ public class ExcelOperation
                         //public static int count_Reminder_Monitor_LastFailed_DC;
                         //public static int count_Reminder_Monitor_LastFailed_Req;
                         ttt = "";
-                        if (ProcessMonitor.mDLV_Plant == DLV_Plant.P_0400)
+                        //if (ProcessMonitor.mDLV_Plant == DLV_Plant.P_0400)
+                        //{
+                        //    //0400订单
+                        if ((ProcessMonitor.mPO_Status != PO_Status.DLV && ProcessMonitor.mPO_Status != PO_Status.PO_Finished))
                         {
-                            //0400订单
-                            if ((ProcessMonitor.mPO_Status != PO_Status.DLV && ProcessMonitor.mPO_Status != PO_Status.PO_Finished))
+                            //未完成的订单
+                            if (ProcessMonitor.Date_QuotationLT > DateTime.Today
+                                && ProcessMonitor.Date_QuotationLT <= DateTime.Today.AddDays(14))
                             {
-                                //0400未完成的订单
-                                if (ProcessMonitor.Date_QuotationLT > DateTime.Today
-                                    && ProcessMonitor.Date_QuotationLT <= DateTime.Today.AddDays(14))
-                                {
-                                    Data2Trace.count_Reminder2Weeks_LT++;
-                                }
-                                else if (ProcessMonitor.Date_QuotationLT > DateTime.Today.AddDays(14)
-                                    && ProcessMonitor.Date_QuotationLT <= DateTime.Today.AddDays(21))
-                                {
-                                    Data2Trace.count_Reminder3Weeks_LT++;
-                                }
-                                if (ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt > DateTime.Today
-                                    && ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt <= DateTime.Today.AddDays(14))
-                                {
-                                    Data2Trace.count_Reminder2Weeks_ConfirmedDt++;
-                                }
-                                else if (ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt > DateTime.Today.AddDays(14)
-                                    && ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt <= DateTime.Today.AddDays(21))
-                                {
-                                    Data2Trace.count_Reminder3Weeks_ConfirmedDt++;
-                                }
-                                #region ECharts1-4:Ongoing Pro. Order Monitoring【0400】
-                                if (ProcessMonitor.LT_Ongoing <= 40)
-                                {
-                                    Data2Trace.count_Ongoing_40++;
-                                }
-                                else if (ProcessMonitor.LT_Ongoing <= 50)
-                                {
-                                    Data2Trace.count_Ongoing_40_50++;
-                                }
-                                else
-                                {
-                                    Data2Trace.count_Ongoing_50++;
-                                }
-                                #endregion
+                                Data2Trace.count_Reminder2Weeks_LT++;
+                            }
+                            else if (ProcessMonitor.Date_QuotationLT > DateTime.Today.AddDays(14)
+                                && ProcessMonitor.Date_QuotationLT <= DateTime.Today.AddDays(21))
+                            {
+                                Data2Trace.count_Reminder3Weeks_LT++;
+                            }
+                            if (ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt > DateTime.Today
+                                && ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt <= DateTime.Today.AddDays(14))
+                            {
+                                Data2Trace.count_Reminder2Weeks_ConfirmedDt++;
+                            }
+                            else if (ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt > DateTime.Today.AddDays(14)
+                                && ProcessMonitor.mEstimatedTime.Date_1stConfirmedDt <= DateTime.Today.AddDays(21))
+                            {
+                                Data2Trace.count_Reminder3Weeks_ConfirmedDt++;
+                            }
+                            #region ECharts1-4:Ongoing Pro. Order Monitoring【0400】
+                            if (ProcessMonitor.LT_Ongoing <= 40)
+                            {
+                                Data2Trace.count_Ongoing_40++;
+                            }
+                            else if (ProcessMonitor.LT_Ongoing <= 50)
+                            {
+                                Data2Trace.count_Ongoing_40_50++;
                             }
                             else
                             {
-                                //需要加1个工作日,将FinishDate转换成ReadyToShipDate
-                                //if (ProcessMonitor.mActualTime.Date_ActualFinishDate > ProcessMonitor.Date_QuotationLT)
-                                if (ProcessMonitor.mActualTime.Date_ActualFinishDate.Month == DateTime.Now.Month && ProcessMonitor.mActualTime.Date_ActualFinishDate.Year == DateTime.Now.Year)
+                                Data2Trace.count_Ongoing_50++;
+                            }
+                            #endregion
+                        }
+                        else
+                        {
+                            //完成的订单
+                            //需要加1个工作日,将FinishDate转换成ReadyToShipDate
+                            //if (ProcessMonitor.mActualTime.Date_ActualFinishDate > ProcessMonitor.Date_QuotationLT)
+                            if (ProcessMonitor.mActualTime.Date_ActualFinishDate.Year == DateTime.Now.Year)
+                            {
+                                if (HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, true) + 1 > ProcessMonitor.mEstimatedTime.QuotationLT)
                                 {
-                                    if (HolidayHelper.GetInstance().GetWorkDayNum(ProcessMonitor.mActualTime.Date_SO_CreatedOn, ProcessMonitor.mActualTime.Date_ActualFinishDate, true) + 1 > ProcessMonitor.mEstimatedTime.QuotationLT)
+                                    if (ProcessMonitor.mDLV_Plant == DLV_Plant.P_0400)
                                     {
-                                        if (ProcessMonitor.mDLV_Plant == DLV_Plant.P_0400)
+                                        //DC Failed                            
+                                        if ((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - 3 >= 0)
                                         {
-                                            //DC Failed                            
-                                            if ((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - 3 >= 0)
-                                            {
-                                                Data2Trace.count_FailedMonitor_DC++;//仅DC Failed
-                                                ttt = "DC Failed";
-                                            }
-                                            else
-                                            {
-                                                Data2Trace.count_FailedMonitor_Req++;//Both Failed
-                                                ttt = "Real Failed";
-                                            }
+                                            Data2Trace.count_FailedMonitor_DC++;//仅DC Failed
+                                            ttt = "DC Failed";
                                         }
-                                        else if (ProcessMonitor.mDLV_Plant == DLV_Plant.P_0481)
+                                        else
                                         {
-                                            //DC Failed                            
-                                            if ((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - ProcessMonitor.mActualTime.TransitTime >= 0)
-                                            {
-                                                Data2Trace.count_FailedMonitor_DC++;//仅DC Failed
-                                                ttt = "DC Failed";
-                                            }
-                                            else
-                                            {
-                                                Data2Trace.count_FailedMonitor_Req++;//Both Failed
-                                                ttt = "Real Failed";
-                                            }
+                                            Data2Trace.count_FailedMonitor_Req++;//Both Failed
+                                            ttt = "Real Failed";
+                                        }
+                                    }
+                                    else if (ProcessMonitor.mDLV_Plant == DLV_Plant.P_0481)
+                                    {
+                                        //DC Failed                            
+                                        if ((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - ProcessMonitor.mActualTime.TransitTime >= 0)
+                                        {
+                                            Data2Trace.count_FailedMonitor_DC++;//仅DC Failed
+                                            ttt = "DC Failed";
+                                        }
+                                        else
+                                        {
+                                            Data2Trace.count_FailedMonitor_Req++;//Both Failed
+                                            ttt = "Real Failed";
                                         }
                                     }
                                 }
                             }
-                        }
-                        //根据Date_QuotationLT和Date_RequestDate的比较判断以哪个做基准
-                        else if ((DateTime.Today.AddDays(-1)) == ProcessMonitor.mEstimatedTime.Date_RequestDate && (ProcessMonitor.mPO_Status != PO_Status.DLV || ProcessMonitor.mPO_Status != PO_Status.PO_Finished))
-                        {
+                        }                    
+                        ////根据Date_QuotationLT和Date_RequestDate的比较判断以哪个做基准
+                        //else if ((DateTime.Today.AddDays(-1)) == ProcessMonitor.mEstimatedTime.Date_RequestDate && (ProcessMonitor.mPO_Status != PO_Status.DLV || ProcessMonitor.mPO_Status != PO_Status.PO_Finished))
+                        //{
 
-                        }
+                        //}
 
                         #endregion
 
@@ -1642,6 +1642,6 @@ public class ExcelOperation
         catch (Exception)
         {
             return false;
-        }        
+        }       
     }
 }
