@@ -241,13 +241,17 @@ public class HolidayHelper
             }            
         }
         int addDay = date_End.Date > currDate.Date ? 1 : -1;
+        DateModel thisYearData = GetConfigDataByYear(currDate.Year);
         if (isContainToday)
         {
             //currDate = currDate.AddDays(-addDay);
             workDayNum = 1;
+            if (!IsWorkDay(currDate, thisYearData))
+            { 
+                workDayNum = 0; 
+            }
         }
 
-        DateModel thisYearData = GetConfigDataByYear(currDate.Year);
         if (thisYearData.Year > 0)
         {
             bool isEnd = false;

@@ -360,6 +360,8 @@ public class ExcelOperation
         mcell.SetCellValue("VCC6+VCC8");//VCC6+8
         mcell = sht.GetRow(0).CreateCell(colsCount + 13);
         mcell.SetCellValue("Match Request");//Match Request
+        mcell = sht.GetRow(0).CreateCell(colsCount + 14);
+        mcell.SetCellValue("DR2");//Match Request
         #endregion
         
         //逐行统计
@@ -412,6 +414,8 @@ public class ExcelOperation
             mcell.SetCellValue(ProcessMonitor.b_VCC68.ToString());
             mcell = sht.GetRow(i).CreateCell(colsCount + 13);
             mcell.SetCellValue(ProcessMonitor.b_MatchReq.ToString());
+            mcell = sht.GetRow(i).CreateCell(colsCount + 14);
+            mcell.SetCellValue(ProcessMonitor.DR2);
             #endregion       
             
         }
@@ -732,6 +736,7 @@ public class ExcelOperation
                 #region 赋值
                 try
                 {
+                    ProcessMonitor.DR2 = "";
                     #region SO,每单都应该有
                     if (((XSSFCell)nRow.GetCell(2)).CellType == NPOI.SS.UserModel.CellType.String)
                     {
@@ -939,7 +944,7 @@ public class ExcelOperation
                     if (ProcessMonitor.b_ST && !ProcessMonitor.b_Delete_CbyC)
                     {
                         #region 统计
-                        //For ECharts1_1:DCR(Delivery Class Reliablity)及时交付率 需要+1WD
+                        //For ECharts1_1:DCR(Delivery Class Reliablity)及时交付率 需要+1WD包装天
                         #region For ECharts1_1:DCR(Delivery Class Reliablity)及时交付率
                         if (ProcessMonitor.b_VCC68)
                         {
@@ -962,6 +967,7 @@ public class ExcelOperation
                                         {
                                             //及时完成的订单
                                             Data2Trace.count_0400_PO_DLV_OnTime++;
+                                            ProcessMonitor.DR2 = "OK2_0400";
                                             if (ProcessMonitor.mActualTime.Date_ActualFinishDate.Year == DateTime.Today.Year)
                                             {
                                                 Data2Trace.count_0400_PO_OnTime_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
@@ -978,6 +984,7 @@ public class ExcelOperation
                                     {
                                         //及时完成的订单
                                         Data2Trace.count_0400_PO_DLV_OnTime++;
+                                        ProcessMonitor.DR2 = "OK_0400";
                                         if (ProcessMonitor.mActualTime.Date_ActualFinishDate.Year == DateTime.Today.Year)
                                         {
                                             Data2Trace.count_0400_PO_OnTime_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
@@ -1039,6 +1046,7 @@ public class ExcelOperation
                                         {
                                             //及时完成的订单
                                             Data2Trace.count_0481_PO_DLV_OnTime++;
+                                            ProcessMonitor.DR2 = "OK2_0481";
                                             if (ProcessMonitor.mActualTime.Date_ActualFinishDate.Year == DateTime.Today.Year)
                                             {
                                                 Data2Trace.count_0481_PO_OnTime_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
@@ -1056,6 +1064,7 @@ public class ExcelOperation
                                     {
                                         //及时完成的订单
                                         Data2Trace.count_0481_PO_DLV_OnTime++;
+                                        ProcessMonitor.DR2 = "OK_0481";
                                         if (ProcessMonitor.mActualTime.Date_ActualFinishDate.Year == DateTime.Today.Year)
                                         {
                                             Data2Trace.count_0481_PO_OnTime_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
@@ -1114,7 +1123,7 @@ public class ExcelOperation
                         {
                             if (ProcessMonitor.mActualTime.Date_ActualFinishDate.Year == DateTime.Today.Year)
                             {
-                                if (POList_MatchReq.Contains(ProcessMonitor.mPO))
+                                if (POList_MatchReq.Contains(ProcessMonitor.mPO) || ProcessMonitor.DR2 == "OK2_0400" || ProcessMonitor.DR2 == "OK2_0481")
                                 {
 
                                 }
@@ -1128,24 +1137,16 @@ public class ExcelOperation
                                         switch (ProcessMonitor.mDLV_Plant)
                                         {
                                             case DLV_Plant.P_0400:
-                                                if ((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - 3 >= 0)
-                                                {
-                                                    
-                                                }
-                                                else
-                                                {
-                                                    mylist_0400_LT_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1].Add(ProcessMonitor.LT);
-                                                    mylist_0400_LT_YTD.Add(ProcessMonitor.LT);
-                                                }                                                
+
+                                                mylist_0400_LT_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1].Add(ProcessMonitor.LT);
+                                                mylist_0400_LT_YTD.Add(ProcessMonitor.LT);
+
                                                 break;
                                             case DLV_Plant.P_0481:
-                                                if ((ProcessMonitor.mEstimatedTime.Date_RequestDate - ProcessMonitor.mActualTime.Date_ActualFinishDate).Days - ProcessMonitor.mActualTime.TransitTime >= 0)
-                                                { }
-                                                else
-                                                {
-                                                    mylist_0481_LT_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1].Add(ProcessMonitor.LT);
-                                                    mylist_0481_LT_YTD.Add(ProcessMonitor.LT);
-                                                }
+
+                                                mylist_0481_LT_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1].Add(ProcessMonitor.LT);
+                                                mylist_0481_LT_YTD.Add(ProcessMonitor.LT);
+
                                                 break;
                                         }
                                     }                                   

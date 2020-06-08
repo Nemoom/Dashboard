@@ -20,6 +20,8 @@ public class ProcessMonitor
     public static bool b_ST;
     public static string mPO;
     public static string mSO;
+
+    public static string DR2;
     //SKA/FKA
     public static string mSKA_FKA;
     //KA Name
