@@ -14,6 +14,7 @@ public class ProcessMonitor
 		//TODO: 在此处添加构造函数逻辑
 		//
 	}
+    public static string testMark;
     public static bool b_VCC68;
     public static bool b_Delete_CbyC;
     public static bool b_MatchReq;

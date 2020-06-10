@@ -416,6 +416,8 @@ public class ExcelOperation
             mcell.SetCellValue(ProcessMonitor.b_MatchReq.ToString());
             mcell = sht.GetRow(i).CreateCell(colsCount + 14);
             mcell.SetCellValue(ProcessMonitor.DR2);
+            mcell = sht.GetRow(i).CreateCell(colsCount + 15);
+            mcell.SetCellValue(ProcessMonitor.testMark);
             #endregion       
             
         }
@@ -737,6 +739,7 @@ public class ExcelOperation
                 try
                 {
                     ProcessMonitor.DR2 = "";
+                    ProcessMonitor.testMark = "";
                     #region SO,每单都应该有
                     if (((XSSFCell)nRow.GetCell(2)).CellType == NPOI.SS.UserModel.CellType.String)
                     {
@@ -796,6 +799,11 @@ public class ExcelOperation
 
                     }
                     #endregion
+                    //调试定位指定PO订单
+                    //if ( ProcessMonitor.mPO=="1330607400")
+                    //{
+                        
+                    //}
 
                     if (POList_CbyC.Contains( ProcessMonitor.mPO))
                     {
@@ -843,7 +851,14 @@ public class ExcelOperation
                     #region SO_CreatedOn/RequestDate/QuotationLT/TransitTime
                     ProcessMonitor.mActualTime.Date_SO_CreatedOn = DateTime.FromOADate(((XSSFCell)nRow.GetCell(25)).NumericCellValue);
                     ProcessMonitor.mNetValue = ((XSSFCell)nRow.GetCell(22)).NumericCellValue;
-                    ProcessMonitor.mActualTime.TransitTime = Convert.ToInt16(((XSSFCell)nRow.GetCell(37)).StringCellValue.Split(',')[0]);
+                    try
+                    {
+                        ProcessMonitor.mActualTime.TransitTime = Convert.ToInt16(((XSSFCell)nRow.GetCell(37)).StringCellValue.Split(',')[0]);
+                    }
+                    catch (Exception)
+                    {
+                        ProcessMonitor.mActualTime.TransitTime = 0;
+                    }
                     if (((XSSFCell)nRow.GetCell(32)).CellType == NPOI.SS.UserModel.CellType.Blank)
                     {
                         Console.Write("Without RequestDate");
@@ -972,6 +987,10 @@ public class ExcelOperation
                                             {
                                                 Data2Trace.count_0400_PO_OnTime_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
                                                 Data2Trace.count_0400_PO_OnTime_YTD++;
+                                                if (ProcessMonitor.mActualTime.Date_ActualFinishDate.Month == 6)
+                                                {
+                                                    ProcessMonitor.testMark = "2";
+                                                }
                                             }
                                         }
                                         else
@@ -989,6 +1008,10 @@ public class ExcelOperation
                                         {
                                             Data2Trace.count_0400_PO_OnTime_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
                                             Data2Trace.count_0400_PO_OnTime_YTD++;
+                                            if (ProcessMonitor.mActualTime.Date_ActualFinishDate.Month == 6)
+                                            {
+                                                ProcessMonitor.testMark = "2";
+                                            }
                                         }
                                     }
                                 }
@@ -1051,6 +1074,10 @@ public class ExcelOperation
                                             {
                                                 Data2Trace.count_0481_PO_OnTime_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
                                                 Data2Trace.count_0481_PO_OnTime_YTD++;
+                                                if (ProcessMonitor.mActualTime.Date_ActualFinishDate.Month == 6)
+                                                {
+                                                    ProcessMonitor.testMark = "1";
+                                                }
                                             }
                                         }
                                         else
@@ -1069,6 +1096,10 @@ public class ExcelOperation
                                         {
                                             Data2Trace.count_0481_PO_OnTime_perMonth[ProcessMonitor.mActualTime.Date_ActualFinishDate.Month - 1]++;
                                             Data2Trace.count_0481_PO_OnTime_YTD++;
+                                            if (ProcessMonitor.mActualTime.Date_ActualFinishDate.Month == 6)
+                                            {
+                                                ProcessMonitor.testMark = "1";
+                                            }
                                         }
                                     }
                                 }
