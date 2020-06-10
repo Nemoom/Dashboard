@@ -310,7 +310,7 @@
                 bottom: 10,
                 left: 'center',
                 data:['0400 DCR','0481 DCR','0400+0481 DR2'],
-                selected:{'0481 DCR': false}
+                selected:{'0481 DCR': false,'0400 DCR': false}
             },
             xAxis: [
                 {
@@ -540,10 +540,11 @@
             legend: {
                 bottom: 10,
                 left: 'center',
-                data:['0400 LT','0481 LT','0400+0481 LT']
+                data:['0400 LT','0481 LT','0400+0481 LT'],
 //                selected: {
 //                '0481 LT': false, '0400+0481 LT': false
 //                }
+                selected:{'0481 LT': false,'0400 LT': false}
             },
             xAxis: [
                 {
