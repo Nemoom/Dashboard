@@ -310,7 +310,7 @@
                 bottom: 10,
                 left: 'center',
                 data:['0400 DCR','0481 DCR','0400+0481 DR2'],
-//                selected:{'0481 DCR': false}
+                selected:{'0481 DCR': false}
             },
             xAxis: [
                 {
@@ -360,7 +360,8 @@
                             position: 'top',
                             formatter: function(params){
                                 if (params.value > 0) {
-                                    return params.value+"%";
+                                    //return params.value+"%";
+                                    return params.value;
                                 } else {
                                     return '';
                                 }
@@ -413,7 +414,8 @@
                             position: 'top',
                             formatter: function(params){
                                 if (params.value > 0) {
-                                    return params.value+"%";
+                                    //return params.value+"%";
+                                    return params.value;
                                 } else {
                                     return '';
                                 }
@@ -469,7 +471,8 @@
                             position: 'top',
                             formatter: function(params){
                                 if (params.value > 0) {
-                                    return params.value+"%";
+                                    //return params.value+"%";
+                                    return params.value;
                                 } else {
                                     return '';
                                 }
