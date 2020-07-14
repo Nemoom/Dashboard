@@ -51,10 +51,10 @@ public class ExcelOperation
         excelHead.Add(new KeyValuePair<int, string>(33, "Basic End Date"));
         excelHead.Add(new KeyValuePair<int, string>(34, "ShipmentStartOn"));
         excelHead.Add(new KeyValuePair<int, string>(35, "Route"));
-        excelHead.Add(new KeyValuePair<int, string>(36, "Route"));
-        excelHead.Add(new KeyValuePair<int, string>(37, "TransitTime"));
-        excelHead.Add(new KeyValuePair<int, string>(38, "Delivery Number"));
-        excelHead.Add(new KeyValuePair<int, string>(39, "Shipment Number"));
+        excelHead.Add(new KeyValuePair<int, string>(36, "TransitTime"));
+        excelHead.Add(new KeyValuePair<int, string>(37, "Delivery Number"));
+        excelHead.Add(new KeyValuePair<int, string>(38, "Shipment Number"));
+        excelHead.Add(new KeyValuePair<int, string>(39, "Search Term"));
 
         excelHeader[0] = "SOrg.";
         excelHeader[1] = "SaTy";
@@ -92,10 +92,10 @@ public class ExcelOperation
         excelHeader[33] = "Basic End Date";
         excelHeader[34] = "ShipmentStartOn";
         excelHeader[35] = "Route";
-        excelHeader[36] = "Route";
-        excelHeader[37] = "TransitTime";
-        excelHeader[38] = "Delivery Number";
-        excelHeader[39] = "Shipment Number";
+        excelHeader[36] = "TransitTime";
+        excelHeader[37] = "Delivery Number";
+        excelHeader[38] = "Shipment Number";
+        excelHeader[39] = "Search Term";
 
         ColIndex_DateTime.Add(25);
         ColIndex_DateTime.Add(26);
@@ -853,7 +853,7 @@ public class ExcelOperation
                     ProcessMonitor.mNetValue = ((XSSFCell)nRow.GetCell(22)).NumericCellValue;
                     try
                     {
-                        ProcessMonitor.mActualTime.TransitTime = Convert.ToInt16(((XSSFCell)nRow.GetCell(37)).StringCellValue.Split(',')[0]);
+                        ProcessMonitor.mActualTime.TransitTime = Convert.ToInt16(((XSSFCell)nRow.GetCell(36)).StringCellValue.Split(',')[0]);
                     }
                     catch (Exception)
                     {
